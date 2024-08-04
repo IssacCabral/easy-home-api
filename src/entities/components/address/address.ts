@@ -7,8 +7,8 @@ import type { IError } from "@shared/error";
 export interface IAddressEntity extends IBaseModel {
 	number: number;
 	street: string;
-	lat: string;
-	lon: string;
+	lat: number;
+	lon: number;
 }
 
 export class AddressEntity extends AbstractEntity<IAddressEntity> {
@@ -26,11 +26,11 @@ export class AddressEntity extends AbstractEntity<IAddressEntity> {
 		return right(address);
 	}
 
-	private static validateCoordinates(lat: string, lon: string): boolean {
+	private static validateCoordinates(lat: number, lon: number): boolean {
 		const latRegex = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/;
 		const lonRegex = /^[-+]?((1[0-7]\d|[1-9]?\d)(\.\d+)?|180(\.0+)?)$/;
 
-		return latRegex.test(lat) && lonRegex.test(lon);
+		return latRegex.test(lat.toString()) && lonRegex.test(lon.toString());
 	}
 
 	get number(): number {
@@ -41,11 +41,11 @@ export class AddressEntity extends AbstractEntity<IAddressEntity> {
 		return this.props.street;
 	}
 
-	get lat(): string {
+	get lat(): number {
 		return this.props.lat;
 	}
 
-	get lon(): string {
+	get lon(): number {
 		return this.props.lon;
 	}
 }
