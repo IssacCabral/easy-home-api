@@ -26,6 +26,6 @@ export class AmenityEntity extends AbstractEntity<IAmenityEntity> {
 	}
 
 	get label(): string {
-		return this.export().label;
+		return this.props.label;
 	}
 }

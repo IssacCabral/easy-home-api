@@ -19,18 +19,18 @@ export class LandlordEntity extends AbstractEntity<ILandlordEntity> {
 	}
 
 	get name(): string {
-		return this.export().name;
+		return this.props.name;
 	}
 
 	get number(): string {
-		return this.export().number;
+		return this.props.number;
 	}
 
 	get email(): string {
-		return this.export().email;
+		return this.props.email;
 	}
 
 	get profilePicUrl(): string {
-		return this.export().profilePicUrl;
+		return this.props.profilePicUrl;
 	}
 }

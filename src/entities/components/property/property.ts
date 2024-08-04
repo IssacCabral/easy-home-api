@@ -17,6 +17,7 @@ export enum PropertyStatus {
 
 export interface IPropertyEntity extends IBaseModel {
 	landlordId: string;
+	addressId: string;
 	title: string;
 	type: PropertyTypes;
 	status: PropertyStatus;
@@ -36,38 +37,38 @@ export class PropertyEntity extends AbstractEntity<IPropertyEntity> {
 	}
 
 	get title(): string {
-		return this.export().title;
+		return this.props.title;
 	}
 
 	get type(): PropertyTypes {
-		return this.export().type;
+		return this.props.type;
 	}
 
 	get status(): PropertyStatus {
-		return this.export().status;
+		return this.props.status;
 	}
 
 	get price(): number {
-		return this.export().price;
+		return this.props.price;
 	}
 
 	get bedrooms(): number {
-		return this.export().bedrooms;
+		return this.props.bedrooms;
 	}
 
 	get bathrooms(): number {
-		return this.export().bathrooms;
+		return this.props.bathrooms;
 	}
 
 	get dimensions(): string {
-		return this.export().dimensions;
+		return this.props.dimensions;
 	}
 
 	get location(): string {
-		return this.export().location;
+		return this.props.location;
 	}
 
 	get photosUrl(): string {
-		return this.export().photosUrl;
+		return this.props.photosUrl;
 	}
 }
