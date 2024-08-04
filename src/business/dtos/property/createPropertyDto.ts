@@ -1,3 +1,4 @@
+import type { IAddressEntity } from "@entities/components/address/address";
 import type {
 	BathroomsQuantity,
 	BedroomsQuantity,
@@ -17,6 +18,7 @@ export type InputCreatePropertyDto = {
 	height: number;
 	width: number;
 	photosUrl: string;
+	address: Omit<IAddressEntity, "id">;
 };
 
 export type OutputCreatePropertyDtyo = Either<IError, IPropertyEntity>;
