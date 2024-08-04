@@ -11,4 +11,5 @@ export type InputCreateLandlord = {
 export interface ILandlordRepository {
 	create(input: InputCreateLandlord): Promise<ILandlordEntity>;
 	findByEmail(email: string): Promise<ILandlordEntity | undefined>;
+	findById(idL: string): Promise<ILandlordEntity | undefined>;
 }
