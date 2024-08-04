@@ -2,6 +2,7 @@ import type {
 	BathroomsQuantity,
 	BedroomsQuantity,
 	IPropertyEntity,
+	PropertyStatus,
 	PropertyTypes,
 } from "@entities/components/property/property";
 
@@ -11,6 +12,7 @@ export type InputCreateProperty = {
 	title: string;
 	type: PropertyTypes;
 	price: number;
+	status: PropertyStatus;
 	bedrooms: BedroomsQuantity;
 	bathrooms: BathroomsQuantity;
 	height: number;
