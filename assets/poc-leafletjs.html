@@ -1,48 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
     <style>
-      #map {
-        height: 700px;
-        width: 1000px;
-      }
+        #map {
+            height: 700px;
+            width: 1000px;
+        }
+        #search-container {
+            margin: 20px;
+        }
+        #search {
+            width: 300px;
+            padding: 10px;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
+    <div id="search-container">
+        <input type="text" id="search" placeholder="Digite um endereço...">
+        <button onclick="searchAddress()">Pesquisar</button>
+    </div>
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
 
     <script>
-      const map = L.map('map').setView([-4.97813, -39.0188], 15)
+        const map = L.map('map').setView([-4.97813, -39.0188], 15);
 
-      console.log(map)
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(map); 
-      
-      // const marker = L.marker([51.5, -0.09]).addTo(map)
-      const markers = [
-        {coords: [-4.97813, -39.0188], popup: 'Quixadá - CE'},
-        {coords: [-4.9779, -39.0150], popup: 'Local A'},
-        {coords: [-4.9790, -39.0220], popup: 'Local B'}
-      ];
+        function searchAddress() {
+            const address = document.getElementById('search').value;
+            const encodedAddress = encodeURIComponent(address);
+            const url = `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&addressdetails=1`;
 
-      markers.forEach((marker) => {
-        L.marker(marker.coords).addTo(map).bindPopup(marker.popup)
-      })
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        const lat = parseFloat(data[0].lat);
+                        const lon = parseFloat(data[0].lon);
+                        const popupText = data[0].display_name;
 
+                        // Remove marcadores existentes
+                        map.eachLayer(layer => {
+                            if (layer instanceof L.Marker) {
+                                map.removeLayer(layer);
+                            }
+                        });
+
+                        // Adiciona um novo marcador no endereço encontrado
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup(popupText)
+                            .openPopup();
+
+                        // Adiciona marcadores próximos
+                        addNearbyMarkers(lat, lon);
+
+                        map.setView([lat, lon], 16);
+                    } else {
+                        alert('Endereço não encontrado');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar endereço:', error);
+                    alert('Erro ao buscar endereço');
+                });
+        }
+
+        function addNearbyMarkers(lat, lon) {
+            const radius = 200; // raio em metros
+            const numMarkers = 10; // número de marcadores próximos
+
+            for (let i = 0; i < numMarkers; i++) {
+                // Gera uma posição aleatória dentro do raio especificado
+                const randomOffset = Math.random() * radius;
+                const angle = Math.random() * 2 * Math.PI;
+                const offsetLat = randomOffset * Math.cos(angle) / 111320; // conversão de metros para graus
+                const offsetLon = randomOffset * Math.sin(angle) / (111320 * Math.cos(lat * Math.PI / 180)); // conversão de metros para graus
+
+                const newLat = lat + offsetLat;
+                const newLon = lon + offsetLon;
+
+                // Adiciona um marcador na nova posição
+                L.marker([newLat, newLon]).addTo(map)
+                    .bindPopup(`Marcador próximo ${i + 1}`);
+            }
+        }
     </script>
-  </body>
+</body>
 </html>
