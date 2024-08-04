@@ -2,6 +2,7 @@ import { AbstractEntity } from "@entities/shared/abstractEntity";
 import type { IBaseModel } from "@entities/shared/baseModel";
 import { type Either, right } from "@shared/either";
 import type { IError } from "@shared/error";
+import type { IAddressEntity } from "../address/address";
 
 export enum PropertyTypes {
 	HOUSE = "HOUSE",
@@ -21,10 +22,10 @@ export type BathroomsQuantity = 1 | 2 | 3 | 4 | 5;
 
 export interface IPropertyEntity extends IBaseModel {
 	landlordId: string;
-	addressId: string;
 	title: string;
 	type: PropertyTypes;
 	status: PropertyStatus;
+	address: IAddressEntity;
 	price: number;
 	bedrooms: BedroomsQuantity;
 	bathrooms: BathroomsQuantity;
@@ -74,5 +75,9 @@ export class PropertyEntity extends AbstractEntity<IPropertyEntity> {
 
 	get photosUrl(): string {
 		return this.props.photosUrl;
+	}
+
+	get address(): IAddressEntity {
+		return this.props.address;
 	}
 }
