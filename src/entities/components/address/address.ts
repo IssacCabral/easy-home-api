@@ -4,7 +4,7 @@ import {
 } from "@entities/errors/address";
 import { AbstractEntity } from "@entities/shared/abstractEntity";
 import type { IBaseModel } from "@entities/shared/baseModel";
-import { left, right, type Either } from "@shared/either";
+import { type Either, left, right } from "@shared/either";
 import type { IError } from "@shared/error";
 
 export interface IAddressEntity extends IBaseModel {
