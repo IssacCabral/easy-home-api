@@ -11,5 +11,8 @@
 				"noStaticOnlyClass": "off"
 			}
 		}
+	},
+	"formatter": {
+		"lineWidth": 120
 	}
 }

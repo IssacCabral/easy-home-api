@@ -1,7 +1,4 @@
-import {
-	InvalidAddressNumber,
-	InvalidCoordinates,
-} from "@entities/errors/address";
+import { InvalidAddressNumber, InvalidCoordinates } from "@entities/errors/address";
 import { AbstractEntity } from "@entities/shared/abstractEntity";
 import type { IBaseModel } from "@entities/shared/baseModel";
 import { type Either, left, right } from "@shared/either";
