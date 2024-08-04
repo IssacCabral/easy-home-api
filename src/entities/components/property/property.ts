@@ -15,6 +15,10 @@ export enum PropertyStatus {
 	SPLIT = "SPLIT",
 }
 
+export type BedroomsQuantity = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+export type BathroomsQuantity = 1 | 2 | 3 | 4 | 5;
+
 export interface IPropertyEntity extends IBaseModel {
 	landlordId: string;
 	addressId: string;
@@ -22,10 +26,10 @@ export interface IPropertyEntity extends IBaseModel {
 	type: PropertyTypes;
 	status: PropertyStatus;
 	price: number;
-	bedrooms: number; // todo: ou adiciona validação OU cria uma tipagem
-	bathrooms: number; // todo: ou adiciona validação OU cria uma tipagem
-	dimensions: string;
-	location: string;
+	bedrooms: BedroomsQuantity;
+	bathrooms: BathroomsQuantity;
+	height: number;
+	width: number;
 	photosUrl: string;
 }
 
@@ -60,12 +64,12 @@ export class PropertyEntity extends AbstractEntity<IPropertyEntity> {
 		return this.props.bathrooms;
 	}
 
-	get dimensions(): string {
-		return this.props.dimensions;
+	get height(): number {
+		return this.props.height;
 	}
 
-	get location(): string {
-		return this.props.location;
+	get width(): number {
+		return this.props.width;
 	}
 
 	get photosUrl(): string {

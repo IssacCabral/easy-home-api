@@ -1,0 +1,22 @@
+import type {
+	BathroomsQuantity,
+	BedroomsQuantity,
+	IPropertyEntity,
+	PropertyTypes,
+} from "@entities/components/property/property";
+import type { Either } from "@shared/either";
+import type { IError } from "@shared/error";
+
+export type InputCreatePropertyDto = {
+	landlordId: string;
+	title: string;
+	type: PropertyTypes;
+	price: number;
+	bedrooms: BedroomsQuantity;
+	bathrooms: BathroomsQuantity;
+	height: number;
+	width: number;
+	photosUrl: string;
+};
+
+export type OutputCreatePropertyDtyo = Either<IError, IPropertyEntity>;
