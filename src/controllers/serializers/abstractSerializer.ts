@@ -1,4 +1,4 @@
-import { validateSync } from "node_modules/class-validator/types/index";
+import { validateSync } from "class-validator";
 
 export abstract class AbstractSerializer<A> {
 	constructor(obj: Partial<A>) {
