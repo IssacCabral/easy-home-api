@@ -1,3 +1,4 @@
+import type { IAddressEntity } from "@entities/components/address/address";
 import type {
 	BathroomsQuantity,
 	BedroomsQuantity,
@@ -8,7 +9,6 @@ import type {
 
 export type InputCreateProperty = {
 	landlordId: string;
-	addressId: string;
 	title: string;
 	type: PropertyTypes;
 	price: number;
@@ -18,6 +18,8 @@ export type InputCreateProperty = {
 	height: number;
 	width: number;
 	photosUrl: string;
+	amenityIds: string[];
+	address: IAddressEntity;
 };
 
 export interface IPropertyRepository {

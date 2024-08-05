@@ -1,11 +1,13 @@
 import type { InputCreatePropertyDto, OutputCreatePropertyDtyo } from "@business/dtos/property/createPropertyDto";
 import { CoordinatesNotAvailable, CreatePropertyGeneralError, LandlordNotFound } from "@business/errors/property";
 import type { IAddressRepository } from "@business/repositories/iAddressRepository";
+import type { IAmenityRepository } from "@business/repositories/iAmenityRepository";
 import type { ILandlordRepository } from "@business/repositories/iLandlordRepository";
 import type { IPropertyRepository, InputCreateProperty } from "@business/repositories/iPropertyRepository";
 import type { IUniqueIdentifierService } from "@business/services/iUniqueIdentifierService";
 import type { IUseCase } from "@business/shared/iUseCase";
 import { AddressEntity, type IAddressEntity } from "@entities/components/address/address";
+import type { IAmenityEntity } from "@entities/components/amenity/amenity";
 import { type IPropertyEntity, PropertyEntity, PropertyStatus } from "@entities/components/property/property";
 import { type Either, left, right } from "@shared/either";
 import type { IError } from "@shared/error";
@@ -15,6 +17,7 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 		private readonly landlordRepository: ILandlordRepository,
 		private readonly propertyRepository: IPropertyRepository,
 		private readonly addressRepository: IAddressRepository,
+		private readonly amenityRepository: IAmenityRepository,
 		private readonly uniqueIdentifierService: IUniqueIdentifierService,
 	) {}
 
@@ -34,7 +37,12 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 				return left(CoordinatesNotAvailable);
 			}
 
-			const createdEntities = this.createEntities(input);
+			const amenities = await this.amenityRepository.findByIds(input.amenityIds);
+			if (amenities.isLeft()) {
+				return left(amenities.value);
+			}
+
+			const createdEntities = this.createEntities(input, amenities.value);
 			if (createdEntities.isLeft()) {
 				return left(createdEntities.value);
 			}
@@ -64,6 +72,7 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 	private createPropertyEntity(
 		input: InputCreatePropertyDto,
 		addressEntity: IAddressEntity,
+		amenityEntities: IAmenityEntity[],
 	): Either<IError, PropertyEntity> {
 		return PropertyEntity.create({
 			id: this.uniqueIdentifierService.create(),
@@ -79,10 +88,14 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 			type: input.type,
 			photosUrl: input.photosUrl,
 			address: addressEntity,
+			amenities: amenityEntities,
 		});
 	}
 
-	private createEntities(input: InputCreatePropertyDto): Either<
+	private createEntities(
+		input: InputCreatePropertyDto,
+		amenityEntities: IAmenityEntity[],
+	): Either<
 		IError,
 		{
 			propertyEntity: IPropertyEntity;
@@ -94,7 +107,7 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 			return left(addressEntity.value);
 		}
 
-		const propertyEntity = this.createPropertyEntity(input, addressEntity.value.export());
+		const propertyEntity = this.createPropertyEntity(input, addressEntity.value.export(), amenityEntities);
 		if (propertyEntity.isLeft()) {
 			return left(propertyEntity.value);
 		}
@@ -108,7 +121,6 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 	private getPayloadToSaveProperty(propertyEntity: IPropertyEntity): InputCreateProperty {
 		return {
 			landlordId: propertyEntity.landlordId,
-			addressId: propertyEntity.address.id,
 			bathrooms: propertyEntity.bathrooms,
 			bedrooms: propertyEntity.bedrooms,
 			height: propertyEntity.height,
@@ -118,6 +130,8 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 			status: propertyEntity.status,
 			title: propertyEntity.title,
 			type: propertyEntity.type,
+			address: propertyEntity.address,
+			amenityIds: propertyEntity.amenities.map((amenity) => amenity.id),
 		};
 	}
 }

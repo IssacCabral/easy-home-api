@@ -20,6 +20,7 @@ export type InputCreatePropertyDto = {
 	width: number;
 	photosUrl: string;
 	address: Omit<IAddressEntity, "id">;
+	amenityIds: string[];
 };
 
 export type OutputCreatePropertyDtyo = Either<IError, IPropertyEntity>;
