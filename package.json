@@ -8,14 +8,49 @@
   "scripts": {
     "start": "npx tsx watch src/framework/server.ts",
     "transpile": "npx tsc",
-    "format": "yarn biome check --write ./src/**"
+    "format": "yarn biome check --write ./src/**",
+    "test": "jest --maxWorkers=$(nproc) --detectOpenHandles --forceExit"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
+    "@types/jest": "^29.5.12",
     "@types/node": "^22.1.0",
     "jest": "^29.7.0",
+    "ts-jest": "^29.2.4",
     "tsx": "^4.16.2",
     "typescript": "^5.5.4"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "jest": {
+    "verbose": false,
+    "bail": false,
+    "collectCoverage": false,
+    "preset": "ts-jest",
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coverageReporters": [
+      "json",
+      "json-summary",
+      "lcov",
+      "text",
+      "clover"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "json",
+      "node"
+    ],
+    "testRegex": "/.*\\.(int)|(unit)\\.ts$",
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "@entities/(.*)": "<rootDir>/src/entities/$1",
+      "@business/(.*)": "<rootDir>/src/business/$1",
+      "@controllers/(.*)": "<rootDir>/src/controllers/$1",
+      "@framework/(.*)": "<rootDir>/src/framework/$1",
+      "@shared/(.*)": "<rootDir>/src/shared/$1",
+      "@test/(.*)": "<rootDir>/test/$1"
+    }
+  }
 }
