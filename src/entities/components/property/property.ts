@@ -3,6 +3,7 @@ import type { IBaseModel } from "@entities/shared/baseModel";
 import { type Either, right } from "@shared/either";
 import type { IError } from "@shared/error";
 import type { IAddressEntity } from "../address/address";
+import type { IAmenityEntity } from "../amenity/amenity";
 
 export enum PropertyTypes {
 	HOUSE = "HOUSE",
@@ -33,6 +34,7 @@ export interface IPropertyEntity extends IBaseModel {
 	height: number;
 	width: number;
 	photosUrl: string;
+	amenities: IAmenityEntity[];
 }
 
 export class PropertyEntity extends AbstractEntity<IPropertyEntity> {
