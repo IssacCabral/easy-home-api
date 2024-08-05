@@ -1,4 +1,4 @@
-import type { IError } from "@shared/error";
+import type { IError } from "@shared/iError";
 
 const CODE_SUFIX = "AMT-E";
 

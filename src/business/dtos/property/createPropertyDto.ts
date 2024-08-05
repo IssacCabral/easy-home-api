@@ -6,7 +6,7 @@ import type {
 	PropertyTypes,
 } from "@entities/components/property/property";
 import type { Either } from "@shared/either";
-import type { IError } from "@shared/error";
+import type { IError } from "@shared/iError";
 
 export type InputCreatePropertyDto = {
 	landlordId: string;

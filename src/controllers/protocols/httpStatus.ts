@@ -1,4 +1,4 @@
-import type { IError } from "@shared/error";
+import type { IError } from "@shared/iError";
 import type { HttpResponse } from "./http";
 
 export const serverError = (error: IError): HttpResponse => ({

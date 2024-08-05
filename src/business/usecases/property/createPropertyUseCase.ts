@@ -10,7 +10,7 @@ import { AddressEntity, type IAddressEntity } from "@entities/components/address
 import type { IAmenityEntity } from "@entities/components/amenity/amenity";
 import { type IPropertyEntity, PropertyEntity, PropertyStatus } from "@entities/components/property/property";
 import { type Either, left, right } from "@shared/either";
-import type { IError } from "@shared/error";
+import type { IError } from "@shared/iError";
 
 export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, OutputCreatePropertyDtyo> {
 	constructor(

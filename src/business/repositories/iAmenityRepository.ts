@@ -1,6 +1,6 @@
 import type { IAmenityEntity } from "@entities/components/amenity/amenity";
 import type { Either } from "@shared/either";
-import type { IError } from "@shared/error";
+import type { IError } from "@shared/iError";
 
 export interface IAmenityRepository {
 	findById(id: string): Promise<IAmenityEntity | undefined>;

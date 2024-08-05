@@ -1,7 +1,7 @@
 import { AbstractEntity } from "@entities/shared/abstractEntity";
 import type { IBaseModel } from "@entities/shared/baseModel";
 import { type Either, right } from "@shared/either";
-import type { IError } from "@shared/error";
+import type { IError } from "@shared/iError";
 
 export interface ITenantEntity extends IBaseModel {
 	name: string;
