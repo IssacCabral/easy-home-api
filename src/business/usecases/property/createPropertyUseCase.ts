@@ -35,7 +35,6 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 			}
 
 			const createdEntities = this.createEntities(input);
-
 			if (createdEntities.isLeft()) {
 				return left(createdEntities.value);
 			}
@@ -75,6 +74,7 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 			landlordId: input.landlordId,
 			price: input.price,
 			title: input.title,
+			description: input.description,
 			status: PropertyStatus.FREE,
 			type: input.type,
 			photosUrl: input.photosUrl,

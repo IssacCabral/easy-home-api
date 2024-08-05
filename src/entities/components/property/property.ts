@@ -29,6 +29,7 @@ export interface IPropertyEntity extends IBaseModel {
 	price: number;
 	bedrooms: BedroomsQuantity;
 	bathrooms: BathroomsQuantity;
+	description: string;
 	height: number;
 	width: number;
 	photosUrl: string;
@@ -79,5 +80,9 @@ export class PropertyEntity extends AbstractEntity<IPropertyEntity> {
 
 	get address(): IAddressEntity {
 		return this.props.address;
+	}
+
+	get description(): string {
+		return this.props.description;
 	}
 }

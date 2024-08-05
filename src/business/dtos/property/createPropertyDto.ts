@@ -12,6 +12,7 @@ export type InputCreatePropertyDto = {
 	landlordId: string;
 	title: string;
 	type: PropertyTypes;
+	description: string;
 	price: number;
 	bedrooms: BedroomsQuantity;
 	bathrooms: BathroomsQuantity;
