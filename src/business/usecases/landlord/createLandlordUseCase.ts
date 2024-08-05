@@ -17,7 +17,6 @@ export class CreateLandlordUseCase implements IUseCase<InputCreateLandlordDto, O
 	async exec(input: InputCreateLandlordDto): Promise<OutputCreateLandlordDto> {
 		try {
 			const landlord = await this.landlordRepository.findByEmail(input.email);
-
 			if (landlord) {
 				return left(LandlordAlreadyExists);
 			}
