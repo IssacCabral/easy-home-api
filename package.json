@@ -20,7 +20,10 @@
     "tsx": "^4.16.2",
     "typescript": "^5.5.4"
   },
-  "dependencies": {},
+  "dependencies": {
+    "class-validator": "^0.14.1",
+    "reflect-metadata": "^0.2.2"
+  },
   "jest": {
     "verbose": false,
     "bail": false,
