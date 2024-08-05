@@ -7,7 +7,7 @@
     "experimentalDecorators": true, //  permite o uso de funcionalidades experimentais do Typescript chamadas de "decorators".
     "emitDecoratorMetadata": true, //  inclui metadados de tipo no código emitido pelo compilador Typescript quando os decorators são usados nas annotations.
 
-    "module": "ES6" /* Specify what module code is generated. */,
+    "module": "CommonJS" /* Specify what module code is generated. */,
     "outDir": "./dist", // especifica a pasta onde os arquivos javascript serão gerados após a transpilação
 
     "removeComments": true, // remove os comentários nos arquivos javascript gerados
