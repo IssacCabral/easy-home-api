@@ -19,3 +19,9 @@ export const CoordinatesNotAvailable: IError = {
 	message: "Coordinates Not Available",
 	shortMessage: "coordinatesNotAvailable",
 };
+
+export const MissingAmenities = (amenitiesNotFound: string): IError => ({
+	code: `${CODE_SUFIX}-004`,
+	message: `Amenities Not Found: ${amenitiesNotFound}`,
+	shortMessage: "missingAmenities",
+});
