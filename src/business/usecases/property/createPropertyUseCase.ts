@@ -1,5 +1,6 @@
 import type { InputCreatePropertyDto, OutputCreatePropertyDtyo } from "@business/dtos/property/createPropertyDto";
-import { CoordinatesNotAvailable, CreatePropertyGeneralError, LandlordNotFound } from "@business/errors/property";
+import { LandlordNotFound } from "@business/errors/landlord";
+import { CoordinatesNotAvailable, CreatePropertyGeneralError } from "@business/errors/property";
 import type { IAddressRepository } from "@business/repositories/iAddressRepository";
 import type { IAmenityRepository } from "@business/repositories/iAmenityRepository";
 import type { ILandlordRepository } from "@business/repositories/iLandlordRepository";

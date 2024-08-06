@@ -8,20 +8,8 @@ export const CreatePropertyGeneralError: IError = {
 	shortMessage: "createPropertyGeneralError",
 };
 
-export const LandlordNotFound: IError = {
-	code: `${CODE_SUFIX}-002`,
-	message: "Landlord Not Found",
-	shortMessage: "landlordNotFound",
-};
-
 export const CoordinatesNotAvailable: IError = {
-	code: `${CODE_SUFIX}-003`,
+	code: `${CODE_SUFIX}-002`,
 	message: "Coordinates Not Available",
 	shortMessage: "coordinatesNotAvailable",
 };
-
-export const MissingAmenities = (amenitiesNotFound: string): IError => ({
-	code: `${CODE_SUFIX}-004`,
-	message: `Amenities Not Found: ${amenitiesNotFound}`,
-	shortMessage: "missingAmenities",
-});

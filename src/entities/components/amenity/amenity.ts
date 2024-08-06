@@ -8,6 +8,7 @@ export interface IAmenityEntity extends IBaseModel {
 	label: string;
 }
 
+// todo: talvez remover depois
 export class AmenityEntity extends AbstractEntity<IAmenityEntity> {
 	private static readonly LABEL_WORDS = 1;
 
