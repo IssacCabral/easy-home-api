@@ -1,7 +1,7 @@
 import type { IError, Serializable } from "@shared/iError";
 import type { HttpResponse } from "./http";
 
-export const serverError = (error: IError): HttpResponse => ({
+export const serverError = (error: Serializable): HttpResponse => ({
 	statusCode: 500,
 	body: error,
 });

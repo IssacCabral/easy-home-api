@@ -5,7 +5,7 @@ type Details = {
 	constraints: Record<string, string>;
 };
 
-export const validationError = (details: Details[]): IError => {
+export const validationError = (details?: Details[]): IError => {
 	return {
 		code: "VAL-001",
 		message: "Validation Error",

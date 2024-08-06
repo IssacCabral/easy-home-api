@@ -4,5 +4,5 @@ export interface IError {
 	code: string;
 	message: string;
 	shortMessage: string;
-	details: Serializable;
+	details?: Serializable;
 }
