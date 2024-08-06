@@ -8,7 +8,7 @@ export interface ITenantEntity extends IBaseModel {
 	number: string;
 	email: string;
 	password: string;
-	profilePicUrl: string;
+	profilePicUrl?: string;
 }
 
 export class TenantEntity extends AbstractEntity<ITenantEntity> {
@@ -30,7 +30,7 @@ export class TenantEntity extends AbstractEntity<ITenantEntity> {
 		return this.props.email;
 	}
 
-	get profilePicUrl(): string {
+	get profilePicUrl(): string | undefined {
 		return this.props.profilePicUrl;
 	}
 }
