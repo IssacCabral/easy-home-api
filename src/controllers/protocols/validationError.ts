@@ -1,6 +1,11 @@
 import type { IError } from "@shared/iError";
 
-export const validationError = (details?: any): IError => {
+type Details = {
+	property: string;
+	constraints: Record<string, string>;
+};
+
+export const validationError = (details: Details[]): IError => {
 	return {
 		code: "VAL-001",
 		message: "Validation Error",
