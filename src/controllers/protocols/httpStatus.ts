@@ -1,4 +1,4 @@
-import type { IError } from "@shared/iError";
+import type { IError, Serializable } from "@shared/iError";
 import type { HttpResponse } from "./http";
 
 export const serverError = (error: IError): HttpResponse => ({
@@ -11,20 +11,20 @@ export const badRequest = (error: IError): HttpResponse => ({
 	body: error,
 });
 
-export const created = (data: object): HttpResponse => ({
+export const created = (data: Serializable): HttpResponse => ({
 	statusCode: 201,
 	body: data,
 });
 
-export const ok = (data: object): HttpResponse => ({
+export const ok = (data: Serializable): HttpResponse => ({
 	statusCode: 200,
 	body: data,
 });
 
-export const noContent = (data: object): HttpResponse => {
+export const noContent = (): HttpResponse => {
 	return {
 		statusCode: 204,
-		body: data,
+		body: {},
 	};
 };
 
