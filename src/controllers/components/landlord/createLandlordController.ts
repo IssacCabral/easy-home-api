@@ -25,6 +25,8 @@ export class CreateLandlordController implements IController {
 			return created(result.value);
 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		} catch (err: any) {
+			console.log("err :>> ", err);
+
 			if (err?.code === validationError().code) {
 				return badRequest(err);
 			}

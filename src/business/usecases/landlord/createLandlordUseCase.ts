@@ -22,7 +22,6 @@ export class CreateLandlordUseCase implements IUseCase<InputCreateLandlordDto, O
 			}
 
 			const hashedPassword = await this.cryptService.generateHash(input.password);
-
 			const landlordEntity = LandlordEntity.create({
 				id: this.uniqueIdentifierService.create(),
 				email: input.email,
@@ -39,14 +38,12 @@ export class CreateLandlordUseCase implements IUseCase<InputCreateLandlordDto, O
 
 			return right(this.omitPassword(createdLandlord));
 		} catch (err) {
-			console.error(err);
 			return left(CreateLandlordGeneralError);
 		}
 	}
 
 	private omitPassword(obj: ILandlordEntity): Omit<ILandlordEntity, "password"> {
 		const { password, ...rest } = obj;
-
 		return rest;
 	}
 }
