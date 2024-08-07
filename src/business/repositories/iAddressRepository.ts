@@ -10,5 +10,5 @@ export type InputCreateAddress = {
 
 export interface IAddressRepository {
 	create(input: InputCreateAddress): Promise<IAddressEntity>;
-	findByCoordinates(lat: number, lon: number): Promise<IAddressEntity | undefined>;
+	findByCoordinates(lat: number, lon: number): Promise<IAddressEntity | null>;
 }

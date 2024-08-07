@@ -3,6 +3,6 @@ import type { Either } from "@shared/either";
 import type { IError } from "@shared/iError";
 
 export interface IAmenityRepository {
-	findById(id: string): Promise<IAmenityEntity | undefined>;
+	findById(id: string): Promise<IAmenityEntity | null>;
 	findByIds(ids: string[]): Promise<Either<IError, IAmenityEntity[]>>;
 }
