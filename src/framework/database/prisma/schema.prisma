@@ -16,6 +16,8 @@ datasource db {
 model Amenities {
   id    String @id
   label String @unique @db.VarChar(40)
+
+  properties AmenitiesOnProperties[]
 }
 
 model Landlords {
@@ -38,4 +40,45 @@ model Tenants {
   urlProfilePic String   @db.VarChar(200)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+}
+
+enum PropertyTypes {
+  HOUSE
+  APARTAMENT
+  DUPLEX
+}
+
+enum PropertyStatus {
+  FREE
+  BUSY
+  SPLIT
+}
+
+model Properties {
+  id        String         @id
+  title     String         @db.VarChar(100)
+  type      PropertyTypes
+  status    PropertyStatus
+  price     Float          @db.DoublePrecision
+  bedrooms  Int            @db.SmallInt
+  bathrooms Int            @db.SmallInt
+  height    Float          @db.DoublePrecision
+  width     Float          @db.DoublePrecision
+  photosUrl String         @db.VarChar(200)
+
+  amenities AmenitiesOnProperties[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AmenitiesOnProperties {
+  property   Properties @relation(fields: [propertyId], references: [id])
+  propertyId String
+  amenity    Amenities  @relation(fields: [amenityId], references: [id])
+  amenityId  String
+
+  isMainTenant Boolean @default(false)
+
+  @@id([propertyId, amenityId])
 }
