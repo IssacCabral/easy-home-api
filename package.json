@@ -23,10 +23,15 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "@prisma/client": "5.18.0",
     "bcrypt": "^5.1.1",
     "class-validator": "^0.14.1",
+    "prisma": "^5.18.0",
     "reflect-metadata": "^0.2.2",
     "uuid": "^10.0.0"
+  },
+  "prisma": {
+    "schema": "./src/framework/database/prisma/schema.prisma"
   },
   "jest": {
     "verbose": false,
