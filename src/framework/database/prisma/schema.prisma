@@ -87,8 +87,6 @@ model AmenitiesOnProperties {
   amenity    Amenities  @relation(fields: [amenityId], references: [id])
   amenityId  String
 
-  isMainTenant Boolean @default(false)
-
   @@id([propertyId, amenityId])
 }
 
