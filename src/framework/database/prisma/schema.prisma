@@ -21,12 +21,12 @@ model Amenities {
 }
 
 model Landlords {
-  id            String @id
-  name          String @db.VarChar(50)
-  number        String @db.VarChar(20)
-  email         String @unique @db.VarChar(50)
-  password      String @db.VarChar(100)
-  urlProfilePic String @db.VarChar(200)
+  id            String  @id
+  name          String  @db.VarChar(50)
+  number        String  @db.VarChar(20)
+  email         String  @unique @db.VarChar(50)
+  password      String  @db.VarChar(100)
+  urlProfilePic String? @db.VarChar(200)
 
   properties Properties[]
 
