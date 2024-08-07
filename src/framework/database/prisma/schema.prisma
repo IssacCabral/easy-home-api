@@ -43,6 +43,8 @@ model Tenants {
   urlProfilePic String   @db.VarChar(200)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+
+  property TenantsOnProperties?
 }
 
 enum PropertyTypes {
@@ -70,6 +72,7 @@ model Properties {
   photosUrl String         @db.VarChar(200)
 
   amenities AmenitiesOnProperties[]
+  tenants   TenantsOnProperties[]
 
   Landlord   Landlords @relation(fields: [landlordId], references: [id])
   landlordId String
@@ -88,6 +91,17 @@ model AmenitiesOnProperties {
   amenityId  String
 
   @@id([propertyId, amenityId])
+}
+
+model TenantsOnProperties {
+  property   Properties @relation(fields: [propertyId], references: [id])
+  propertyId String
+  tenant     Tenants    @relation(fields: [tenantId], references: [id])
+  tenantId   String     @unique
+
+  isMainTenant Boolean @default(false)
+
+  @@id([propertyId, tenantId])
 }
 
 model Addresses {
