@@ -1,11 +1,8 @@
 # Estrutura do Projeto
 
-- [ ] Fluxo de trabalho do Node
 - [x] Adicionar Linter
-- [ ] Adicionar Hooks (Verificar lib alternativa ao Husky)
 - [x] Definir Arquitetura de Projeto
 - [ ] Proteger a branch main do projeto
-
 
 https://imasters.com.br/front-end/node-js-v8-single-thread-e-io-nao-bloqueante
 https://dev.to/ocodista/profundezas-do-nodejs-explorando-io-assincrono-mim
