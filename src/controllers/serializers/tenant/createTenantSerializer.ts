@@ -1,6 +1,6 @@
 import type { OutputCreateTenantDto } from "@business/dtos/tenant/createTenantDto";
-import { AbstractSerializer } from "../abstractSerializer";
 import { IsEmail, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { AbstractSerializer } from "../abstractSerializer";
 
 export class InputCreateTenantSerializer extends AbstractSerializer<InputCreateTenantSerializer> {
 	@IsNotEmpty()

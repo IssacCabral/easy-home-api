@@ -1,4 +1,4 @@
-import type { InputCreateTenant, ITenantRepository } from "@business/repositories/iTenantRepository";
+import type { ITenantRepository, InputCreateTenant } from "@business/repositories/iTenantRepository";
 import type { ITenantEntity } from "@entities/components/tenant/tenant";
 import type { PrismaClient } from "@prisma/client";
 

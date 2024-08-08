@@ -1,9 +1,9 @@
+import type { CreateLandlordUseCase } from "@business/usecases/landlord/createLandlordUseCase";
 import type {
 	InputCreateLandlordSerializer,
 	OutputCreateLandlordSerializer,
 } from "@controllers/serializers/landlord/createLandlordSerializer";
 import { AbstractOperator } from "../abstractOperator";
-import type { CreateLandlordUseCase } from "@business/usecases/landlord/createLandlordUseCase";
 
 export class CreateLandlordOperator extends AbstractOperator<
 	InputCreateLandlordSerializer,

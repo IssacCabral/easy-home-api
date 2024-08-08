@@ -1,9 +1,9 @@
+import type { CreateTenantUseCase } from "@business/usecases/tenant/createTenantUseCase";
 import type {
 	InputCreateTenantSerializer,
 	OutputCreateTenantSerializer,
 } from "@controllers/serializers/tenant/createTenantSerializer";
 import { AbstractOperator } from "../abstractOperator";
-import type { CreateTenantUseCase } from "@business/usecases/tenant/createTenantUseCase";
 
 export class CreateTenantOperator extends AbstractOperator<InputCreateTenantSerializer, OutputCreateTenantSerializer> {
 	constructor(private readonly createTenantUseCase: CreateTenantUseCase) {
