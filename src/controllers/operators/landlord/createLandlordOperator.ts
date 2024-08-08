@@ -3,7 +3,6 @@ import type {
 	OutputCreateLandlordSerializer,
 } from "@controllers/serializers/landlord/createLandlordSerializer";
 import { AbstractOperator } from "../abstractOperator";
-import type { OutputCreateLandlordDto } from "@business/dtos/landlord/createLandlordDto";
 import type { CreateLandlordUseCase } from "@business/usecases/landlord/createLandlordUseCase";
 
 export class CreateLandlordOperator extends AbstractOperator<
@@ -14,7 +13,7 @@ export class CreateLandlordOperator extends AbstractOperator<
 		super();
 	}
 
-	protected async run(input: InputCreateLandlordSerializer): Promise<OutputCreateLandlordDto> {
+	protected async run(input: InputCreateLandlordSerializer): Promise<OutputCreateLandlordSerializer> {
 		return await this.createLandlordUseCase.exec(input);
 	}
 }
