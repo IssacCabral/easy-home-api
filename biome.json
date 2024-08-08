@@ -10,6 +10,9 @@
 			"complexity": {
 				"noStaticOnlyClass": "off",
 				"noForEach": "off"
+			},
+			"correctness": {
+				"noUnusedImports": "error"
 			}
 		}
 	},
