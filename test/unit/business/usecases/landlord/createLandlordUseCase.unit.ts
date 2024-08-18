@@ -23,4 +23,13 @@ describe("CreateLandlordUseCase", () => {
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.value).toEqual(CreateLandlordGeneralError);
 	});
+
+	it("should calls findByEmail with correct input", async () => {
+		const { sut, landlordRepositoryStub } = makeCreateLandlordSut();
+		const spy = jest.spyOn(landlordRepositoryStub, "findByEmail");
+
+		await sut.exec(input);
+
+		expect(spy).toHaveBeenCalledWith(input.email);
+	});
 });
