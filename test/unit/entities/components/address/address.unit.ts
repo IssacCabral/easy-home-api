@@ -1,5 +1,5 @@
 import { AddressEntity } from "@entities/components/address/address";
-import { InvalidCoordinates } from "@entities/errors/address";
+import { InvalidAddressNumber, InvalidCoordinates } from "@entities/errors/address";
 import { fakeAddressEntity } from "@test/utility/fakes/addressEntity";
 
 describe("AddressEntity", () => {
@@ -12,6 +12,17 @@ describe("AddressEntity", () => {
 		expect(addressEntity.isLeft()).toBeTruthy();
 		expect(addressEntity.isRight()).toBeFalsy();
 		expect(addressEntity.value).toEqual(InvalidCoordinates);
+	});
+
+	it("should fail if an invalid address number is provided", () => {
+		const addressEntity = AddressEntity.create({
+			...fakeAddressEntity,
+			number: -1,
+		});
+
+		expect(addressEntity.isLeft()).toBeTruthy();
+		expect(addressEntity.isRight()).toBeFalsy();
+		expect(addressEntity.value).toEqual(InvalidAddressNumber);
 	});
 
 	it("should create on success", () => {
