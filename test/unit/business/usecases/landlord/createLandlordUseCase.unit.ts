@@ -41,4 +41,19 @@ describe("CreateLandlordUseCase", () => {
 		expect(result.isRight()).toBeFalsy();
 		expect(result.value).toEqual(LandlordAlreadyExists);
 	});
+
+	it("should fail if generateHash throws an exception", async () => {
+		const { sut, cryptServiceStub, landlordRepositoryStub } = makeCreateLandlordSut();
+
+		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(cryptServiceStub, "generateHash").mockImplementationOnce(() => {
+			throw new Error("error");
+		});
+
+		const result = await sut.exec(input);
+
+		expect(result.isRight()).toBeFalsy();
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.value).toEqual(CreateLandlordGeneralError);
+	});
 });
