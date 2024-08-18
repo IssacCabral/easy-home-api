@@ -1,5 +1,8 @@
 import type { InputCreateLandlordDto } from "@business/dtos/landlord/createLandlordDto";
 import { CreateLandlordGeneralError, LandlordAlreadyExists } from "@business/errors/landlord";
+import { LandlordEntity } from "@entities/components/landlord/landlord";
+import { left } from "@shared/either";
+import { fakeIError } from "@test/utility/fakes/error";
 import { makeCreateLandlordSut } from "@test/utility/suts/landlord/createLandlordSut";
 
 describe("CreateLandlordUseCase", () => {
@@ -66,5 +69,18 @@ describe("CreateLandlordUseCase", () => {
 		await sut.exec(input);
 
 		expect(spy).toHaveBeenCalledWith(input.password);
+	});
+
+	it("should return left if landlordEntity returns left", async () => {
+		const { sut, landlordRepositoryStub } = makeCreateLandlordSut();
+
+		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(LandlordEntity, "create").mockReturnValueOnce(left(fakeIError));
+
+		const result = await sut.exec(input);
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(fakeIError);
 	});
 });
