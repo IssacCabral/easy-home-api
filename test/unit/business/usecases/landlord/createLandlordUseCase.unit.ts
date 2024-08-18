@@ -83,4 +83,19 @@ describe("CreateLandlordUseCase", () => {
 		expect(result.isRight()).toBeFalsy();
 		expect(result.value).toEqual(fakeIError);
 	});
+
+	it("should fail if landlord creation throws an exception", async () => {
+		const { sut, landlordRepositoryStub } = makeCreateLandlordSut();
+
+		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(landlordRepositoryStub, "create").mockImplementationOnce(() => {
+			throw new Error("error");
+		});
+
+		const result = await sut.exec(input);
+
+		expect(result.isRight()).toBeFalsy();
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.value).toEqual(CreateLandlordGeneralError);
+	});
 });
