@@ -18,6 +18,10 @@ export class LandlordEntity extends AbstractEntity<ILandlordEntity> {
 		return right(landlord);
 	}
 
+	get id(): string {
+		return this.props.id;
+	}
+
 	get name(): string {
 		return this.props.name;
 	}
