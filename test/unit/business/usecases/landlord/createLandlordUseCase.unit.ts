@@ -56,4 +56,15 @@ describe("CreateLandlordUseCase", () => {
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.value).toEqual(CreateLandlordGeneralError);
 	});
+
+	it("should calls generateHash with correct input", async () => {
+		const { sut, landlordRepositoryStub, cryptServiceStub } = makeCreateLandlordSut();
+		const spy = jest.spyOn(cryptServiceStub, "generateHash");
+
+		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+
+		await sut.exec(input);
+
+		expect(spy).toHaveBeenCalledWith(input.password);
+	});
 });
