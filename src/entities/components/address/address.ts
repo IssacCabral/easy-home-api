@@ -33,6 +33,10 @@ export class AddressEntity extends AbstractEntity<IAddressEntity> {
 		return latRegex.test(lat.toString()) && lonRegex.test(lon.toString());
 	}
 
+	get id(): string {
+		return this.props.id;
+	}
+
 	get number(): number {
 		return this.props.number;
 	}
