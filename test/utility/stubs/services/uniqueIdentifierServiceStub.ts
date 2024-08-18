@@ -6,6 +6,6 @@ class UniqueIdentifierServiceStub implements IUniqueIdentifierService {
 	}
 }
 
-export const makeUniqueIdentifierService = (): IUniqueIdentifierService => {
+export const makeUniqueIdentifierServiceStub = (): IUniqueIdentifierService => {
 	return new UniqueIdentifierServiceStub();
 };

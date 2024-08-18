@@ -2,9 +2,9 @@ import type { ILandlordRepository } from "@business/repositories/iLandlordReposi
 import type { ICryptService } from "@business/services/iCryptService";
 import type { IUniqueIdentifierService } from "@business/services/iUniqueIdentifierService";
 import { CreateLandlordUseCase } from "@business/usecases/landlord/createLandlordUseCase";
-import { makeLandLordRepository } from "@test/utility/stubs/repositories/landlordRepositoryStub";
-import { makeCryptService } from "@test/utility/stubs/services/cryptServiceStub";
-import { makeUniqueIdentifierService } from "@test/utility/stubs/services/uniqueIdentifierServiceStub";
+import { makeLandLordRepositoryStub } from "@test/utility/stubs/repositories/landlordRepositoryStub";
+import { makeCryptServiceStub } from "@test/utility/stubs/services/cryptServiceStub";
+import { makeUniqueIdentifierServiceStub } from "@test/utility/stubs/services/uniqueIdentifierServiceStub";
 
 interface CreateLandlordSut {
 	sut: CreateLandlordUseCase;
@@ -14,9 +14,9 @@ interface CreateLandlordSut {
 }
 
 export const makeCreateLandlordSut = (): CreateLandlordSut => {
-	const landlordRepositoryStub = makeLandLordRepository();
-	const cryptServiceStub = makeCryptService();
-	const uniqueIdentifierServiceStub = makeUniqueIdentifierService();
+	const landlordRepositoryStub = makeLandLordRepositoryStub();
+	const cryptServiceStub = makeCryptServiceStub();
+	const uniqueIdentifierServiceStub = makeUniqueIdentifierServiceStub();
 	const sut = new CreateLandlordUseCase(landlordRepositoryStub, cryptServiceStub, uniqueIdentifierServiceStub);
 
 	return {

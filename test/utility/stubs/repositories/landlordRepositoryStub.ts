@@ -16,6 +16,6 @@ class LandlordRepositoryStub implements ILandlordRepository {
 	}
 }
 
-export const makeLandLordRepository = (): ILandlordRepository => {
+export const makeLandLordRepositoryStub = (): ILandlordRepository => {
 	return new LandlordRepositoryStub();
 };

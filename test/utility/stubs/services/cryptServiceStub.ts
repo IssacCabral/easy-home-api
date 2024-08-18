@@ -10,6 +10,6 @@ class CryptServiceStub implements ICryptService {
 	}
 }
 
-export const makeCryptService = (): ICryptService => {
+export const makeCryptServiceStub = (): ICryptService => {
 	return new CryptServiceStub();
 };
