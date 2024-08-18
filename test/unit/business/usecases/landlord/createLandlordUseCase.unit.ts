@@ -1,5 +1,5 @@
 import type { InputCreateLandlordDto } from "@business/dtos/landlord/createLandlordDto";
-import { CreateLandlordGeneralError } from "@business/errors/landlord";
+import { CreateLandlordGeneralError, LandlordAlreadyExists } from "@business/errors/landlord";
 import { makeCreateLandlordSut } from "@test/utility/suts/landlord/createLandlordSut";
 
 describe("CreateLandlordUseCase", () => {
@@ -31,5 +31,14 @@ describe("CreateLandlordUseCase", () => {
 		await sut.exec(input);
 
 		expect(spy).toHaveBeenCalledWith(input.email);
+	});
+
+	it("should return left if landlord already exists", async () => {
+		const { sut } = makeCreateLandlordSut();
+		const result = await sut.exec(input);
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(LandlordAlreadyExists);
 	});
 });
