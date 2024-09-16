@@ -48,6 +48,9 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 				return left(createdEntities.value);
 			}
 
+			// const addressPayload = this.getPayloadToSaveAddress(createdEntities.value.addressEntity)
+			// const created
+
 			const payload = this.getPayloadToSaveProperty(createdEntities.value.propertyEntity);
 			const createdProperty = await this.propertyRepository.create(payload);
 
@@ -121,7 +124,9 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 
 	private getPayloadToSaveProperty(propertyEntity: IPropertyEntity): InputCreateProperty {
 		return {
+			id: propertyEntity.id,
 			landlordId: propertyEntity.landlordId,
+			description: propertyEntity.description,
 			bathrooms: propertyEntity.bathrooms,
 			bedrooms: propertyEntity.bedrooms,
 			height: propertyEntity.height,
