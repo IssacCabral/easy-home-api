@@ -13,7 +13,7 @@ interface CreateTenantSut {
 	uniqueIdentifierServiceStub: IUniqueIdentifierService;
 }
 
-export const makeCreateTenantStu = (): CreateTenantSut => {
+export const makeCreateTenantSut = (): CreateTenantSut => {
 	const tenantRepositoryStub = makeTenantRepositoryStub();
 	const cryptServiceStub = makeCryptServiceStub();
 	const uniqueIdentifierServiceStub = makeUniqueIdentifierServiceStub();
