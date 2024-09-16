@@ -64,16 +64,6 @@ CREATE TABLE properties_amenities (
 );
 ```
 
-# property_photos
-
-```sql
-CREATE TABLE property_photos (
-    id SERIAL PRIMARY KEY,
-    property_id INTEGER REFERENCES properties(id) ON DELETE CASCADE,
-    photo_url TEXT NOT NULL
-);
-```
-
 # properties_reviews (avaliação)
 
 ```sql
