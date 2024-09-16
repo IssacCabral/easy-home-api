@@ -5,12 +5,14 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [postgis]
 }
 
 model Amenities {
@@ -49,7 +51,7 @@ model Tenants {
 
 enum PropertyTypes {
   HOUSE
-  APARTAMENT
+  APARTMENT
   DUPLEX
 }
 
@@ -60,16 +62,17 @@ enum PropertyStatus {
 }
 
 model Properties {
-  id        String         @id
-  title     String         @db.VarChar(100)
-  type      PropertyTypes
-  status    PropertyStatus
-  price     Float          @db.DoublePrecision
-  bedrooms  Int            @db.SmallInt
-  bathrooms Int            @db.SmallInt
-  height    Float          @db.DoublePrecision
-  width     Float          @db.DoublePrecision
-  photosUrl String         @db.VarChar(200)
+  id          String         @id
+  title       String         @db.VarChar(100)
+  type        PropertyTypes
+  status      PropertyStatus
+  price       Float          @db.DoublePrecision
+  bedrooms    Int            @db.SmallInt
+  bathrooms   Int            @db.SmallInt
+  height      Float          @db.DoublePrecision
+  width       Float          @db.DoublePrecision
+  photosUrl   String         @db.VarChar(200)
+  description String         @db.VarChar(200)
 
   amenities AmenitiesOnProperties[]
   tenants   TenantsOnProperties[]
@@ -110,6 +113,8 @@ model Addresses {
   street String @db.VarChar(100)
   lat    Float
   lon    Float
+
+  location Unsupported("geography(Point, 4326)")
 
   property Properties?
 
