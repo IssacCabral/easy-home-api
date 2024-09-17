@@ -23,4 +23,4 @@ export type InputCreatePropertyDto = {
 	amenityIds: string[];
 };
 
-export type OutputCreatePropertyDtyo = Either<IError, IPropertyEntity>;
+export type OutputCreatePropertyDto = Either<IError, IPropertyEntity>;

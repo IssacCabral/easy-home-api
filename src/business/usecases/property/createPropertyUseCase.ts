@@ -1,4 +1,4 @@
-import type { InputCreatePropertyDto, OutputCreatePropertyDtyo } from "@business/dtos/property/createPropertyDto";
+import type { InputCreatePropertyDto, OutputCreatePropertyDto } from "@business/dtos/property/createPropertyDto";
 import { LandlordNotFound } from "@business/errors/landlord";
 import { CoordinatesNotAvailable, CreatePropertyGeneralError } from "@business/errors/property";
 import type { IAddressRepository } from "@business/repositories/iAddressRepository";
@@ -13,7 +13,7 @@ import { type IPropertyEntity, PropertyEntity, PropertyStatus } from "@entities/
 import { type Either, left, right } from "@shared/either";
 import type { IError } from "@shared/iError";
 
-export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, OutputCreatePropertyDtyo> {
+export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, OutputCreatePropertyDto> {
 	constructor(
 		private readonly landlordRepository: ILandlordRepository,
 		private readonly propertyRepository: IPropertyRepository,
@@ -22,8 +22,10 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 		private readonly uniqueIdentifierService: IUniqueIdentifierService,
 	) {}
 
-	async exec(input: InputCreatePropertyDto): Promise<OutputCreatePropertyDtyo> {
+	async exec(input: InputCreatePropertyDto): Promise<OutputCreatePropertyDto> {
 		try {
+			console.log("createPropertyUseCase input :>>", input);
+
 			const { lat, lon } = input.address;
 			const [landlord, address] = await Promise.all([
 				this.landlordRepository.findById(input.landlordId),
