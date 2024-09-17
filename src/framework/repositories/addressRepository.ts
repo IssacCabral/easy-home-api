@@ -23,6 +23,11 @@ export class AddressRepository implements IAddressRepository {
 	}
 
 	async findByCoordinates(lat: number, lon: number): Promise<IAddressEntity | null> {
-		throw new Error("Method not implemented.");
+		return await this.prismaClient.addresses.findUnique({
+			where: {
+				lat,
+				lon,
+			},
+		});
 	}
 }
