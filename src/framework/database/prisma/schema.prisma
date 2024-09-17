@@ -19,7 +19,7 @@ model Amenities {
   id    String @id
   label String @unique @db.VarChar(40)
 
-  properties AmenitiesOnProperties[]
+  properties Properties[]
 }
 
 model Landlords {
@@ -74,7 +74,7 @@ model Properties {
   photosUrl   String         @db.VarChar(200)
   description String         @db.VarChar(200)
 
-  amenities AmenitiesOnProperties[]
+  amenities Amenities[]
   tenants   TenantsOnProperties[]
 
   Landlord   Landlords @relation(fields: [landlordId], references: [id])
@@ -87,14 +87,14 @@ model Properties {
   updatedAt DateTime @updatedAt
 }
 
-model AmenitiesOnProperties {
-  property   Properties @relation(fields: [propertyId], references: [id])
-  propertyId String
-  amenity    Amenities  @relation(fields: [amenityId], references: [id])
-  amenityId  String
+// model AmenitiesOnProperties {
+//   property   Properties @relation(fields: [propertyId], references: [id])
+//   propertyId String
+//   amenity    Amenities  @relation(fields: [amenityId], references: [id])
+//   amenityId  String
 
-  @@id([propertyId, amenityId])
-}
+//   @@id([propertyId, amenityId])
+// }
 
 model TenantsOnProperties {
   property   Properties @relation(fields: [propertyId], references: [id])
@@ -111,13 +111,13 @@ model Addresses {
   id     String @id
   number Int    @db.SmallInt
   street String @db.VarChar(100)
-  lat    Float
-  lon    Float
+  lat    Float  @unique
+  lon    Float  @unique
 
   location Unsupported("geography(Point, 4326)")
 
   property Properties?
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 }
