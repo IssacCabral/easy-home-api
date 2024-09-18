@@ -13,24 +13,7 @@ export class PropertyRepository implements IPropertyRepository {
 	constructor(private readonly prismaClient: PrismaClient) {}
 
 	async create(input: InputCreateProperty): Promise<IPropertyEntity> {
-		console.log("propertyRepository input :>> ", input);
-
-		const location = `POINT(${input.address.lon} ${input.address.lat})`;
-		const newAddressResult: IAddressEntity[] = await this.prismaClient.$queryRaw`
-          INSERT INTO "Addresses"
-          (id, number, street, lat, lon, location)
-          VALUES (
-						${input.address.id},
-            ${input.address.number},
-            ${input.address.street},
-            ${input.address.lat},
-            ${input.address.lon},
-            ST_GeomFromText(${location}, 4326)
-          )
-					RETURNING id, number, street, lat, lon;
-        `;
-		const address = newAddressResult[0];
-
+		const newAddress = await this.createAddress(input.address);
 		const newProperty = await this.prismaClient.properties.create({
 			data: {
 				id: input.id,
@@ -43,7 +26,7 @@ export class PropertyRepository implements IPropertyRepository {
 				status: input.status,
 				title: input.title,
 				landlordId: input.landlordId,
-				addressId: address.id,
+				addressId: newAddress.id,
 				type: input.type,
 				description: input.description,
 				amenities: {
@@ -60,21 +43,46 @@ export class PropertyRepository implements IPropertyRepository {
 			},
 		});
 
+		return this.propertyMapper({
+			newProperty: newProperty as IPropertyEntity,
+			newAddress,
+		});
+	}
+
+	private async createAddress(address: IAddressEntity): Promise<IAddressEntity> {
+		const location = `POINT(${address.lon} ${address.lat})`;
+		const newAddressResult: IAddressEntity[] = await this.prismaClient.$queryRaw`
+          INSERT INTO "Addresses"
+          (id, number, street, lat, lon, location)
+          VALUES (
+						${address.id},
+            ${address.number},
+            ${address.street},
+            ${address.lat},
+            ${address.lon},
+            ST_GeomFromText(${location}, 4326)
+          )
+					RETURNING id, number, street, lat, lon;
+        `;
+		return newAddressResult[0];
+	}
+
+	private propertyMapper(data: { newProperty: IPropertyEntity; newAddress: IAddressEntity }): IPropertyEntity {
 		return {
-			id: newProperty.id,
-			landlordId: newProperty.landlordId,
-			title: newProperty.title,
-			status: PropertyStatus[newProperty.status],
-			address,
-			price: newProperty.price,
-			bedrooms: newProperty.bedrooms as BedroomsQuantity,
-			bathrooms: newProperty.bathrooms as BathroomsQuantity,
-			description: newProperty.description,
-			height: newProperty.height,
-			width: newProperty.width,
-			photosUrl: newProperty.photosUrl,
-			amenities: newProperty.amenities,
-			type: PropertyTypes[newProperty.type],
+			id: data.newProperty.id,
+			landlordId: data.newProperty.landlordId,
+			title: data.newProperty.title,
+			status: PropertyStatus[data.newProperty.status],
+			address: data.newAddress,
+			price: data.newProperty.price,
+			bedrooms: data.newProperty.bedrooms as BedroomsQuantity,
+			bathrooms: data.newProperty.bathrooms as BathroomsQuantity,
+			description: data.newProperty.description,
+			height: data.newProperty.height,
+			width: data.newProperty.width,
+			photosUrl: data.newProperty.photosUrl,
+			amenities: data.newProperty.amenities,
+			type: PropertyTypes[data.newProperty.type],
 		};
 	}
 }
