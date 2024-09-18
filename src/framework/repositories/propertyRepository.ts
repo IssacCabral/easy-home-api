@@ -49,6 +49,15 @@ export class PropertyRepository implements IPropertyRepository {
 		});
 	}
 
+	async findAddressByCoordinates(lat: number, lon: number): Promise<IAddressEntity | null> {
+		return await this.prismaClient.addresses.findUnique({
+			where: {
+				lat,
+				lon,
+			},
+		});
+	}
+
 	private async createAddress(address: IAddressEntity): Promise<IAddressEntity> {
 		const location = `POINT(${address.lon} ${address.lat})`;
 		const newAddressResult: IAddressEntity[] = await this.prismaClient.$queryRaw`

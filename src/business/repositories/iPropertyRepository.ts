@@ -26,4 +26,5 @@ export type InputCreateProperty = {
 
 export interface IPropertyRepository {
 	create(input: InputCreateProperty): Promise<IPropertyEntity>;
+	findAddressByCoordinates(lat: number, lon: number): Promise<IAddressEntity | null>;
 }
