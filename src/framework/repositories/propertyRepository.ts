@@ -81,8 +81,8 @@ export class PropertyRepository implements IPropertyRepository {
 			id: data.newProperty.id,
 			landlordId: data.newProperty.landlordId,
 			title: data.newProperty.title,
+			type: PropertyTypes[data.newProperty.type],
 			status: PropertyStatus[data.newProperty.status],
-			address: data.newAddress,
 			price: data.newProperty.price,
 			bedrooms: data.newProperty.bedrooms as BedroomsQuantity,
 			bathrooms: data.newProperty.bathrooms as BathroomsQuantity,
@@ -90,8 +90,8 @@ export class PropertyRepository implements IPropertyRepository {
 			height: data.newProperty.height,
 			width: data.newProperty.width,
 			photosUrl: data.newProperty.photosUrl,
+			address: data.newAddress,
 			amenities: data.newProperty.amenities,
-			type: PropertyTypes[data.newProperty.type],
 		};
 	}
 }
