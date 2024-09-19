@@ -1,4 +1,5 @@
 import type { InputCreatePropertyDto } from "@business/dtos/property/createPropertyDto";
+import { LandlordNotFound } from "@business/errors/landlord";
 import { CreatePropertyGeneralError } from "@business/errors/property";
 import { PropertyTypes } from "@entities/components/property/property";
 import { makeCreatePropertySut } from "@test/utility/suts/property/createPropertySut";
@@ -68,5 +69,17 @@ describe("CreatePropertyUseCase", () => {
 		await sut.exec(input);
 
 		expect(spy).toHaveBeenCalledWith(input.address.lat, input.address.lon);
+	});
+
+	it("should return left if landlord is not found", async () => {
+		const { sut, landlordRepositoryStub } = makeCreatePropertySut();
+
+		jest.spyOn(landlordRepositoryStub, "findById").mockResolvedValueOnce(null);
+
+		const result = await sut.exec(input);
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(LandlordNotFound);
 	});
 });
