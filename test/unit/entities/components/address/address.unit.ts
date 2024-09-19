@@ -29,7 +29,7 @@ describe("AddressEntity", () => {
 		const addressEntity = AddressEntity.create(fakeAddressEntity);
 
 		if (addressEntity.isRight()) {
-			expect(addressEntity.value).toMatchObject({
+			expect(addressEntity.value.export()).toMatchObject({
 				id: fakeAddressEntity.id,
 				lat: fakeAddressEntity.lat,
 				lon: fakeAddressEntity.lon,
