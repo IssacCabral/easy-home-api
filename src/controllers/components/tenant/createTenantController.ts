@@ -3,8 +3,8 @@ import type { CreateTenantOperator } from "@controllers/operators/tenant/createT
 import type { HttpRequest, HttpResponse } from "@controllers/protocols/http";
 import { badRequest, created, serverError } from "@controllers/protocols/httpStatus";
 import type { IController } from "@controllers/protocols/iController";
-import { validationError } from "@controllers/protocols/validationError";
 import { InputCreateTenantSerializer } from "@controllers/serializers/tenant/createTenantSerializer";
+import type { IError } from "@shared/iError";
 
 export class CreateTenantController implements IController {
 	constructor(private readonly operator: CreateTenantOperator) {}
@@ -23,14 +23,11 @@ export class CreateTenantController implements IController {
 			}
 
 			return created(result.value);
-			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		} catch (err: any) {
-			console.log("err :>> ", err);
-
-			if (err?.code === validationError().code) {
-				return badRequest(err);
+		} catch (err) {
+			if (err instanceof Error) {
+				return serverError(err.message);
 			}
-			return serverError(err);
+			return badRequest(err as IError);
 		}
 	}
 }

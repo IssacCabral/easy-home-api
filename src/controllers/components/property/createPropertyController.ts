@@ -2,8 +2,8 @@ import type { CreatePropertyOperator } from "@controllers/operators/property/cre
 import type { HttpRequest, HttpResponse } from "@controllers/protocols/http";
 import { badRequest, created, serverError } from "@controllers/protocols/httpStatus";
 import type { IController } from "@controllers/protocols/iController";
-import { validationError } from "@controllers/protocols/validationError";
 import { InputCreatePropertySerializer } from "@controllers/serializers/property/createPropertySerializer";
+import type { IError } from "@shared/iError";
 
 export class CreatePropertyController implements IController {
 	constructor(private readonly operator: CreatePropertyOperator) {}
@@ -19,14 +19,11 @@ export class CreatePropertyController implements IController {
 			}
 
 			return created(result.value);
-			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		} catch (err: any) {
-			console.log("err :>>", JSON.stringify(err, null, 2));
-
-			if (err?.code === validationError().code) {
-				return badRequest(err);
+		} catch (err) {
+			if (err instanceof Error) {
+				return serverError(err.message);
 			}
-			return serverError(err);
+			return badRequest(err as IError);
 		}
 	}
 }
