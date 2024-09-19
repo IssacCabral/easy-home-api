@@ -1,4 +1,9 @@
-import type { InputCreateProperty, IPropertyRepository } from "@business/repositories/iPropertyRepository";
+import type {
+	InputCreateProperty,
+	InputFindManyProperties,
+	IPropertyRepository,
+	OutputFindManyProperties,
+} from "@business/repositories/iPropertyRepository";
 import type { IAddressEntity } from "@entities/components/address/address";
 import { PropertyStatus, type IPropertyEntity, PropertyTypes } from "@entities/components/property/property";
 import type { PrismaClient } from "@prisma/client";
@@ -37,10 +42,7 @@ export class PropertyRepository implements IPropertyRepository {
 			},
 		});
 
-		return this.propertyMapper({
-			newProperty: newProperty as IPropertyEntity,
-			newAddress,
-		});
+		return this.mapper(newProperty as IPropertyEntity);
 	}
 
 	async findAddressByCoordinates(lat: number, lon: number): Promise<IAddressEntity | null> {
@@ -50,6 +52,29 @@ export class PropertyRepository implements IPropertyRepository {
 				lon,
 			},
 		});
+	}
+
+	async findMany(input: InputFindManyProperties): Promise<OutputFindManyProperties> {
+		const { limit, page } = input;
+		const data = await this.prismaClient.properties.findMany({
+			take: limit,
+			skip: (page - 1) * limit,
+			include: {
+				address: true,
+				amenities: true,
+			},
+		});
+		const total = await this.prismaClient.properties.count();
+
+		return {
+			meta: {
+				page,
+				limit,
+				total,
+				hasNext: total > page * limit,
+			},
+			data: data.map((item) => this.mapper(item as IPropertyEntity)),
+		};
 	}
 
 	private async createAddress(address: IAddressEntity): Promise<IAddressEntity> {
@@ -70,22 +95,22 @@ export class PropertyRepository implements IPropertyRepository {
 		return newAddressResult[0];
 	}
 
-	private propertyMapper(data: { newProperty: IPropertyEntity; newAddress: IAddressEntity }): IPropertyEntity {
+	private mapper(newProperty: IPropertyEntity): IPropertyEntity {
 		return {
-			id: data.newProperty.id,
-			landlordId: data.newProperty.landlordId,
-			title: data.newProperty.title,
-			type: PropertyTypes[data.newProperty.type],
-			status: PropertyStatus[data.newProperty.status],
-			price: data.newProperty.price,
-			bedrooms: data.newProperty.bedrooms,
-			bathrooms: data.newProperty.bathrooms,
-			description: data.newProperty.description,
-			depth: data.newProperty.depth,
-			width: data.newProperty.width,
-			photosUrl: data.newProperty.photosUrl,
-			address: data.newAddress,
-			amenities: data.newProperty.amenities,
+			id: newProperty.id,
+			landlordId: newProperty.landlordId,
+			title: newProperty.title,
+			type: PropertyTypes[newProperty.type],
+			status: PropertyStatus[newProperty.status],
+			price: newProperty.price,
+			bedrooms: newProperty.bedrooms,
+			bathrooms: newProperty.bathrooms,
+			description: newProperty.description,
+			depth: newProperty.depth,
+			width: newProperty.width,
+			photosUrl: newProperty.photosUrl,
+			address: newProperty.address,
+			amenities: newProperty.amenities,
 		};
 	}
 }
