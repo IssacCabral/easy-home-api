@@ -3,6 +3,12 @@ import { LandlordNotFound } from "@business/errors/landlord";
 import { CoordinatesNotAvailable, CreatePropertyGeneralError } from "@business/errors/property";
 import { PropertyTypes } from "@entities/components/property/property";
 import { InvalidCoordinates } from "@entities/errors/address";
+import {
+	InvalidBathroomsQuantity,
+	InvalidBedroomsQuantity,
+	InvalidDepth,
+	InvalidWidth,
+} from "@entities/errors/property";
 import { left } from "@shared/either";
 import type { IError } from "@shared/iError";
 import { fakeAddressEntity } from "@test/utility/fakes/addressEntity";
@@ -169,5 +175,57 @@ describe("CreatePropertyUseCase", () => {
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.isRight()).toBeFalsy();
 		expect(result.value).toEqual(InvalidCoordinates);
+	});
+
+	it("should return left if provides a invalid bathrooms quantity", async () => {
+		const { sut } = makeCreatePropertySut();
+
+		const result = await sut.exec({
+			...input,
+			bathrooms: 11,
+		});
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(InvalidBathroomsQuantity);
+	});
+
+	it("should return left if provides a invalid bedrooms quantity", async () => {
+		const { sut } = makeCreatePropertySut();
+
+		const result = await sut.exec({
+			...input,
+			bedrooms: 11,
+		});
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(InvalidBedroomsQuantity);
+	});
+
+	it("should return left if provides a invalid max width", async () => {
+		const { sut } = makeCreatePropertySut();
+
+		const result = await sut.exec({
+			...input,
+			width: 51,
+		});
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(InvalidWidth);
+	});
+
+	it("should return left if provides a invalid max depth", async () => {
+		const { sut } = makeCreatePropertySut();
+
+		const result = await sut.exec({
+			...input,
+			depth: 101,
+		});
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(InvalidDepth);
 	});
 });
