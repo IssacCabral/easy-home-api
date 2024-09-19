@@ -2,7 +2,10 @@ import type { InputCreatePropertyDto } from "@business/dtos/property/createPrope
 import { LandlordNotFound } from "@business/errors/landlord";
 import { CoordinatesNotAvailable, CreatePropertyGeneralError } from "@business/errors/property";
 import { PropertyTypes } from "@entities/components/property/property";
+import { left } from "@shared/either";
+import type { IError } from "@shared/iError";
 import { fakeAddressEntity } from "@test/utility/fakes/addressEntity";
+import { fakeIError } from "@test/utility/fakes/error";
 import { makeCreatePropertySut } from "@test/utility/suts/property/createPropertySut";
 
 describe("CreatePropertyUseCase", () => {
@@ -117,5 +120,21 @@ describe("CreatePropertyUseCase", () => {
 		await sut.exec(input);
 
 		expect(spy).toHaveBeenCalledWith(input.amenityIds);
+	});
+
+	it("should return left if find amenities returns left", async () => {
+		const { sut, amenityRepositoryStub } = makeCreatePropertySut();
+		const fakeError: IError = {
+			...fakeIError,
+			details: input.amenityIds[1],
+		};
+
+		jest.spyOn(amenityRepositoryStub, "findByIds").mockResolvedValueOnce(left(fakeError));
+
+		const result = await sut.exec(input);
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(fakeError);
 	});
 });
