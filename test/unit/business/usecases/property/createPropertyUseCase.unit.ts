@@ -51,4 +51,13 @@ describe("CreatePropertyUseCase", () => {
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.value).toEqual(CreatePropertyGeneralError);
 	});
+
+	it("should calls findLandlordById with correct input", async () => {
+		const { sut, landlordRepositoryStub } = makeCreatePropertySut();
+		const spy = jest.spyOn(landlordRepositoryStub, "findById");
+
+		await sut.exec(input);
+
+		expect(spy).toHaveBeenCalledWith(input.landlordId);
+	});
 });
