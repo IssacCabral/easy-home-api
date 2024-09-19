@@ -228,4 +228,12 @@ describe("CreatePropertyUseCase", () => {
 		expect(result.isRight()).toBeFalsy();
 		expect(result.value).toEqual(InvalidDepth);
 	});
+
+	it("should create a property on success", async () => {
+		const { sut } = makeCreatePropertySut();
+		const result = await sut.exec(input);
+
+		expect(result.isLeft()).toBeFalsy();
+		expect(result.isRight()).toBeTruthy();
+	});
 });
