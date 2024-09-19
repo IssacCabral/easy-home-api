@@ -1,7 +1,8 @@
 import type { InputCreatePropertyDto } from "@business/dtos/property/createPropertyDto";
 import { LandlordNotFound } from "@business/errors/landlord";
-import { CreatePropertyGeneralError } from "@business/errors/property";
+import { CoordinatesNotAvailable, CreatePropertyGeneralError } from "@business/errors/property";
 import { PropertyTypes } from "@entities/components/property/property";
+import { fakeAddressEntity } from "@test/utility/fakes/addressEntity";
 import { makeCreatePropertySut } from "@test/utility/suts/property/createPropertySut";
 
 describe("CreatePropertyUseCase", () => {
@@ -81,5 +82,17 @@ describe("CreatePropertyUseCase", () => {
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.isRight()).toBeFalsy();
 		expect(result.value).toEqual(LandlordNotFound);
+	});
+
+	it("should return left if coordinates is not available", async () => {
+		const { sut, propertyRepositoryStub } = makeCreatePropertySut();
+
+		jest.spyOn(propertyRepositoryStub, "findAddressByCoordinates").mockResolvedValueOnce(fakeAddressEntity);
+
+		const result = await sut.exec(input);
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(CoordinatesNotAvailable);
 	});
 });
