@@ -2,6 +2,7 @@ import type { InputCreatePropertyDto } from "@business/dtos/property/createPrope
 import { LandlordNotFound } from "@business/errors/landlord";
 import { CoordinatesNotAvailable, CreatePropertyGeneralError } from "@business/errors/property";
 import { PropertyTypes } from "@entities/components/property/property";
+import { InvalidCoordinates } from "@entities/errors/address";
 import { left } from "@shared/either";
 import type { IError } from "@shared/iError";
 import { fakeAddressEntity } from "@test/utility/fakes/addressEntity";
@@ -136,5 +137,37 @@ describe("CreatePropertyUseCase", () => {
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.isRight()).toBeFalsy();
 		expect(result.value).toEqual(fakeError);
+	});
+
+	it("should return left if provides a invalid latitude in address", async () => {
+		const { sut } = makeCreatePropertySut();
+
+		const result = await sut.exec({
+			...input,
+			address: {
+				...input.address,
+				lat: 91, // Invalid latitude, the correct value range is: -90 to 90
+			},
+		});
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(InvalidCoordinates);
+	});
+
+	it("should return left if provides a invalid longitude in address", async () => {
+		const { sut } = makeCreatePropertySut();
+
+		const result = await sut.exec({
+			...input,
+			address: {
+				...input.address,
+				lat: -181, // Invalid longitude, the correct value range is: -180 a 180
+			},
+		});
+
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.isRight()).toBeFalsy();
+		expect(result.value).toEqual(InvalidCoordinates);
 	});
 });
