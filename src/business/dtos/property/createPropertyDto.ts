@@ -1,10 +1,5 @@
 import type { IAddressEntity } from "@entities/components/address/address";
-import type {
-	BathroomsQuantity,
-	BedroomsQuantity,
-	IPropertyEntity,
-	PropertyTypes,
-} from "@entities/components/property/property";
+import type { IPropertyEntity, PropertyTypes } from "@entities/components/property/property";
 import type { Either } from "@shared/either";
 import type { IError } from "@shared/iError";
 
@@ -14,9 +9,9 @@ export type InputCreatePropertyDto = {
 	type: PropertyTypes;
 	description: string;
 	price: number;
-	bedrooms: BedroomsQuantity;
-	bathrooms: BathroomsQuantity;
-	height: number;
+	bedrooms: number;
+	bathrooms: number;
+	depth: number;
 	width: number;
 	photosUrl: string;
 	address: Omit<IAddressEntity, "id">;

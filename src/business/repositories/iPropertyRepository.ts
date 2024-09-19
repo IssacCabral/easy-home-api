@@ -1,11 +1,5 @@
 import type { IAddressEntity } from "@entities/components/address/address";
-import type {
-	BathroomsQuantity,
-	BedroomsQuantity,
-	IPropertyEntity,
-	PropertyStatus,
-	PropertyTypes,
-} from "@entities/components/property/property";
+import type { IPropertyEntity, PropertyStatus, PropertyTypes } from "@entities/components/property/property";
 
 export type InputCreateProperty = {
 	id: string;
@@ -15,9 +9,9 @@ export type InputCreateProperty = {
 	type: PropertyTypes;
 	price: number;
 	status: PropertyStatus;
-	bedrooms: BedroomsQuantity;
-	bathrooms: BathroomsQuantity;
-	height: number;
+	bedrooms: number;
+	bathrooms: number;
+	depth: number;
 	width: number;
 	photosUrl: string;
 	amenityIds: string[];

@@ -69,7 +69,7 @@ model Properties {
   price       Float          @db.DoublePrecision
   bedrooms    Int            @db.SmallInt
   bathrooms   Int            @db.SmallInt
-  height      Float          @db.DoublePrecision
+  depth       Float          @db.DoublePrecision
   width       Float          @db.DoublePrecision
   photosUrl   String         @db.VarChar(200)
   description String         @db.VarChar(200)

@@ -1,6 +1,6 @@
 import { AbstractSerializer } from "../abstractSerializer";
 import { IsArray, IsEnum, IsNotEmpty, IsNotEmptyObject, IsNumber, IsString, ValidateNested } from "class-validator";
-import { type BathroomsQuantity, type BedroomsQuantity, PropertyTypes } from "@entities/components/property/property";
+import { PropertyTypes } from "@entities/components/property/property";
 import type { OutputCreatePropertyDto } from "@business/dtos/property/createPropertyDto";
 
 class AddressSerializer extends AbstractSerializer<AddressSerializer> {
@@ -44,15 +44,15 @@ export class InputCreatePropertySerializer extends AbstractSerializer<InputCreat
 
 	@IsNotEmpty()
 	@IsNumber()
-	bedrooms!: BedroomsQuantity;
+	bedrooms!: number;
 
 	@IsNotEmpty()
 	@IsNumber()
-	bathrooms!: BathroomsQuantity;
+	bathrooms!: number;
 
 	@IsNotEmpty()
 	@IsNumber()
-	height!: number;
+	depth!: number;
 
 	@IsNotEmpty()
 	@IsNumber()

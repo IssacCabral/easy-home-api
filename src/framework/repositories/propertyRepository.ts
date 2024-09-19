@@ -1,12 +1,6 @@
 import type { InputCreateProperty, IPropertyRepository } from "@business/repositories/iPropertyRepository";
 import type { IAddressEntity } from "@entities/components/address/address";
-import {
-	type BedroomsQuantity,
-	PropertyStatus,
-	type IPropertyEntity,
-	type BathroomsQuantity,
-	PropertyTypes,
-} from "@entities/components/property/property";
+import { PropertyStatus, type IPropertyEntity, PropertyTypes } from "@entities/components/property/property";
 import type { PrismaClient } from "@prisma/client";
 
 export class PropertyRepository implements IPropertyRepository {
@@ -20,7 +14,7 @@ export class PropertyRepository implements IPropertyRepository {
 				bathrooms: input.bathrooms,
 				bedrooms: input.bedrooms,
 				width: input.width,
-				height: input.height,
+				depth: input.depth,
 				photosUrl: input.photosUrl,
 				price: input.price,
 				status: input.status,
@@ -84,10 +78,10 @@ export class PropertyRepository implements IPropertyRepository {
 			type: PropertyTypes[data.newProperty.type],
 			status: PropertyStatus[data.newProperty.status],
 			price: data.newProperty.price,
-			bedrooms: data.newProperty.bedrooms as BedroomsQuantity,
-			bathrooms: data.newProperty.bathrooms as BathroomsQuantity,
+			bedrooms: data.newProperty.bedrooms,
+			bathrooms: data.newProperty.bathrooms,
 			description: data.newProperty.description,
-			height: data.newProperty.height,
+			depth: data.newProperty.depth,
 			width: data.newProperty.width,
 			photosUrl: data.newProperty.photosUrl,
 			address: data.newAddress,

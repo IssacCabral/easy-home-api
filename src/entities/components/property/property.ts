@@ -1,9 +1,15 @@
 import { AbstractEntity } from "@entities/shared/abstractEntity";
 import type { IBaseModel } from "@entities/shared/baseModel";
-import { type Either, right } from "@shared/either";
+import { type Either, left, right } from "@shared/either";
 import type { IError } from "@shared/iError";
 import type { IAddressEntity } from "../address/address";
 import type { IAmenityEntity } from "../amenity/amenity";
+import {
+	InvalidBathroomsQuantity,
+	InvalidBedroomsQuantity,
+	InvalidDepth,
+	InvalidWidth,
+} from "@entities/errors/property";
 
 export enum PropertyTypes {
 	HOUSE = "HOUSE",
@@ -17,10 +23,6 @@ export enum PropertyStatus {
 	SPLIT = "SPLIT",
 }
 
-export type BedroomsQuantity = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-
-export type BathroomsQuantity = 1 | 2 | 3 | 4 | 5;
-
 export interface IPropertyEntity extends IBaseModel {
 	landlordId: string;
 	title: string;
@@ -28,20 +30,61 @@ export interface IPropertyEntity extends IBaseModel {
 	status: PropertyStatus;
 	address: IAddressEntity;
 	price: number;
-	bedrooms: BedroomsQuantity;
-	bathrooms: BathroomsQuantity;
+	bedrooms: number;
+	bathrooms: number;
 	description: string;
-	height: number;
 	width: number;
+	depth: number;
 	photosUrl: string;
 	amenities: IAmenityEntity[];
 }
 
 export class PropertyEntity extends AbstractEntity<IPropertyEntity> {
+	private static readonly MAX_BATHROOMS_QUANTITY = 10;
+	private static readonly MAX_BEDROOMS_QUANTITY = 10;
+	private static readonly MAX_WIDTH = 50;
+	private static readonly MAX_DEPTH = 100;
+
 	static create(props: IPropertyEntity): Either<IError, PropertyEntity> {
+		const validateResult = PropertyEntity.validateFields({
+			bathrooms: props.bathrooms,
+			bedrooms: props.bedrooms,
+			depth: props.depth,
+			width: props.width,
+		});
+
+		if (validateResult.isLeft()) {
+			return left(validateResult.value);
+		}
+
 		const property = new PropertyEntity(props);
 
 		return right(property);
+	}
+
+	private static validateFields(fields: {
+		bathrooms: number;
+		bedrooms: number;
+		width: number;
+		depth: number;
+	}): Either<IError, boolean> {
+		if (fields.bathrooms <= 0 || fields.bathrooms > PropertyEntity.MAX_BATHROOMS_QUANTITY) {
+			return left(InvalidBathroomsQuantity);
+		}
+
+		if (fields.bedrooms <= 0 || fields.bedrooms > PropertyEntity.MAX_BEDROOMS_QUANTITY) {
+			return left(InvalidBedroomsQuantity);
+		}
+
+		if (fields.width <= 0 || fields.width > PropertyEntity.MAX_WIDTH) {
+			return left(InvalidWidth);
+		}
+
+		if (fields.depth <= 0 || fields.depth > PropertyEntity.MAX_DEPTH) {
+			return left(InvalidDepth);
+		}
+
+		return right(true);
 	}
 
 	get title(): string {
@@ -68,8 +111,8 @@ export class PropertyEntity extends AbstractEntity<IPropertyEntity> {
 		return this.props.bathrooms;
 	}
 
-	get height(): number {
-		return this.props.height;
+	get depth(): number {
+		return this.props.depth;
 	}
 
 	get width(): number {
