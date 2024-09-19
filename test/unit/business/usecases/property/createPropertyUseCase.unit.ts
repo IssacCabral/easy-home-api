@@ -37,4 +37,18 @@ describe("CreatePropertyUseCase", () => {
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.value).toEqual(CreatePropertyGeneralError);
 	});
+
+	it("should fail if find address by coordinates throws an exception", async () => {
+		const { sut, propertyRepositoryStub } = makeCreatePropertySut();
+
+		jest.spyOn(propertyRepositoryStub, "findAddressByCoordinates").mockImplementationOnce(() => {
+			throw new Error("error");
+		});
+
+		const result = await sut.exec(input);
+
+		expect(result.isRight()).toBeFalsy();
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.value).toEqual(CreatePropertyGeneralError);
+	});
 });
