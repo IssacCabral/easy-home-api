@@ -95,4 +95,18 @@ describe("CreatePropertyUseCase", () => {
 		expect(result.isRight()).toBeFalsy();
 		expect(result.value).toEqual(CoordinatesNotAvailable);
 	});
+
+	it("should fail if find amenities throws an exception", async () => {
+		const { sut, amenityRepositoryStub } = makeCreatePropertySut();
+
+		jest.spyOn(amenityRepositoryStub, "findByIds").mockImplementationOnce(() => {
+			throw new Error("error");
+		});
+
+		const result = await sut.exec(input);
+
+		expect(result.isRight()).toBeFalsy();
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.value).toEqual(CreatePropertyGeneralError);
+	});
 });
