@@ -11,6 +11,9 @@ export class InputCreateTenantSerializer extends AbstractSerializer<InputCreateT
 
 	@IsNotEmpty()
 	@IsString()
+	@Matches(/^\([1-9]{2}\) 9[0-9]{4}\-[0-9]{4}$/, {
+		message: "provide a number in the format (xx) 9xxxx-xxxx",
+	})
 	number!: string;
 
 	@IsNotEmpty()
