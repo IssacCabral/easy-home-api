@@ -60,4 +60,13 @@ describe("CreatePropertyUseCase", () => {
 
 		expect(spy).toHaveBeenCalledWith(input.landlordId);
 	});
+
+	it("should calls findAddressByCoordinates with correct input", async () => {
+		const { sut, propertyRepositoryStub } = makeCreatePropertySut();
+		const spy = jest.spyOn(propertyRepositoryStub, "findAddressByCoordinates");
+
+		await sut.exec(input);
+
+		expect(spy).toHaveBeenCalledWith(input.address.lat, input.address.lon);
+	});
 });
