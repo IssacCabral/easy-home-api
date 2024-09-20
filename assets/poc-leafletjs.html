@@ -43,7 +43,7 @@
         function searchAddress() {
             const address = document.getElementById('search').value;
             const encodedAddress = encodeURIComponent(address);
-            const url = `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&addressdetails=1`;
+            const url = `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&addressdetails=1&extratags=1&polygon_geojson=1`;
 
             fetch(url)
                 .then(response => response.json())
@@ -52,6 +52,8 @@
                         const lat = parseFloat(data[0].lat);
                         const lon = parseFloat(data[0].lon);
                         const popupText = data[0].display_name;
+
+                        console.log("Dados: ", data)
 
                         // Remove marcadores existentes
                         map.eachLayer(layer => {
@@ -81,6 +83,16 @@
                         
                         // centra o mapa nas coordenadas encontradas.
                         map.setView([lat, lon], 16);
+
+                        // Se há um GeoJSON disponível (a rua), adicione-a ao mapa
+                        if (data[0].geojson && data[0].geojson.type === 'LineString') {
+                            streetLayer = L.geoJSON(data[0].geojson, {
+                                style: {
+                                    color: 'blue',
+                                    weight: 4
+                                }
+                            }).addTo(map);
+                        }
                     } else {
                         alert('Endereço não encontrado');
                     }
