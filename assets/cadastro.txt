@@ -5,11 +5,10 @@ preencha as informações do imóvel e o número da casa no formulário.
 O endereço será obtido através da consulta no campo de pesquisa, e retornado pela API.
 Após isso, o mapa renderiza o que foi encontrado.
 
+Verificar possibilidade de dar a opção do locador mexer manualmente no pino e jogar
+pro endereço dele.
+
 BACK-END
 
 Antes de cadastrar a casa, deve ser feito uma busca no banco, afim de saber
 se a casa para aquele endereço, com aquele mesmo número já existe.
-
-O backend recebe o endereço retornado pela API, faz a consulta na API novamente, a fim de obter
-o geoJSON do endereço. Com o geoJSON em mãos, será possível salvar o imóvel em um lugar aleatório
-dentro da rua, devido a limitações dos dados não serem precisos.
