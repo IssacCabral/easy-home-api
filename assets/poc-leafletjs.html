@@ -40,6 +40,8 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
+        let streetLayer
+
         function searchAddress() {
             const address = document.getElementById('search').value;
             const encodedAddress = encodeURIComponent(address);
@@ -49,6 +51,40 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.length > 0) {
+                        // Remove camadas e marcadores existentes
+                        if (streetLayer) {
+                            map.removeLayer(streetLayer)
+                        }
+
+                        // Combina todos os geoJSONs em uma única FeatureCollection
+                        const combinedGeoJSON = {
+                            type: "FeatureCollection",
+                            features: []
+                        };
+                    
+                        data.forEach(item => {
+                            if (item.geojson) {
+                                combinedGeoJSON.features.push({
+                                    type: "Feature",
+                                    geometry: item.geojson,
+                                    properties: {} // Pode-se adicionar propriedades aqui, se necessário
+                                });
+                            }
+                        });
+
+                        // Adiciona o geoJSON combinado ao mapa
+                        streetLayer = L.geoJSON(combinedGeoJSON, {
+                            style: function (feature) {
+                                return {
+                                    color: 'blue',
+                                    weight: 4
+                                };
+                            }
+                        }).addTo(map);
+
+                        // Ajusta a visualização para a área abrangida pelo geoJSON combinado
+                        map.fitBounds(streetLayer.getBounds());
+
                         const lat = parseFloat(data[0].lat);
                         const lon = parseFloat(data[0].lon);
                         const popupText = data[0].display_name;
@@ -79,20 +115,11 @@
                             .openPopup();
 
                         // Adiciona marcadores próximos
-                        addNearbyMarkers(lat, lon);
+                        // addNearbyMarkers(lat, lon);
                         
                         // centra o mapa nas coordenadas encontradas.
-                        map.setView([lat, lon], 16);
+                        // map.setView([lat, lon], 16);
 
-                        // Se há um GeoJSON disponível (a rua), adicione-a ao mapa
-                        if (data[0].geojson && data[0].geojson.type === 'LineString') {
-                            streetLayer = L.geoJSON(data[0].geojson, {
-                                style: {
-                                    color: 'blue',
-                                    weight: 4
-                                }
-                            }).addTo(map);
-                        }
                     } else {
                         alert('Endereço não encontrado');
                     }

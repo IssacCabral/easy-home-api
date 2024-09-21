@@ -1,0 +1,7 @@
+A ideia é que, o locador, no momento de cadastro do imóvel,
+preencha as informações do imóvel e o número da casa no formulário.
+O endereço será obtido através da consulta no campo de pesquisa, e retornado pela API.
+
+Com o endereço retornado pela API de mapas, e o número da casa, será possível fazer
+o cadastro do imóvel no banco de dados.
+
