@@ -101,12 +101,26 @@ export class PropertyRepository implements IPropertyRepository {
 			OFFSET ${(page - 1) * limit}
   	`;
 
+		const totalResult = await this.prismaClient.$queryRaw<{ count: number }[]>`
+			SELECT COUNT(*)
+			FROM "Properties" p
+			INNER JOIN "Addresses" a ON p."addressId" = a.id
+			WHERE ST_DWithin(
+				a.location,
+				ST_SetSRID(ST_MakePoint(${centralLon}, ${centralLat}), 4326),
+				${radiusInMeters}
+			)
+		`;
+
+		const total = Number(totalResult[0].count);
+		console.log("total:", total);
+
 		return {
 			meta: {
 				page,
 				limit,
-				total: propertiesWithinRadius.length,
-				hasNext: propertiesWithinRadius.length > page * limit,
+				total,
+				hasNext: total > page * limit,
 			},
 			data: propertiesWithinRadius.map((property) => this.mapper(property)),
 		};
