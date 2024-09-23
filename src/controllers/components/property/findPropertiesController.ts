@@ -3,6 +3,7 @@ import type { HttpRequest, HttpResponse } from "@controllers/protocols/http";
 import { badRequest, ok, serverError } from "@controllers/protocols/httpStatus";
 import type { IController } from "@controllers/protocols/iController";
 import { InputFindPropertiesSerializer } from "@controllers/serializers/property/findPropertiesSerializer";
+import type { PropertyStatus, PropertyTypes } from "@entities/components/property/property";
 import type { IError } from "@shared/iError";
 
 export class FindPropertiesController implements IController {
@@ -17,7 +18,14 @@ export class FindPropertiesController implements IController {
 				centralLat: Number(query.centralLat),
 				centralLon: Number(query.centralLon),
 				radiusInMeters: Number(query.radiusInMeters),
+				minPrice: query.minPrice ? Number(query.minPrice) : undefined,
+				maxPrice: query.maxPrice ? Number(query.maxPrice) : undefined,
+				minBedrooms: query.minBedrooms ? Number(query.minBedrooms) : undefined,
+				maxBedrooms: query.maxBedrooms ? Number(query.maxBedrooms) : undefined,
+				status: query.status as PropertyStatus,
+				type: query.type as PropertyTypes,
 			});
+
 			const result = await this.operator.exec(input);
 
 			if (result.isLeft()) {

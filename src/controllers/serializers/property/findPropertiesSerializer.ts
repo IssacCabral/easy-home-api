@@ -1,6 +1,7 @@
 import type { OutputFindPropertiesDto } from "@business/dtos/property/findPropertiesDto";
 import { AbstractSerializer } from "../abstractSerializer";
-import { IsInt, IsNotEmpty, IsNumber, IsPositive, Max, Min } from "class-validator";
+import { IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, IsPositive, Max, Min } from "class-validator";
+import { PropertyStatus, PropertyTypes } from "@entities/components/property/property";
 
 export class InputFindPropertiesSerializer extends AbstractSerializer<InputFindPropertiesSerializer> {
 	@IsNotEmpty()
@@ -34,6 +35,38 @@ export class InputFindPropertiesSerializer extends AbstractSerializer<InputFindP
 	@Min(50)
 	@Max(2000)
 	radiusInMeters!: number;
+
+	// todo: validar para que minPrice seja sempre menor que maxPrice
+	// todo: validar para que quando um fornecido, o outro seja obrigatório
+	@IsOptional()
+	@IsNumber()
+	@Min(1)
+	minPrice?: number;
+
+	@IsOptional()
+	@IsNumber()
+	@Min(1)
+	maxPrice?: number;
+
+	// todo: validar para que minPrice seja sempre menor que maxPrice
+	// todo: validar para que quando um fornecido, o outro seja obrigatório
+	@IsOptional()
+	@IsNumber()
+	@Min(1)
+	minBedrooms?: number;
+
+	@IsOptional()
+	@IsNumber()
+	@Min(1)
+	maxBedrooms?: number;
+
+	@IsOptional()
+	@IsEnum(PropertyStatus)
+	status?: PropertyStatus;
+
+	@IsOptional()
+	@IsEnum(PropertyTypes)
+	type?: PropertyTypes;
 }
 
 export type OutputFindPropertiesSerializer = OutputFindPropertiesDto;

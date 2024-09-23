@@ -66,64 +66,97 @@ export class PropertyRepository implements IPropertyRepository {
 	}
 
 	async findMany(input: InputFindManyProperties): Promise<OutputFindManyProperties> {
-		const { limit, page, centralLat, centralLon, radiusInMeters } = input;
+		const filters = this.buildFilters(input);
+		const filterQuery = filters.length > 0 ? `AND ${filters.join(" AND ")}` : "";
 
-		const propertiesWithinRadius = await this.prismaClient.$queryRaw<IPropertyEntity[]>`
-			SELECT 
-				p.*,
-				jsonb_build_object(
-					'id', a.id,
-					'number', a.number,
-					'street', a.street,
-					'lat', a.lat,
-					'lon', a.lon
-				) as address,
-				COALESCE(
-					jsonb_agg(
+		const [propertiesWithinRadius, totalResult] = await Promise.all([
+			this.prismaClient.$queryRawUnsafe<IPropertyEntity[]>(`
+					SELECT 
+						p.*,
 						jsonb_build_object(
-							'id', am.id,
-							'label', am.label
-						)
-					) FILTER (WHERE am.id IS NOT NULL),
-					'[]'
-				) as amenities
-			FROM "Properties" p
-			INNER JOIN "Addresses" a ON p."addressId" = a.id
-			LEFT JOIN "_AmenitiesToProperties" ap ON p.id = ap."B"
-			LEFT JOIN "Amenities" am ON ap."A" = am.id
-			WHERE ST_DWithin(
-				a.location,
-				ST_SetSRID(ST_MakePoint(${centralLon}, ${centralLat}), 4326),
-				${radiusInMeters}
-			)
-			GROUP BY p.id, a.id
-			LIMIT ${limit}
-			OFFSET ${(page - 1) * limit}
-  	`;
+							'id', a.id,
+							'number', a.number,
+							'street', a.street,
+							'lat', a.lat,
+							'lon', a.lon
+						) as address,
+						COALESCE(
+							jsonb_agg(
+								jsonb_build_object(
+									'id', am.id,
+									'label', am.label
+								)
+							) FILTER (WHERE am.id IS NOT NULL),
+							'[]'
+						) as amenities
+					FROM "Properties" p
+					INNER JOIN "Addresses" a ON p."addressId" = a.id
+					LEFT JOIN "_AmenitiesToProperties" ap ON p.id = ap."B"
+					LEFT JOIN "Amenities" am ON ap."A" = am.id
+					WHERE ST_DWithin(
+						a.location,
+						ST_SetSRID(ST_MakePoint(${input.centralLon}, ${input.centralLat}), 4326),
+						${input.radiusInMeters}
+					)
+					${filterQuery}
+					GROUP BY p.id, a.id
+					LIMIT ${input.limit}
+					OFFSET ${(input.page - 1) * input.limit}
+				`),
+			this.prismaClient.$queryRawUnsafe<{ total: number }[]>(`
+					SELECT COUNT(*) as total
+					FROM "Properties" p
+					INNER JOIN "Addresses" a ON p."addressId" = a.id
+					LEFT JOIN "_AmenitiesToProperties" ap ON p.id = ap."B"
+					LEFT JOIN "Amenities" am ON ap."A" = am.id
+					WHERE ST_DWithin(
+						a.location,
+						ST_SetSRID(ST_MakePoint(${input.centralLon}, ${input.centralLat}), 4326),
+						${input.radiusInMeters}
+					)
+					${filterQuery}
+				`),
+		]);
 
-		const totalResult = await this.prismaClient.$queryRaw<{ count: number }[]>`
-			SELECT COUNT(*)
-			FROM "Properties" p
-			INNER JOIN "Addresses" a ON p."addressId" = a.id
-			WHERE ST_DWithin(
-				a.location,
-				ST_SetSRID(ST_MakePoint(${centralLon}, ${centralLat}), 4326),
-				${radiusInMeters}
-			)
-		`;
-
-		const total = Number(totalResult[0].count);
-		console.log("total:", total);
+		const total = Number(totalResult[0].total);
 
 		return {
 			meta: {
-				page,
-				limit,
+				page: input.page,
+				limit: input.limit,
 				total,
-				hasNext: total > page * limit,
+				hasNext: input.page * input.limit < total,
 			},
 			data: propertiesWithinRadius.map((property) => this.mapper(property)),
 		};
+	}
+
+	private buildFilters(input: InputFindManyProperties): string[] {
+		const filters: string[] = [];
+
+		if (input.minPrice) {
+			filters.push(`p.price >= ${input.minPrice}`);
+		}
+		if (input.maxPrice) {
+			filters.push(`p.price <= ${input.maxPrice}`);
+		}
+
+		if (input.minBedrooms) {
+			filters.push(`p.bedrooms >= ${input.minBedrooms}`);
+		}
+		if (input.maxBedrooms) {
+			filters.push(`p.bedrooms <= ${input.maxBedrooms}`);
+		}
+
+		if (input.status) {
+			filters.push(`p.status = '${input.status}'`);
+		}
+
+		if (input.type) {
+			filters.push(`p.type = '${input.type}'`);
+		}
+
+		return filters;
 	}
 
 	private async createAddress(address: IAddressEntity): Promise<IAddressEntity> {

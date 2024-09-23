@@ -30,6 +30,13 @@ export type InputFindManyProperties = {
 	centralLat: number;
 	centralLon: number;
 	radiusInMeters: number;
+	minPrice?: number;
+	maxPrice?: number;
+	minBedrooms?: number;
+	maxBedrooms?: number;
+	status?: PropertyStatus;
+	type?: PropertyTypes;
+	amenities?: string[];
 } & PaginationParams;
 
 export type OutputFindManyProperties = PaginationData<IPropertyEntity>;
