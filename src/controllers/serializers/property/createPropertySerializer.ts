@@ -1,5 +1,5 @@
 import { AbstractSerializer } from "../abstractSerializer";
-import { IsArray, IsEnum, IsNotEmpty, IsNotEmptyObject, IsNumber, IsString } from "class-validator";
+import { ArrayNotEmpty, IsArray, IsEnum, IsNotEmpty, IsNotEmptyObject, IsNumber, IsString } from "class-validator";
 import { PropertyTypes } from "@entities/components/property/property";
 import type { OutputCreatePropertyDto } from "@business/dtos/property/createPropertyDto";
 import { ValidateNestedObject } from "../validateNestedObject";
@@ -71,7 +71,7 @@ export class InputCreatePropertySerializer extends AbstractSerializer<InputCreat
 	@IsArray()
 	@IsNotEmpty()
 	@IsString({ each: true })
-	// @arrayMinSize(1)
+	@ArrayNotEmpty()
 	amenityIds!: string[];
 }
 
