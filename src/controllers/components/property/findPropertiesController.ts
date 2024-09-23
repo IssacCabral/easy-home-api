@@ -10,10 +10,13 @@ export class FindPropertiesController implements IController {
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
-			const { page, limit } = httpRequest.query;
+			const { query } = httpRequest;
 			const input = new InputFindPropertiesSerializer({
-				page: Number(page),
-				limit: Number(limit),
+				page: Number(query.page),
+				limit: Number(query.limit),
+				centralLat: Number(query.centralLat),
+				centralLon: Number(query.centralLon),
+				radiusInMeters: Number(query.radiusInMeters),
 			});
 			const result = await this.operator.exec(input);
 
