@@ -26,7 +26,11 @@ export type InputFindAddress = {
 	number: number;
 };
 
-export type InputFindManyProperties = PaginationParams;
+export type InputFindManyProperties = {
+	centralLat: number;
+	centralLon: number;
+	radiusInMeters: number;
+} & PaginationParams;
 
 export type OutputFindManyProperties = PaginationData<IPropertyEntity>;
 

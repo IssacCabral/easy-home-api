@@ -66,25 +66,49 @@ export class PropertyRepository implements IPropertyRepository {
 	}
 
 	async findMany(input: InputFindManyProperties): Promise<OutputFindManyProperties> {
-		const { limit, page } = input;
-		const data = await this.prismaClient.properties.findMany({
-			take: limit,
-			skip: (page - 1) * limit,
-			include: {
-				address: true,
-				amenities: true,
-			},
-		});
-		const total = await this.prismaClient.properties.count();
+		const { limit, page, centralLat, centralLon, radiusInMeters } = input;
+
+		const propertiesWithinRadius = await this.prismaClient.$queryRaw<IPropertyEntity[]>`
+			SELECT 
+				p.*,
+				jsonb_build_object(
+					'id', a.id,
+					'number', a.number,
+					'street', a.street,
+					'lat', a.lat,
+					'lon', a.lon
+				) as address,
+				COALESCE(
+					jsonb_agg(
+						jsonb_build_object(
+							'id', am.id,
+							'label', am.label
+						)
+					) FILTER (WHERE am.id IS NOT NULL),
+					'[]'
+				) as amenities
+			FROM "Properties" p
+			INNER JOIN "Addresses" a ON p."addressId" = a.id
+			LEFT JOIN "_AmenitiesToProperties" ap ON p.id = ap."B"
+			LEFT JOIN "Amenities" am ON ap."A" = am.id
+			WHERE ST_DWithin(
+				a.location,
+				ST_SetSRID(ST_MakePoint(${centralLon}, ${centralLat}), 4326),
+				${radiusInMeters}
+			)
+			GROUP BY p.id, a.id
+			LIMIT ${limit}
+			OFFSET ${(page - 1) * limit}
+  	`;
 
 		return {
 			meta: {
 				page,
 				limit,
-				total,
-				hasNext: total > page * limit,
+				total: propertiesWithinRadius.length,
+				hasNext: propertiesWithinRadius.length > page * limit,
 			},
-			data: data.map((item) => this.mapper(item as IPropertyEntity)),
+			data: propertiesWithinRadius.map((property) => this.mapper(property)),
 		};
 	}
 
@@ -106,22 +130,24 @@ export class PropertyRepository implements IPropertyRepository {
 		return newAddressResult[0];
 	}
 
-	private mapper(newProperty: IPropertyEntity): IPropertyEntity {
+	private mapper(property: IPropertyEntity): IPropertyEntity {
 		return {
-			id: newProperty.id,
-			landlordId: newProperty.landlordId,
-			title: newProperty.title,
-			type: PropertyTypes[newProperty.type],
-			status: PropertyStatus[newProperty.status],
-			price: newProperty.price,
-			bedrooms: newProperty.bedrooms,
-			bathrooms: newProperty.bathrooms,
-			description: newProperty.description,
-			depth: newProperty.depth,
-			width: newProperty.width,
-			photosUrl: newProperty.photosUrl,
-			address: newProperty.address,
-			amenities: newProperty.amenities,
+			id: property.id,
+			landlordId: property.landlordId,
+			title: property.title,
+			type: PropertyTypes[property.type],
+			status: PropertyStatus[property.status],
+			price: property.price,
+			bedrooms: property.bedrooms,
+			bathrooms: property.bathrooms,
+			description: property.description,
+			depth: property.depth,
+			width: property.width,
+			photosUrl: property.photosUrl,
+			address: property.address,
+			amenities: property.amenities,
+			createdAt: property.createdAt,
+			updatedAt: property.updatedAt,
 		};
 	}
 }

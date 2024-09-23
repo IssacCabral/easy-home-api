@@ -161,6 +161,8 @@
                 const randomLat = lat1 + (lat2 - lat1) * segmentFraction;
                 const randomLon = lon1 + (lon2 - lon1) * segmentFraction;
 
+                console.log({lat: randomLat, lon: randomLon})
+
                 L.marker([randomLat, randomLon]).addTo(map).bindPopup("Ponto aleatório");
             }
         }
