@@ -46,7 +46,7 @@ export class PropertyRepository implements IPropertyRepository {
 	}
 
 	async findAddressByCoordinates(lat: number, lon: number): Promise<IAddressEntity | null> {
-		return await this.prismaClient.addresses.findUnique({
+		return await this.prismaClient.addresses.findFirst({
 			where: {
 				lat,
 				lon,
