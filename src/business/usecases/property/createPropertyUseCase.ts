@@ -87,7 +87,7 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 			description: input.description,
 			status: PropertyStatus.FREE,
 			type: input.type,
-			photosUrl: input.photosUrl,
+			photosUrl: "",
 			address: addressEntity,
 			amenities: amenityEntities,
 		});

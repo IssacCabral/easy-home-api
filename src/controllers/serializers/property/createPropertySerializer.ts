@@ -60,10 +60,6 @@ export class InputCreatePropertySerializer extends AbstractSerializer<InputCreat
 	@IsNumber()
 	width!: number;
 
-	@IsString()
-	@IsNotEmpty()
-	photosUrl!: string;
-
 	@IsNotEmptyObject()
 	@ValidateNestedObject(AddressSerializer)
 	address!: Omit<IAddressEntity, "id" | "createdAt" | "updatedAt">;

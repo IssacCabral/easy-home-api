@@ -29,7 +29,6 @@ describe("CreatePropertyUseCase", () => {
 		description: "A beautiful house",
 		depth: 20,
 		landlordId: "00539f9e-a439-45c4-a967-2df677a17879",
-		photosUrl: "www.bucket-amazon.com",
 		price: 400,
 		title: "Casa Rosada",
 		type: PropertyTypes.HOUSE,
