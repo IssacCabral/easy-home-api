@@ -8,10 +8,10 @@ export const CreatePropertyGeneralError: IError = {
 	shortMessage: "createPropertyGeneralError",
 };
 
-export const CoordinatesNotAvailable: IError = {
+export const AddressNotAvailable: IError = {
 	code: `${CODE_SUFIX}-002`,
-	message: "Coordinates Not Available",
-	shortMessage: "coordinatesNotAvailable",
+	message: "Address Not Available",
+	shortMessage: "AddressNotAvailable",
 };
 
 export const FindPropertiesGeneralError: IError = {

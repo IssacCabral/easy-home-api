@@ -1,5 +1,6 @@
 import type {
 	InputCreateProperty,
+	InputFindAddress,
 	InputFindManyProperties,
 	IPropertyRepository,
 	OutputFindManyProperties,
@@ -13,7 +14,7 @@ class PropertyRepositoryStub implements IPropertyRepository {
 		return fakePropertyEntity;
 	}
 
-	async findAddressByCoordinates(lat: number, lon: number): Promise<IAddressEntity | null> {
+	async findAddress(input: InputFindAddress): Promise<IAddressEntity | null> {
 		return null;
 	}
 

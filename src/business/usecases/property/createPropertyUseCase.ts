@@ -1,6 +1,6 @@
 import type { InputCreatePropertyDto, OutputCreatePropertyDto } from "@business/dtos/property/createPropertyDto";
 import { LandlordNotFound } from "@business/errors/landlord";
-import { CoordinatesNotAvailable, CreatePropertyGeneralError } from "@business/errors/property";
+import { AddressNotAvailable, CreatePropertyGeneralError } from "@business/errors/property";
 import type { IAmenityRepository } from "@business/repositories/iAmenityRepository";
 import type { ILandlordRepository } from "@business/repositories/iLandlordRepository";
 import type { IPropertyRepository, InputCreateProperty } from "@business/repositories/iPropertyRepository";
@@ -24,10 +24,10 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 		try {
 			console.log("createPropertyUseCase input :>>", input);
 
-			const { lat, lon } = input.address;
+			const { lat, lon, street, number } = input.address;
 			const [landlord, address] = await Promise.all([
 				this.landlordRepository.findById(input.landlordId),
-				this.propertyRepository.findAddressByCoordinates(lat, lon),
+				this.propertyRepository.findAddress({ lat, lon, street, number }),
 			]);
 
 			if (!landlord) {
@@ -35,7 +35,7 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 			}
 
 			if (address) {
-				return left(CoordinatesNotAvailable);
+				return left(AddressNotAvailable);
 			}
 
 			const amenities = await this.amenityRepository.findByIds(input.amenityIds);

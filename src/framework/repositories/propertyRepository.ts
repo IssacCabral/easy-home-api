@@ -1,5 +1,6 @@
 import type {
 	InputCreateProperty,
+	InputFindAddress,
 	InputFindManyProperties,
 	IPropertyRepository,
 	OutputFindManyProperties,
@@ -45,11 +46,21 @@ export class PropertyRepository implements IPropertyRepository {
 		return this.mapper(newProperty as IPropertyEntity);
 	}
 
-	async findAddressByCoordinates(lat: number, lon: number): Promise<IAddressEntity | null> {
+	async findAddress(input: InputFindAddress): Promise<IAddressEntity | null> {
+		const { lat, lon, street, number } = input;
+
 		return await this.prismaClient.addresses.findFirst({
 			where: {
-				lat,
-				lon,
+				OR: [
+					{
+						lat,
+						lon,
+					},
+					{
+						street,
+						number,
+					},
+				],
 			},
 		});
 	}

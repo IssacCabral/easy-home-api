@@ -1,6 +1,6 @@
 import type { InputCreatePropertyDto } from "@business/dtos/property/createPropertyDto";
 import { LandlordNotFound } from "@business/errors/landlord";
-import { CoordinatesNotAvailable, CreatePropertyGeneralError } from "@business/errors/property";
+import { AddressNotAvailable, CreatePropertyGeneralError } from "@business/errors/property";
 import { PropertyTypes } from "@entities/components/property/property";
 import { InvalidCoordinates } from "@entities/errors/address";
 import {
@@ -49,10 +49,10 @@ describe("CreatePropertyUseCase", () => {
 		expect(result.value).toEqual(CreatePropertyGeneralError);
 	});
 
-	it("should fail if find address by coordinates throws an exception", async () => {
+	it("should fail if find address throws an exception", async () => {
 		const { sut, propertyRepositoryStub } = makeCreatePropertySut();
 
-		jest.spyOn(propertyRepositoryStub, "findAddressByCoordinates").mockImplementationOnce(() => {
+		jest.spyOn(propertyRepositoryStub, "findAddress").mockImplementationOnce(() => {
 			throw new Error("error");
 		});
 
@@ -72,13 +72,18 @@ describe("CreatePropertyUseCase", () => {
 		expect(spy).toHaveBeenCalledWith(input.landlordId);
 	});
 
-	it("should calls findAddressByCoordinates with correct input", async () => {
+	it("should calls findAddress with correct input", async () => {
 		const { sut, propertyRepositoryStub } = makeCreatePropertySut();
-		const spy = jest.spyOn(propertyRepositoryStub, "findAddressByCoordinates");
+		const spy = jest.spyOn(propertyRepositoryStub, "findAddress");
 
 		await sut.exec(input);
 
-		expect(spy).toHaveBeenCalledWith(input.address.lat, input.address.lon);
+		expect(spy).toHaveBeenCalledWith({
+			lat: input.address.lat,
+			lon: input.address.lon,
+			street: input.address.street,
+			number: input.address.number,
+		});
 	});
 
 	it("should return left if landlord is not found", async () => {
@@ -93,16 +98,16 @@ describe("CreatePropertyUseCase", () => {
 		expect(result.value).toEqual(LandlordNotFound);
 	});
 
-	it("should return left if coordinates is not available", async () => {
+	it("should return left if address is not available", async () => {
 		const { sut, propertyRepositoryStub } = makeCreatePropertySut();
 
-		jest.spyOn(propertyRepositoryStub, "findAddressByCoordinates").mockResolvedValueOnce(fakeAddressEntity);
+		jest.spyOn(propertyRepositoryStub, "findAddress").mockResolvedValueOnce(fakeAddressEntity);
 
 		const result = await sut.exec(input);
 
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.isRight()).toBeFalsy();
-		expect(result.value).toEqual(CoordinatesNotAvailable);
+		expect(result.value).toEqual(AddressNotAvailable);
 	});
 
 	it("should fail if find amenities throws an exception", async () => {

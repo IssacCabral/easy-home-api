@@ -19,12 +19,19 @@ export type InputCreateProperty = {
 	address: IAddressEntity;
 };
 
+export type InputFindAddress = {
+	lat: number;
+	lon: number;
+	street: string;
+	number: number;
+};
+
 export type InputFindManyProperties = PaginationParams;
 
 export type OutputFindManyProperties = PaginationData<IPropertyEntity>;
 
 export interface IPropertyRepository {
 	create(input: InputCreateProperty): Promise<IPropertyEntity>;
-	findAddressByCoordinates(lat: number, lon: number): Promise<IAddressEntity | null>;
+	findAddress(input: InputFindAddress): Promise<IAddressEntity | null>;
 	findMany(input: InputFindManyProperties): Promise<OutputFindManyProperties>;
 }
