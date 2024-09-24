@@ -1,6 +1,6 @@
 import type { OutputFindPropertiesDto } from "@business/dtos/property/findPropertiesDto";
 import { AbstractSerializer } from "../abstractSerializer";
-import { IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, IsPositive, Max, Min } from "class-validator";
+import { IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, IsPositive, Max, Min, ValidateIf } from "class-validator";
 import { PropertyStatus, PropertyTypes } from "@entities/components/property/property";
 
 export class InputFindPropertiesSerializer extends AbstractSerializer<InputFindPropertiesSerializer> {
@@ -36,26 +36,26 @@ export class InputFindPropertiesSerializer extends AbstractSerializer<InputFindP
 	@Max(2000)
 	radiusInMeters!: number;
 
-	// todo: validar para que minPrice seja sempre menor que maxPrice
-	// todo: validar para que quando um fornecido, o outro seja obrigatório
-	@IsOptional()
+	@IsNotEmpty()
+	@ValidateIf((requestObject) => requestObject.maxPrice !== undefined)
 	@IsNumber()
 	@Min(1)
 	minPrice?: number;
 
-	@IsOptional()
+	@IsNotEmpty()
+	@ValidateIf((requestObject) => requestObject.minPrice !== undefined)
 	@IsNumber()
 	@Min(1)
 	maxPrice?: number;
 
-	// todo: validar para que minPrice seja sempre menor que maxPrice
-	// todo: validar para que quando um fornecido, o outro seja obrigatório
-	@IsOptional()
+	@IsNotEmpty()
+	@ValidateIf((requestObject) => requestObject.maxBedrooms !== undefined)
 	@IsNumber()
 	@Min(1)
 	minBedrooms?: number;
 
-	@IsOptional()
+	@IsNotEmpty()
+	@ValidateIf((requestObject) => requestObject.minBedrooms !== undefined)
 	@IsNumber()
 	@Min(1)
 	maxBedrooms?: number;
