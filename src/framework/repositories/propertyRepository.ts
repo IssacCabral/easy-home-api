@@ -69,54 +69,55 @@ export class PropertyRepository implements IPropertyRepository {
 		const filters = this.buildFilters(input);
 		const filterQuery = filters.length > 0 ? `AND ${filters.join(" AND ")}` : "";
 
-		const [propertiesWithinRadius, totalResult] = await Promise.all([
-			this.prismaClient.$queryRawUnsafe<IPropertyEntity[]>(`
-					SELECT 
-						p.*,
+		console.log("inputFindManyy:", input);
+
+		const properties = await this.prismaClient.$queryRawUnsafe<IPropertyEntity[]>(`
+			SELECT 
+				p.*,
+				jsonb_build_object(
+					'id', a.id,
+					'number', a.number,
+					'street', a.street,
+					'lat', a.lat,
+					'lon', a.lon
+				) as address,
+				COALESCE(
+					jsonb_agg(
 						jsonb_build_object(
-							'id', a.id,
-							'number', a.number,
-							'street', a.street,
-							'lat', a.lat,
-							'lon', a.lon
-						) as address,
-						COALESCE(
-							jsonb_agg(
-								jsonb_build_object(
-									'id', am.id,
-									'label', am.label
-								)
-							) FILTER (WHERE am.id IS NOT NULL),
-							'[]'
-						) as amenities
-					FROM "Properties" p
-					INNER JOIN "Addresses" a ON p."addressId" = a.id
-					LEFT JOIN "_AmenitiesToProperties" ap ON p.id = ap."B"
-					LEFT JOIN "Amenities" am ON ap."A" = am.id
-					WHERE ST_DWithin(
-						a.location,
-						ST_SetSRID(ST_MakePoint(${input.centralLon}, ${input.centralLat}), 4326),
-						${input.radiusInMeters}
-					)
-					${filterQuery}
-					GROUP BY p.id, a.id
-					LIMIT ${input.limit}
-					OFFSET ${(input.page - 1) * input.limit}
-				`),
-			this.prismaClient.$queryRawUnsafe<{ total: number }[]>(`
-					SELECT COUNT(*) as total
-					FROM "Properties" p
-					INNER JOIN "Addresses" a ON p."addressId" = a.id
-					LEFT JOIN "_AmenitiesToProperties" ap ON p.id = ap."B"
-					LEFT JOIN "Amenities" am ON ap."A" = am.id
-					WHERE ST_DWithin(
-						a.location,
-						ST_SetSRID(ST_MakePoint(${input.centralLon}, ${input.centralLat}), 4326),
-						${input.radiusInMeters}
-					)
-					${filterQuery}
-				`),
-		]);
+							'id', am.id,
+							'label', am.label
+						)
+					) FILTER (WHERE am.id IS NOT NULL),
+					'[]'
+				) as amenities
+			FROM "Properties" p
+			INNER JOIN "Addresses" a ON p."addressId" = a.id
+			LEFT JOIN "_AmenitiesToProperties" ap ON p.id = ap."B"
+			LEFT JOIN "Amenities" am ON ap."A" = am.id
+			WHERE ST_DWithin(
+				a.location,
+				ST_SetSRID(ST_MakePoint(${input.centralLon}, ${input.centralLat}), 4326),
+				${input.radiusInMeters}
+			)
+			${filterQuery}
+			GROUP BY p.id, a.id
+			LIMIT ${input.limit}
+			OFFSET ${(input.page - 1) * input.limit}
+		`);
+
+		const totalResult = await this.prismaClient.$queryRawUnsafe<{ total: number }[]>(`
+			SELECT COUNT(*) as total
+				FROM "Properties" p
+				INNER JOIN "Addresses" a ON p."addressId" = a.id
+				LEFT JOIN "_AmenitiesToProperties" ap ON p.id = ap."B"
+				LEFT JOIN "Amenities" am ON ap."A" = am.id
+				WHERE ST_DWithin(
+					a.location,
+					ST_SetSRID(ST_MakePoint(${input.centralLon}, ${input.centralLat}), 4326),
+					${input.radiusInMeters}
+				)
+				${filterQuery}
+		`);
 
 		const total = Number(totalResult[0].total);
 
@@ -127,7 +128,7 @@ export class PropertyRepository implements IPropertyRepository {
 				total,
 				hasNext: input.page * input.limit < total,
 			},
-			data: propertiesWithinRadius.map((property) => this.mapper(property)),
+			data: properties.map((property) => this.mapper(property)),
 		};
 	}
 
@@ -154,6 +155,22 @@ export class PropertyRepository implements IPropertyRepository {
 
 		if (input.type) {
 			filters.push(`p.type = '${input.type}'`);
+		}
+
+		if (input.amenities && input.amenities.length > 0) {
+			const amenitiesCondition = input.amenities
+				.map(
+					(amenity) => `
+				EXISTS (
+					SELECT 1 FROM "_AmenitiesToProperties" ap
+					INNER JOIN "Amenities" a ON a.id = ap."A"
+					WHERE ap."B" = p.id AND a.label = '${amenity}'
+				)
+			`,
+				)
+				.join(" AND ");
+
+			filters.push(`(${amenitiesCondition})`);
 		}
 
 		return filters;
