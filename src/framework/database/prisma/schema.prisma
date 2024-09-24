@@ -111,8 +111,11 @@ model Addresses {
   id     String @id
   number Int    @db.SmallInt
   street String @db.VarChar(100)
-  lat    Float
-  lon    Float
+  lat    Float // todo: tentar ver depois porque esta arredondando
+  lon    Float // todo: tentar ver depois porque esta arredondando
+
+  // lat    Decimal @db.Decimal(17, 15)
+  // lon    Decimal @db.Decimal(17, 15)
 
   location Unsupported("geography(Point, 4326)")
 
