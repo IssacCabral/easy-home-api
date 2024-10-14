@@ -1,10 +1,12 @@
 import express, { json } from "express";
 import { routes } from "./routes/routes";
+import cors from "cors";
 
 const SERVER_PORT: number = Number(process.env.PORT || 3000);
 const app = express();
 
 app.use(json());
+app.use(cors());
 app.use(routes);
 
 app.listen(SERVER_PORT, () => {
