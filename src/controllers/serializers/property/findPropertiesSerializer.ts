@@ -1,5 +1,5 @@
 import type { OutputFindPropertiesDto } from "@business/dtos/property/findPropertiesDto";
-import { AbstractSerializer } from "../abstractSerializer";
+import { PropertyStatus, PropertyTypes } from "@entities/components/property/property";
 import {
 	ArrayNotEmpty,
 	IsArray,
@@ -14,7 +14,7 @@ import {
 	Min,
 	ValidateIf,
 } from "class-validator";
-import { PropertyStatus, PropertyTypes } from "@entities/components/property/property";
+import { AbstractSerializer } from "../abstractSerializer";
 
 export class InputFindPropertiesSerializer extends AbstractSerializer<InputFindPropertiesSerializer> {
 	@IsNotEmpty()

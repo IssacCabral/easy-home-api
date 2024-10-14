@@ -1,15 +1,15 @@
-import { AbstractEntity } from "@entities/shared/abstractEntity";
-import type { IBaseModel } from "@entities/shared/baseModel";
-import { type Either, left, right } from "@shared/either";
-import type { IError } from "@shared/iError";
-import type { IAddressEntity } from "../address/address";
-import type { IAmenityEntity } from "../amenity/amenity";
 import {
 	InvalidBathroomsQuantity,
 	InvalidBedroomsQuantity,
 	InvalidDepth,
 	InvalidWidth,
 } from "@entities/errors/property";
+import { AbstractEntity } from "@entities/shared/abstractEntity";
+import type { IBaseModel } from "@entities/shared/baseModel";
+import { type Either, left, right } from "@shared/either";
+import type { IError } from "@shared/iError";
+import type { IAddressEntity } from "../address/address";
+import type { IAmenityEntity } from "../amenity/amenity";
 
 export enum PropertyTypes {
 	HOUSE = "HOUSE",

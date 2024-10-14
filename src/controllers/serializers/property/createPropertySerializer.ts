@@ -1,9 +1,9 @@
-import { AbstractSerializer } from "../abstractSerializer";
-import { ArrayNotEmpty, IsArray, IsEnum, IsNotEmpty, IsNotEmptyObject, IsNumber, IsString } from "class-validator";
-import { PropertyTypes } from "@entities/components/property/property";
 import type { OutputCreatePropertyDto } from "@business/dtos/property/createPropertyDto";
-import { ValidateNestedObject } from "../validateNestedObject";
 import type { IAddressEntity } from "@entities/components/address/address";
+import { PropertyTypes } from "@entities/components/property/property";
+import { ArrayNotEmpty, IsArray, IsEnum, IsNotEmpty, IsNotEmptyObject, IsNumber, IsString } from "class-validator";
+import { AbstractSerializer } from "../abstractSerializer";
+import { ValidateNestedObject } from "../validateNestedObject";
 
 class AddressSerializer extends AbstractSerializer<AddressSerializer> {
 	@IsNotEmpty()

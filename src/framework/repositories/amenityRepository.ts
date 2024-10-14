@@ -2,7 +2,7 @@ import { AmenitiesNotFound } from "@business/errors/amenity";
 import type { IAmenityRepository } from "@business/repositories/iAmenityRepository";
 import type { IAmenityEntity } from "@entities/components/amenity/amenity";
 import type { PrismaClient } from "@prisma/client";
-import { left, right, type Either } from "@shared/either";
+import { type Either, left, right } from "@shared/either";
 import type { IError } from "@shared/iError";
 
 export class AmenityRepository implements IAmenityRepository {

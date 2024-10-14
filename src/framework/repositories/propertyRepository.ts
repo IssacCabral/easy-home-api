@@ -1,12 +1,12 @@
 import type {
+	IPropertyRepository,
 	InputCreateProperty,
 	InputFindAddress,
 	InputFindManyProperties,
-	IPropertyRepository,
 	OutputFindManyProperties,
 } from "@business/repositories/iPropertyRepository";
 import type { IAddressEntity } from "@entities/components/address/address";
-import { PropertyStatus, type IPropertyEntity, PropertyTypes } from "@entities/components/property/property";
+import { type IPropertyEntity, PropertyStatus, PropertyTypes } from "@entities/components/property/property";
 import type { PrismaClient } from "@prisma/client";
 
 export class PropertyRepository implements IPropertyRepository {

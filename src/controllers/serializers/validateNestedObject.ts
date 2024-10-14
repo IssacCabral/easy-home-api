@@ -1,4 +1,4 @@
-import { registerDecorator, type ValidationArguments } from "class-validator";
+import { type ValidationArguments, registerDecorator } from "class-validator";
 import type { AbstractSerializer } from "./abstractSerializer";
 
 interface ValidatorErrors {

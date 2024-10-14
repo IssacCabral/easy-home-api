@@ -1,9 +1,9 @@
+import type { FindPropertiesUseCase } from "@business/usecases/property/findPropertiesUseCase";
 import type {
 	InputFindPropertiesSerializer,
 	OutputFindPropertiesSerializer,
 } from "@controllers/serializers/property/findPropertiesSerializer";
 import { AbstractOperator } from "../abstractOperator";
-import type { FindPropertiesUseCase } from "@business/usecases/property/findPropertiesUseCase";
 
 export class FindPropertiesOperator extends AbstractOperator<
 	InputFindPropertiesSerializer,
