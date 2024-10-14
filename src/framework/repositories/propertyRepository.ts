@@ -76,7 +76,7 @@ export class PropertyRepository implements IPropertyRepository {
 				p.*,
 				jsonb_build_object(
 					'id', a.id,
-					'number', a.number,
+					'addressNumber', a."addressNumber",
 					'street', a.street,
 					'lat', a.lat,
 					'lon', a.lon
@@ -104,6 +104,8 @@ export class PropertyRepository implements IPropertyRepository {
 			LIMIT ${input.limit}
 			OFFSET ${(input.page - 1) * input.limit}
 		`);
+
+		console.log("passei dali...");
 
 		const totalResult = await this.prismaClient.$queryRawUnsafe<{ total: number }[]>(`
 			SELECT COUNT(*) as total
