@@ -17,7 +17,7 @@ describe("AddressEntity", () => {
 	it("should fail if an invalid address number is provided", () => {
 		const addressEntity = AddressEntity.create({
 			...fakeAddressEntity,
-			number: -1,
+			addressNumber: -1,
 		});
 
 		expect(addressEntity.isLeft()).toBeTruthy();
@@ -33,7 +33,7 @@ describe("AddressEntity", () => {
 				id: fakeAddressEntity.id,
 				lat: fakeAddressEntity.lat,
 				lon: fakeAddressEntity.lon,
-				number: fakeAddressEntity.number,
+				addressNumber: fakeAddressEntity.addressNumber,
 				street: fakeAddressEntity.street,
 			});
 		}

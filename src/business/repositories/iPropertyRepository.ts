@@ -23,7 +23,7 @@ export type InputFindAddress = {
 	lat: number;
 	lon: number;
 	street: string;
-	number: number;
+	addressNumber: number;
 };
 
 export type InputFindManyProperties = {

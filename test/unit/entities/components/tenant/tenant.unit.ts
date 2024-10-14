@@ -8,7 +8,7 @@ describe("TenantEntity", () => {
 		if (tenantEntity.isRight()) {
 			expect(tenantEntity.value).toMatchObject({
 				name: fakeTenantEntity.name,
-				number: fakeTenantEntity.number,
+				phone: fakeTenantEntity.phone,
 				id: fakeTenantEntity.id,
 			});
 		}

@@ -3,7 +3,7 @@ import type { ILandlordEntity } from "@entities/components/landlord/landlord";
 export type InputCreateLandlord = {
 	id: string;
 	name: string;
-	number: string;
+	phone: string;
 	email: string;
 	password: string;
 };

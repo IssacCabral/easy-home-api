@@ -24,10 +24,10 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 		try {
 			console.log("createPropertyUseCase input :>>", input);
 
-			const { lat, lon, street, number } = input.address;
+			const { lat, lon, street, addressNumber } = input.address;
 			const [landlord, address] = await Promise.all([
 				this.landlordRepository.findById(input.landlordId),
-				this.propertyRepository.findAddress({ lat, lon, street, number }),
+				this.propertyRepository.findAddress({ lat, lon, street, addressNumber }),
 			]);
 
 			if (!landlord) {
@@ -65,7 +65,7 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 			id: this.uniqueIdentifierService.create(),
 			lat: address.lat,
 			lon: address.lon,
-			number: address.number,
+			addressNumber: address.addressNumber,
 			street: address.street,
 		});
 	}

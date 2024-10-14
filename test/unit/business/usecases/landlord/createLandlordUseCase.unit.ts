@@ -10,7 +10,7 @@ describe("CreateLandlordUseCase", () => {
 	const input: InputCreateLandlordDto = {
 		email: "email",
 		name: "name",
-		number: "999999",
+		phone: "999999",
 		password: "password",
 	};
 

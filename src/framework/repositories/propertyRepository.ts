@@ -47,7 +47,7 @@ export class PropertyRepository implements IPropertyRepository {
 	}
 
 	async findAddress(input: InputFindAddress): Promise<IAddressEntity | null> {
-		const { lat, lon, street, number } = input;
+		const { lat, lon, street, addressNumber } = input;
 
 		return await this.prismaClient.addresses.findFirst({
 			where: {
@@ -58,7 +58,7 @@ export class PropertyRepository implements IPropertyRepository {
 					},
 					{
 						street,
-						number,
+						addressNumber,
 					},
 				],
 			},
@@ -180,16 +180,16 @@ export class PropertyRepository implements IPropertyRepository {
 		const location = `POINT(${address.lon} ${address.lat})`;
 		const newAddressResult: IAddressEntity[] = await this.prismaClient.$queryRaw`
           INSERT INTO "Addresses"
-          (id, number, street, lat, lon, location)
+          (id, addressNumber, street, lat, lon, location)
           VALUES (
 						${address.id},
-            ${address.number},
+            ${address.addressNumber},
             ${address.street},
             ${address.lat},
             ${address.lon},
             ST_GeomFromText(${location}, 4326)
           )
-					RETURNING id, number, street, lat, lon;
+					RETURNING id, addressNumber, street, lat, lon;
         `;
 		return newAddressResult[0];
 	}

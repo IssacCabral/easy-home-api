@@ -20,7 +20,7 @@ describe("CreatePropertyUseCase", () => {
 		address: {
 			lat: 50,
 			lon: 50,
-			number: 127,
+			addressNumber: 127,
 			street: "Beco da Poeira",
 		},
 		amenityIds: ["01", "02"],
@@ -82,7 +82,7 @@ describe("CreatePropertyUseCase", () => {
 			lat: input.address.lat,
 			lon: input.address.lon,
 			street: input.address.street,
-			number: input.address.number,
+			addressNumber: input.address.addressNumber,
 		});
 	});
 

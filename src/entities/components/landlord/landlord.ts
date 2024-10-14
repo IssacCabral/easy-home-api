@@ -5,7 +5,7 @@ import type { IError } from "@shared/iError";
 
 export interface ILandlordEntity extends IBaseModel {
 	name: string;
-	number: string;
+	phone: string;
 	email: string;
 	password: string;
 	profilePicUrl?: string;
@@ -26,8 +26,8 @@ export class LandlordEntity extends AbstractEntity<ILandlordEntity> {
 		return this.props.name;
 	}
 
-	get number(): string {
-		return this.props.number;
+	get phone(): string {
+		return this.props.phone;
 	}
 
 	get email(): string {

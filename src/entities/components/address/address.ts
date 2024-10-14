@@ -5,7 +5,7 @@ import { type Either, left, right } from "@shared/either";
 import type { IError } from "@shared/iError";
 
 export interface IAddressEntity extends IBaseModel {
-	number: number;
+	addressNumber: number;
 	street: string;
 	lat: number;
 	lon: number;
@@ -17,7 +17,7 @@ export class AddressEntity extends AbstractEntity<IAddressEntity> {
 			return left(InvalidCoordinates);
 		}
 
-		if (props.number < 0) {
+		if (props.addressNumber < 0) {
 			return left(InvalidAddressNumber);
 		}
 
@@ -37,8 +37,8 @@ export class AddressEntity extends AbstractEntity<IAddressEntity> {
 		return this.props.id;
 	}
 
-	get number(): number {
-		return this.props.number;
+	get addressNumber(): number {
+		return this.props.addressNumber;
 	}
 
 	get street(): string {

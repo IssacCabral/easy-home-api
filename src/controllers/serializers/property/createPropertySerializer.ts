@@ -8,7 +8,7 @@ import type { IAddressEntity } from "@entities/components/address/address";
 class AddressSerializer extends AbstractSerializer<AddressSerializer> {
 	@IsNotEmpty()
 	@IsNumber()
-	number!: number;
+	addressNumber!: number;
 
 	@IsNotEmpty()
 	@IsString()
