@@ -22,7 +22,7 @@ export class CreatePropertyUseCase implements IUseCase<InputCreatePropertyDto, O
 
 	async exec(input: InputCreatePropertyDto): Promise<OutputCreatePropertyDto> {
 		try {
-			console.log("createPropertyUseCase input :>>", input);
+			console.log("createPropertyUseCase input :>> ", input);
 
 			const { lat, lon, street, addressNumber } = input.address;
 			const [landlord, address] = await Promise.all([
