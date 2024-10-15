@@ -105,10 +105,8 @@ export class PropertyRepository implements IPropertyRepository {
 			OFFSET ${(input.page - 1) * input.limit}
 		`);
 
-		console.log("passei dali...");
-
 		const totalResult = await this.prismaClient.$queryRawUnsafe<{ total: number }[]>(`
-			SELECT COUNT(*) as total
+			SELECT COUNT(DISTINCT p.id) as total
 				FROM "Properties" p
 				INNER JOIN "Addresses" a ON p."addressId" = a.id
 				LEFT JOIN "_AmenitiesToProperties" ap ON p.id = ap."B"
@@ -182,7 +180,7 @@ export class PropertyRepository implements IPropertyRepository {
 		const location = `POINT(${address.lon} ${address.lat})`;
 		const newAddressResult: IAddressEntity[] = await this.prismaClient.$queryRaw`
           INSERT INTO "Addresses"
-          (id, addressNumber, street, lat, lon, location)
+          (id, "addressNumber", street, lat, lon, location)
           VALUES (
 						${address.id},
             ${address.addressNumber},
@@ -191,7 +189,7 @@ export class PropertyRepository implements IPropertyRepository {
             ${address.lon},
             ST_GeomFromText(${location}, 4326)
           )
-					RETURNING id, addressNumber, street, lat, lon;
+					RETURNING id, "addressNumber", street, lat, lon;
         `;
 		return newAddressResult[0];
 	}
