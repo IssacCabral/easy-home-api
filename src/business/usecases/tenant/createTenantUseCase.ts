@@ -26,7 +26,7 @@ export class CreateTenantUseCase implements IUseCase<InputCreateTenantDto, Outpu
 				id: this.uniqueIdentifierService.create(),
 				email: input.email,
 				name: input.name,
-				number: input.number,
+				phone: input.phone,
 				password: hashedPassword,
 			});
 

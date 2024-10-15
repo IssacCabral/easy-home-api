@@ -11,7 +11,7 @@ export class TenantRepository implements ITenantRepository {
 				id: input.id,
 				email: input.email,
 				name: input.name,
-				number: input.number,
+				phone: input.phone,
 				password: input.password,
 			},
 		});

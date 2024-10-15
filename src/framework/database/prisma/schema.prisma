@@ -25,7 +25,7 @@ model Amenities {
 model Landlords {
   id            String  @id
   name          String  @db.VarChar(50)
-  number        String  @db.VarChar(20)
+  phone         String  @db.VarChar(20)
   email         String  @unique @db.VarChar(50)
   password      String  @db.VarChar(100)
   urlProfilePic String? @db.VarChar(200)
@@ -39,7 +39,7 @@ model Landlords {
 model Tenants {
   id            String   @id
   name          String   @db.VarChar(50)
-  number        String   @db.VarChar(20)
+  phone         String   @db.VarChar(20)
   email         String   @unique @db.VarChar(50)
   password      String   @db.VarChar(100)
   urlProfilePic String?  @db.VarChar(200)
@@ -108,11 +108,14 @@ model TenantsOnProperties {
 }
 
 model Addresses {
-  id     String @id
-  number Int    @db.SmallInt
-  street String @db.VarChar(100)
-  lat    Float  @unique
-  lon    Float  @unique
+  id            String @id
+  addressNumber Int    @db.SmallInt
+  street        String @db.VarChar(100)
+  lat           Float // todo: tentar ver depois porque esta arredondando
+  lon           Float // todo: tentar ver depois porque esta arredondando
+
+  // lat    Decimal @db.Decimal(17, 15)
+  // lon    Decimal @db.Decimal(17, 15)
 
   location Unsupported("geography(Point, 4326)")
 

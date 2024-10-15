@@ -1,12 +1,14 @@
-import { AbstractSerializer } from "../abstractSerializer";
-import { IsArray, IsEnum, IsNotEmpty, IsNotEmptyObject, IsNumber, IsString, ValidateNested } from "class-validator";
-import { PropertyTypes } from "@entities/components/property/property";
 import type { OutputCreatePropertyDto } from "@business/dtos/property/createPropertyDto";
+import type { IAddressEntity } from "@entities/components/address/address";
+import { PropertyTypes } from "@entities/components/property/property";
+import { ArrayNotEmpty, IsArray, IsEnum, IsNotEmpty, IsNotEmptyObject, IsNumber, IsString } from "class-validator";
+import { AbstractSerializer } from "../abstractSerializer";
+import { ValidateNestedObject } from "../validateNestedObject";
 
 class AddressSerializer extends AbstractSerializer<AddressSerializer> {
 	@IsNotEmpty()
 	@IsNumber()
-	number!: number;
+	addressNumber!: number;
 
 	@IsNotEmpty()
 	@IsString()
@@ -58,18 +60,14 @@ export class InputCreatePropertySerializer extends AbstractSerializer<InputCreat
 	@IsNumber()
 	width!: number;
 
-	@IsString()
-	@IsNotEmpty()
-	photosUrl!: string;
-
 	@IsNotEmptyObject()
-	@ValidateNested()
-	address!: AddressSerializer;
+	@ValidateNestedObject(AddressSerializer)
+	address!: Omit<IAddressEntity, "id" | "createdAt" | "updatedAt">;
 
 	@IsArray()
 	@IsNotEmpty()
 	@IsString({ each: true })
-	// @arrayMinSize(1)
+	@ArrayNotEmpty()
 	amenityIds!: string[];
 }
 

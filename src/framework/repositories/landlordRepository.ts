@@ -11,7 +11,7 @@ export class LandlordRepository implements ILandlordRepository {
 				id: input.id,
 				email: input.email,
 				name: input.name,
-				number: input.number,
+				phone: input.phone,
 				password: input.password,
 			},
 		});

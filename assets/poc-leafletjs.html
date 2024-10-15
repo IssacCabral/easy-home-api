@@ -40,25 +40,65 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
+        let streetLayer;
+
         function searchAddress() {
             const address = document.getElementById('search').value;
             const encodedAddress = encodeURIComponent(address);
-            const url = `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&addressdetails=1`;
+            const url = `https://nominatim.openstreetmap.org/search?q=${encodedAddress}&format=json&addressdetails=1&extratags=1&polygon_geojson=1`;
 
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     if (data.length > 0) {
+                        // Remove camadas e marcadores existentes
+                        if (streetLayer) {
+                            map.removeLayer(streetLayer);
+                        }
+
+                        // Combina todos os geoJSONs em uma única FeatureCollection
+                        const combinedGeoJSON = {
+                            type: "FeatureCollection",
+                            features: []
+                        };
+                    
+                        data.forEach(item => {
+                            if (item.geojson) {
+                                combinedGeoJSON.features.push({
+                                    type: "Feature",
+                                    geometry: item.geojson,
+                                    properties: {}
+                                });
+                            }
+                        });
+
+                        // Adiciona o geoJSON combinado ao mapa
+                        streetLayer = L.geoJSON(combinedGeoJSON, {
+                            style: function (feature) {
+                                return {
+                                    color: 'blue',
+                                    weight: 4
+                                };
+                            }
+                        }).addTo(map);
+
+                        // Ajusta a visualização para a área abrangida pelo geoJSON combinado
+                        map.fitBounds(streetLayer.getBounds());
+
+                        generateRandomCoordinates(combinedGeoJSON);
+
                         const lat = parseFloat(data[0].lat);
                         const lon = parseFloat(data[0].lon);
                         const popupText = data[0].display_name;
 
+                        console.log("Dados: ", data)
+
                         // Remove marcadores existentes
-                        map.eachLayer(layer => {
-                            if (layer instanceof L.Marker) {
-                                map.removeLayer(layer);
-                            }
-                        });
+                        // map.eachLayer(layer => {
+                        //     if (layer instanceof L.Marker) {
+                        //         map.removeLayer(layer);
+                        //     }
+                        // });
                         
                         // cria um ícone verde para indicar o endereço encontrado
                         const greenIcon = new L.icon({
@@ -76,11 +116,6 @@
                             .bindPopup(popupText)
                             .openPopup();
 
-                        // Adiciona marcadores próximos
-                        addNearbyMarkers(lat, lon);
-                        
-                        // centra o mapa nas coordenadas encontradas.
-                        map.setView([lat, lon], 16);
                     } else {
                         alert('Endereço não encontrado');
                     }
@@ -91,24 +126,60 @@
                 });
         }
 
-        function addNearbyMarkers(lat, lon) {
-            const radius = 200; // raio em metros
-            const numMarkers = 10; // número de marcadores próximos
+        function generateRandomCoordinates(geoJSON) {
+            const features = geoJSON.features;
+            const randomFeature = features[Math.floor(Math.random() * features.length)];
 
-            for (let i = 0; i < numMarkers; i++) {
-                // Gera uma posição aleatória dentro do raio especificado
-                const randomOffset = Math.random() * radius;
-                const angle = Math.random() * 2 * Math.PI;
-                const offsetLat = randomOffset * Math.cos(angle) / 111320; // conversão de metros para graus
-                const offsetLon = randomOffset * Math.sin(angle) / (111320 * Math.cos(lat * Math.PI / 180)); // conversão de metros para graus
+            if (randomFeature.geometry.type === "LineString") {
+                const coordinates = randomFeature.geometry.coordinates;
 
-                const newLat = lat + offsetLat;
-                const newLon = lon + offsetLon;
+                let totalLength = 0;
+                const lengths = [];
 
-                // Adiciona um marcador na nova posição
-                L.marker([newLat, newLon]).addTo(map)
-                    .bindPopup(`Marcador próximo ${i + 1}`);
+                for (let i = 0; i < coordinates.length - 1; i++) {
+                    const [lon1, lat1] = coordinates[i];
+                    const [lon2, lat2] = coordinates[i + 1];
+                    const segmentLength = getDistance(lat1, lon1, lat2, lon2);
+                    totalLength += segmentLength;
+                    lengths.push(totalLength);
+                }
+
+                const randomDistance = Math.random() * totalLength;
+
+                let selectedIndex = 0;
+                for (let i = 0; i < lengths.length; i++) {
+                    if (randomDistance <= lengths[i]) {
+                        selectedIndex = i;
+                        break;
+                    }
+                }
+
+                const [lon1, lat1] = coordinates[selectedIndex];
+                const [lon2, lat2] = coordinates[selectedIndex + 1];
+                const segmentFraction = (randomDistance - (lengths[selectedIndex - 1] || 0)) / (lengths[selectedIndex] - (lengths[selectedIndex - 1] || 0));
+
+                const randomLat = lat1 + (lat2 - lat1) * segmentFraction;
+                const randomLon = lon1 + (lon2 - lon1) * segmentFraction;
+
+                console.log({lat: randomLat, lon: randomLon})
+
+                L.marker([randomLat, randomLon]).addTo(map).bindPopup("Ponto aleatório");
             }
+        }
+
+        function getDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371000; // Raio da Terra em metros
+            const φ1 = lat1 * Math.PI / 180;
+            const φ2 = lat2 * Math.PI / 180;
+            const Δφ = (lat2 - lat1) * Math.PI / 180;
+            const Δλ = (lon2 - lon1) * Math.PI / 180;
+
+            const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                      Math.cos(φ1) * Math.cos(φ2) *
+                      Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            return R * c; // Distância em metros
         }
     </script>
 </body>

@@ -3,7 +3,7 @@ import type { ITenantEntity } from "@entities/components/tenant/tenant";
 export type InputCreateTenant = {
 	id: string;
 	name: string;
-	number: string;
+	phone: string;
 	email: string;
 	password: string;
 };

@@ -13,7 +13,6 @@ export type InputCreatePropertyDto = {
 	bathrooms: number;
 	depth: number;
 	width: number;
-	photosUrl: string;
 	address: Omit<IAddressEntity, "id">;
 	amenityIds: string[];
 };

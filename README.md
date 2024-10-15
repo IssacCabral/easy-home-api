@@ -102,3 +102,6 @@ CREATE TABLE share_requests (
     finalization_reason TEXT
 );
 ```
+
+<!-- todo: verificar necessidade do uso do select do prismaORM
+https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->

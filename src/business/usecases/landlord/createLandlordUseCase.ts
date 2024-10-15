@@ -26,7 +26,7 @@ export class CreateLandlordUseCase implements IUseCase<InputCreateLandlordDto, O
 				id: this.uniqueIdentifierService.create(),
 				email: input.email,
 				name: input.name,
-				number: input.number,
+				phone: input.phone,
 				password: hashedPassword,
 			});
 
