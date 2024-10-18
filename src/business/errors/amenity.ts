@@ -8,3 +8,9 @@ export const AmenitiesNotFound = (details: string[]): IError => ({
 	shortMessage: "amenitiesNotFound",
 	details,
 });
+
+export const GetAllAmenitiesGeneralError: IError = {
+	code: `${CODE_SUFIX}-002`,
+	message: "Get All Amenities General Error",
+	shortMessage: "getAllAmenitiesGeneralError",
+};
