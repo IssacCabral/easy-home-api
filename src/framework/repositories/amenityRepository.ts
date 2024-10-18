@@ -26,4 +26,8 @@ export class AmenityRepository implements IAmenityRepository {
 
 		return right(amenities);
 	}
+
+	async getAll(): Promise<IAmenityEntity[]> {
+		return await this.prismaClient.amenities.findMany();
+	}
 }
