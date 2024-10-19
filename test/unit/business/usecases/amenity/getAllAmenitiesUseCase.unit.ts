@@ -26,7 +26,7 @@ describe("GetAllAmenitiesUseCase", () => {
 		expect(result.value).toMatchObject([fakeAmenityEntity, fakeAmenityEntity]);
 	});
 
-	it("sould get amenities on success", async () => {
+	it("should get amenities on success", async () => {
 		const { sut } = makeGetAllAmenitiesSut();
 		const result = await sut.exec();
 
