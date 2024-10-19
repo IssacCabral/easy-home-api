@@ -1,4 +1,5 @@
 import { GetAllAmenitiesGeneralError } from "@business/errors/amenity";
+import { fakeAmenityEntity } from "@test/utility/fakes/amenityEntity";
 import { makeGetAllAmenitiesSut } from "@test/utility/suts/amenity/getAllAmenitiesSut";
 
 describe("GetAllAmenitiesUseCase", () => {
@@ -14,6 +15,15 @@ describe("GetAllAmenitiesUseCase", () => {
 		expect(result.isRight()).toBeFalsy();
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.value).toEqual(GetAllAmenitiesGeneralError);
+	});
+
+	it("should return amenities", async () => {
+		const { sut } = makeGetAllAmenitiesSut();
+		const result = await sut.exec();
+
+		expect(result.isLeft()).toBeFalsy();
+		expect(result.isRight()).toBeTruthy();
+		expect(result.value).toMatchObject([fakeAmenityEntity, fakeAmenityEntity]);
 	});
 
 	it("sould get amenities on success", async () => {
