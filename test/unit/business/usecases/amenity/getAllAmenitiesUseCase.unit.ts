@@ -17,20 +17,12 @@ describe("GetAllAmenitiesUseCase", () => {
 		expect(result.value).toEqual(GetAllAmenitiesGeneralError);
 	});
 
-	it("should return amenities", async () => {
-		const { sut } = makeGetAllAmenitiesSut();
-		const result = await sut.exec();
-
-		expect(result.isLeft()).toBeFalsy();
-		expect(result.isRight()).toBeTruthy();
-		expect(result.value).toMatchObject([fakeAmenityEntity, fakeAmenityEntity]);
-	});
-
 	it("should get amenities on success", async () => {
 		const { sut } = makeGetAllAmenitiesSut();
 		const result = await sut.exec();
 
 		expect(result.isLeft()).toBeFalsy();
 		expect(result.isRight()).toBeTruthy();
+		expect(result.value).toMatchObject([fakeAmenityEntity, fakeAmenityEntity]);
 	});
 });
