@@ -19,3 +19,15 @@ export const FindPropertiesGeneralError: IError = {
 	message: "Find Properties General Error",
 	shortMessage: "findPropertiesGeneralError",
 };
+
+export const PropertyNotFound: IError = {
+	code: `${CODE_SUFIX}-004`,
+	message: "Property Not Found",
+	shortMessage: "propertyNotFound",
+};
+
+export const FindPropertyGeneralError: IError = {
+	code: `${CODE_SUFIX}-005`,
+	message: "Find Property General Error",
+	shortMessage: "findPropertyGeneralError",
+};
