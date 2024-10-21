@@ -8,7 +8,7 @@ type QueryParams = {
 
 export type HttpRequest = {
 	body: object;
-	params?: object;
+	params: Record<string, string>;
 	query: QueryParams;
 	headers?: {
 		authorization?: string;

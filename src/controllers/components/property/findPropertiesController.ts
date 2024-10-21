@@ -1,3 +1,4 @@
+import { FindPropertiesGeneralError } from "@business/errors/property";
 import type { FindPropertiesOperator } from "@controllers/operators/property/findPropertiesOperator";
 import type { HttpRequest, HttpResponse } from "@controllers/protocols/http";
 import { badRequest, ok, serverError } from "@controllers/protocols/httpStatus";
@@ -42,6 +43,9 @@ export class FindPropertiesController implements IController {
 			const result = await this.operator.exec(input);
 
 			if (result.isLeft()) {
+				if (result.value === FindPropertiesGeneralError) {
+					throw new Error(result.value.message);
+				}
 				return badRequest(result.value);
 			}
 

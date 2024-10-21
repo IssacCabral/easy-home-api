@@ -17,7 +17,7 @@ export class CreateLandlordController implements IController {
 
 			if (result.isLeft()) {
 				if (result.value === CreateLandlordGeneralError) {
-					throw result.value;
+					throw new Error(result.value.message);
 				}
 				return badRequest(result.value);
 			}

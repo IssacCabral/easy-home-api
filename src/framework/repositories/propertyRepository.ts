@@ -132,6 +132,15 @@ export class PropertyRepository implements IPropertyRepository {
 		};
 	}
 
+	async findById(id: string): Promise<IPropertyEntity | null> {
+		const property = await this.prismaClient.properties.findUnique({
+			where: { id },
+			include: { amenities: true, address: true },
+		});
+
+		return property ? this.mapper(property as IPropertyEntity) : null;
+	}
+
 	private buildFilters(input: InputFindManyProperties): string[] {
 		const filters: string[] = [];
 

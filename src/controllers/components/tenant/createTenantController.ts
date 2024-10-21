@@ -17,7 +17,7 @@ export class CreateTenantController implements IController {
 
 			if (result.isLeft()) {
 				if (result.value === CreateTenantGeneralError) {
-					throw result.value;
+					throw new Error(result.value.message);
 				}
 				return badRequest(result.value);
 			}

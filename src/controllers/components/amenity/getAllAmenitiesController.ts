@@ -1,3 +1,4 @@
+import { GetAllAmenitiesGeneralError } from "@business/errors/amenity";
 import type { GetAllAmenitiesOperator } from "@controllers/operators/amenity/getAllAmenitiesOperator";
 import type { HttpResponse } from "@controllers/protocols/http";
 import { badRequest, ok, serverError } from "@controllers/protocols/httpStatus";
@@ -12,6 +13,9 @@ export class GetAllAmenitiesController implements IController {
 			const result = await this.operator.exec();
 
 			if (result.isLeft()) {
+				if (result.value === GetAllAmenitiesGeneralError) {
+					throw new Error(result.value.message);
+				}
 				return badRequest(result.value);
 			}
 
