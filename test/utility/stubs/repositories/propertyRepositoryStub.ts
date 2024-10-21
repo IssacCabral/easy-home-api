@@ -29,6 +29,10 @@ class PropertyRepositoryStub implements IPropertyRepository {
 			data: [fakePropertyEntity, fakePropertyEntity, fakePropertyEntity],
 		};
 	}
+
+	async findById(id: string): Promise<IPropertyEntity | null> {
+		return fakePropertyEntity;
+	}
 }
 
 export const makePropertyRepositoryStub = (): IPropertyRepository => {

@@ -45,4 +45,5 @@ export interface IPropertyRepository {
 	create(input: InputCreateProperty): Promise<IPropertyEntity>;
 	findAddress(input: InputFindAddress): Promise<IAddressEntity | null>;
 	findMany(input: InputFindManyProperties): Promise<OutputFindManyProperties>;
+	findById(id: string): Promise<IPropertyEntity | null>;
 }
