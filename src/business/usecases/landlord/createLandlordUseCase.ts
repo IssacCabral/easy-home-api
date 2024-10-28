@@ -1,6 +1,8 @@
 import type { InputCreateLandlordDto, OutputCreateLandlordDto } from "@business/dtos/landlord/createLandlordDto";
-import { CreateLandlordGeneralError, LandlordAlreadyExists } from "@business/errors/landlord";
+import { CreateLandlordGeneralError } from "@business/errors/landlord";
+import { EmailNotAvailable } from "@business/errors/user";
 import type { ILandlordRepository } from "@business/repositories/iLandlordRepository";
+import type { ITenantRepository } from "@business/repositories/iTenantRepository";
 import type { ICryptService } from "@business/services/iCryptService";
 import type { IUniqueIdentifierService } from "@business/services/iUniqueIdentifierService";
 import type { IUseCase } from "@business/shared/iUseCase";
@@ -10,6 +12,7 @@ import { left, right } from "@shared/either";
 export class CreateLandlordUseCase implements IUseCase<InputCreateLandlordDto, OutputCreateLandlordDto> {
 	constructor(
 		private readonly landlordRepository: ILandlordRepository,
+		private readonly tenantRepository: ITenantRepository,
 		private readonly cryptService: ICryptService,
 		private readonly uniqueIdentifierService: IUniqueIdentifierService,
 	) {}
@@ -17,8 +20,10 @@ export class CreateLandlordUseCase implements IUseCase<InputCreateLandlordDto, O
 	async exec(input: InputCreateLandlordDto): Promise<OutputCreateLandlordDto> {
 		try {
 			const landlord = await this.landlordRepository.findByEmail(input.email);
-			if (landlord) {
-				return left(LandlordAlreadyExists);
+			const tenant = await this.tenantRepository.findByEmail(input.email);
+
+			if (tenant || landlord) {
+				return left(EmailNotAvailable);
 			}
 
 			const hashedPassword = await this.cryptService.generateHash(input.password);

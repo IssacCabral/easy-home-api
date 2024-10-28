@@ -1,5 +1,6 @@
 import type { InputCreateTenantDto } from "@business/dtos/tenant/createTenantDto";
-import { CreateTenantGeneralError, TenantAlreadyExists } from "@business/errors/tenant";
+import { CreateTenantGeneralError } from "@business/errors/tenant";
+import { EmailNotAvailable } from "@business/errors/user";
 import { TenantEntity } from "@entities/components/tenant/tenant";
 import { left } from "@shared/either";
 import { fakeIError } from "@test/utility/fakes/error";
@@ -14,7 +15,7 @@ describe("CreateTenantUseCase", () => {
 		password: "password",
 	};
 
-	it("should fail if findByEmail throws an exception", async () => {
+	it("should fail if findByEmail in tenantRepository throws an exception", async () => {
 		const { sut, tenantRepositoryStub } = makeCreateTenantSut();
 
 		jest.spyOn(tenantRepositoryStub, "findByEmail").mockImplementationOnce(() => {
@@ -28,9 +29,32 @@ describe("CreateTenantUseCase", () => {
 		expect(result.value).toEqual(CreateTenantGeneralError);
 	});
 
-	it("should calls findByEmail with correct input", async () => {
+	it("should fail if findByEmail in landlordRepository throws an exception", async () => {
+		const { sut, landlordRepositoryStub } = makeCreateTenantSut();
+
+		jest.spyOn(landlordRepositoryStub, "findByEmail").mockImplementationOnce(() => {
+			throw new Error("error");
+		});
+
+		const result = await sut.exec(input);
+
+		expect(result.isRight()).toBeFalsy();
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.value).toEqual(CreateTenantGeneralError);
+	});
+
+	it("should calls findByEmail in tenantRepository with correct input", async () => {
 		const { sut, tenantRepositoryStub } = makeCreateTenantSut();
 		const spy = jest.spyOn(tenantRepositoryStub, "findByEmail");
+
+		await sut.exec(input);
+
+		expect(spy).toHaveBeenCalledWith(input.email);
+	});
+
+	it("should calls findByEmail in landlordRepository with correct input", async () => {
+		const { sut, landlordRepositoryStub } = makeCreateTenantSut();
+		const spy = jest.spyOn(landlordRepositoryStub, "findByEmail");
 
 		await sut.exec(input);
 
@@ -43,13 +67,14 @@ describe("CreateTenantUseCase", () => {
 
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.isRight()).toBeFalsy();
-		expect(result.value).toEqual(TenantAlreadyExists);
+		expect(result.value).toEqual(EmailNotAvailable);
 	});
 
 	it("should fail if generateHash throws an exception", async () => {
-		const { sut, cryptServiceStub, tenantRepositoryStub } = makeCreateTenantSut();
+		const { sut, cryptServiceStub, tenantRepositoryStub, landlordRepositoryStub } = makeCreateTenantSut();
 
 		jest.spyOn(tenantRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
 		jest.spyOn(cryptServiceStub, "generateHash").mockImplementationOnce(() => {
 			throw new Error("error");
 		});
@@ -62,10 +87,11 @@ describe("CreateTenantUseCase", () => {
 	});
 
 	it("should calls generateHash with correct input", async () => {
-		const { sut, tenantRepositoryStub, cryptServiceStub } = makeCreateTenantSut();
+		const { sut, tenantRepositoryStub, landlordRepositoryStub, cryptServiceStub } = makeCreateTenantSut();
 		const spy = jest.spyOn(cryptServiceStub, "generateHash");
 
 		jest.spyOn(tenantRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
 
 		await sut.exec(input);
 
@@ -73,9 +99,10 @@ describe("CreateTenantUseCase", () => {
 	});
 
 	it("should return left if tenantEntity returns left", async () => {
-		const { sut, tenantRepositoryStub } = makeCreateTenantSut();
+		const { sut, tenantRepositoryStub, landlordRepositoryStub } = makeCreateTenantSut();
 
 		jest.spyOn(tenantRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
 		jest.spyOn(TenantEntity, "create").mockReturnValueOnce(left(fakeIError));
 
 		const result = await sut.exec(input);
@@ -86,9 +113,10 @@ describe("CreateTenantUseCase", () => {
 	});
 
 	it("should fail if tenant creation throws an exception", async () => {
-		const { sut, tenantRepositoryStub } = makeCreateTenantSut();
+		const { sut, tenantRepositoryStub, landlordRepositoryStub } = makeCreateTenantSut();
 
 		jest.spyOn(tenantRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
 		jest.spyOn(tenantRepositoryStub, "create").mockImplementationOnce(() => {
 			throw new Error("error");
 		});
@@ -101,9 +129,10 @@ describe("CreateTenantUseCase", () => {
 	});
 
 	it("should create a tenant on success", async () => {
-		const { sut, tenantRepositoryStub } = makeCreateTenantSut();
+		const { sut, tenantRepositoryStub, landlordRepositoryStub } = makeCreateTenantSut();
 
 		jest.spyOn(tenantRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
 
 		const result = await sut.exec(input);
 

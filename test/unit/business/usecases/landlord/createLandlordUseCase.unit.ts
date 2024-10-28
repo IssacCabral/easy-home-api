@@ -1,5 +1,6 @@
 import type { InputCreateLandlordDto } from "@business/dtos/landlord/createLandlordDto";
-import { CreateLandlordGeneralError, LandlordAlreadyExists } from "@business/errors/landlord";
+import { CreateLandlordGeneralError } from "@business/errors/landlord";
+import { EmailNotAvailable } from "@business/errors/user";
 import { LandlordEntity } from "@entities/components/landlord/landlord";
 import { left } from "@shared/either";
 import { fakeIError } from "@test/utility/fakes/error";
@@ -14,10 +15,24 @@ describe("CreateLandlordUseCase", () => {
 		password: "password",
 	};
 
-	it("should fail if findByEmail throws an exception", async () => {
+	it("should fail if findByEmail in landlordRepository throws an exception", async () => {
 		const { sut, landlordRepositoryStub } = makeCreateLandlordSut();
 
 		jest.spyOn(landlordRepositoryStub, "findByEmail").mockImplementationOnce(() => {
+			throw new Error("error");
+		});
+
+		const result = await sut.exec(input);
+
+		expect(result.isRight()).toBeFalsy();
+		expect(result.isLeft()).toBeTruthy();
+		expect(result.value).toEqual(CreateLandlordGeneralError);
+	});
+
+	it("should fail if findByEmail in tenantRepository throws an exception", async () => {
+		const { sut, tenantRepositoryStub } = makeCreateLandlordSut();
+
+		jest.spyOn(tenantRepositoryStub, "findByEmail").mockImplementationOnce(() => {
 			throw new Error("error");
 		});
 
@@ -43,13 +58,14 @@ describe("CreateLandlordUseCase", () => {
 
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.isRight()).toBeFalsy();
-		expect(result.value).toEqual(LandlordAlreadyExists);
+		expect(result.value).toEqual(EmailNotAvailable);
 	});
 
 	it("should fail if generateHash throws an exception", async () => {
-		const { sut, cryptServiceStub, landlordRepositoryStub } = makeCreateLandlordSut();
+		const { sut, cryptServiceStub, landlordRepositoryStub, tenantRepositoryStub } = makeCreateLandlordSut();
 
 		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(tenantRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
 		jest.spyOn(cryptServiceStub, "generateHash").mockImplementationOnce(() => {
 			throw new Error("error");
 		});
@@ -62,10 +78,11 @@ describe("CreateLandlordUseCase", () => {
 	});
 
 	it("should calls generateHash with correct input", async () => {
-		const { sut, landlordRepositoryStub, cryptServiceStub } = makeCreateLandlordSut();
+		const { sut, landlordRepositoryStub, cryptServiceStub, tenantRepositoryStub } = makeCreateLandlordSut();
 		const spy = jest.spyOn(cryptServiceStub, "generateHash");
 
 		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(tenantRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
 
 		await sut.exec(input);
 
@@ -73,9 +90,10 @@ describe("CreateLandlordUseCase", () => {
 	});
 
 	it("should return left if landlordEntity returns left", async () => {
-		const { sut, landlordRepositoryStub } = makeCreateLandlordSut();
+		const { sut, landlordRepositoryStub, tenantRepositoryStub } = makeCreateLandlordSut();
 
 		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(tenantRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
 		jest.spyOn(LandlordEntity, "create").mockReturnValueOnce(left(fakeIError));
 
 		const result = await sut.exec(input);
@@ -86,9 +104,10 @@ describe("CreateLandlordUseCase", () => {
 	});
 
 	it("should fail if landlord creation throws an exception", async () => {
-		const { sut, landlordRepositoryStub } = makeCreateLandlordSut();
+		const { sut, landlordRepositoryStub, tenantRepositoryStub } = makeCreateLandlordSut();
 
 		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(tenantRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
 		jest.spyOn(landlordRepositoryStub, "create").mockImplementationOnce(() => {
 			throw new Error("error");
 		});
@@ -101,9 +120,10 @@ describe("CreateLandlordUseCase", () => {
 	});
 
 	it("should create a landlord on success", async () => {
-		const { sut, landlordRepositoryStub } = makeCreateLandlordSut();
+		const { sut, landlordRepositoryStub, tenantRepositoryStub } = makeCreateLandlordSut();
 
 		jest.spyOn(landlordRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
+		jest.spyOn(tenantRepositoryStub, "findByEmail").mockResolvedValueOnce(null);
 
 		const result = await sut.exec(input);
 
