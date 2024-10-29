@@ -41,9 +41,19 @@ export type InputFindManyProperties = {
 
 export type OutputFindManyProperties = PaginationData<IPropertyEntity>;
 
+export type InputFindLandlordProperties = {
+	landlordId: string;
+	title?: string;
+	tenantName?: string;
+	status?: PropertyStatus;
+} & PaginationParams;
+
+export type OutputFindLandlordProperties = PaginationData<IPropertyEntity>;
+
 export interface IPropertyRepository {
 	create(input: InputCreateProperty): Promise<IPropertyEntity>;
 	findAddress(input: InputFindAddress): Promise<IAddressEntity | null>;
 	findMany(input: InputFindManyProperties): Promise<OutputFindManyProperties>;
 	findById(id: string): Promise<IPropertyEntity | null>;
+	findLandlordProperties(input: InputFindLandlordProperties): Promise<OutputFindLandlordProperties>;
 }

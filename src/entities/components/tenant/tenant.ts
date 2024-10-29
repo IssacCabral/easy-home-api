@@ -8,6 +8,7 @@ export interface ITenantEntity extends IBaseModel {
 	phone: string;
 	email: string;
 	password: string;
+	isMainTenant?: boolean;
 	profilePicUrl?: string;
 }
 

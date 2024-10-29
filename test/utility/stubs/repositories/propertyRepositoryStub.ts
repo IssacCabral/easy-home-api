@@ -1,8 +1,10 @@
 import type {
 	InputCreateProperty,
 	InputFindAddress,
+	InputFindLandlordProperties,
 	InputFindManyProperties,
 	IPropertyRepository,
+	OutputFindLandlordProperties,
 	OutputFindManyProperties,
 } from "@business/repositories/iPropertyRepository";
 import type { IAddressEntity } from "@entities/components/address/address";
@@ -32,6 +34,18 @@ class PropertyRepositoryStub implements IPropertyRepository {
 
 	async findById(id: string): Promise<IPropertyEntity | null> {
 		return fakePropertyEntity;
+	}
+
+	async findLandlordProperties(input: InputFindLandlordProperties): Promise<OutputFindLandlordProperties> {
+		return {
+			meta: {
+				hasNext: false,
+				limit: 10,
+				page: 2,
+				total: 3,
+			},
+			data: [fakePropertyEntity, fakePropertyEntity, fakePropertyEntity],
+		};
 	}
 }
 

@@ -2,7 +2,9 @@ import type {
 	IPropertyRepository,
 	InputCreateProperty,
 	InputFindAddress,
+	InputFindLandlordProperties,
 	InputFindManyProperties,
+	OutputFindLandlordProperties,
 	OutputFindManyProperties,
 } from "@business/repositories/iPropertyRepository";
 import type { IAddressEntity } from "@entities/components/address/address";
@@ -141,6 +143,85 @@ export class PropertyRepository implements IPropertyRepository {
 		return property ? this.mapper(property as IPropertyEntity) : null;
 	}
 
+	async findLandlordProperties(input: InputFindLandlordProperties): Promise<OutputFindLandlordProperties> {
+		const landlordProperties = await this.prismaClient.properties.findMany({
+			where: {
+				landlordId: input.landlordId,
+				title: input.title ? { contains: input.title, mode: "insensitive" } : undefined,
+				status: input.status || undefined,
+				tenants: input.tenantName
+					? {
+							some: {
+								isMainTenant: true,
+								AND: {
+									tenant: {
+										name: { contains: input.tenantName, mode: "insensitive" },
+									},
+								},
+							},
+						}
+					: undefined,
+			},
+			take: input.limit,
+			skip: (input.page - 1) * input.limit,
+			include: {
+				address: true,
+				amenities: true,
+				tenants: {
+					include: {
+						tenant: true,
+					},
+					where: {
+						isMainTenant: true,
+					},
+				},
+			},
+		});
+
+		const total = await this.prismaClient.properties.count({
+			where: {
+				landlordId: input.landlordId,
+				title: input.title ? { contains: input.title, mode: "insensitive" } : undefined,
+				status: input.status || undefined,
+				tenants: input.tenantName
+					? {
+							some: {
+								isMainTenant: true,
+								AND: {
+									tenant: {
+										name: { contains: input.tenantName, mode: "insensitive" },
+									},
+								},
+							},
+						}
+					: undefined,
+			},
+		});
+
+		return {
+			meta: {
+				page: input.page,
+				limit: input.limit,
+				total,
+				hasNext: input.page * input.limit < total,
+			},
+			data: landlordProperties.map((property) =>
+				this.mapper({
+					...property,
+					tenants: property.tenants.map((tenant) => {
+						return {
+							id: tenant.tenant.id,
+							email: tenant.tenant.email,
+							name: tenant.tenant.name,
+							phone: tenant.tenant.phone,
+							isMainTenant: tenant.isMainTenant,
+						};
+					}),
+				} as IPropertyEntity),
+			),
+		};
+	}
+
 	private buildFilters(input: InputFindManyProperties): string[] {
 		const filters: string[] = [];
 
@@ -219,6 +300,7 @@ export class PropertyRepository implements IPropertyRepository {
 			photosUrl: property.photosUrl,
 			address: property.address,
 			amenities: property.amenities,
+			tenants: property.tenants,
 			createdAt: property.createdAt,
 			updatedAt: property.updatedAt,
 		};

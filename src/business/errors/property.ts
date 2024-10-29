@@ -31,3 +31,9 @@ export const FindPropertyGeneralError: IError = {
 	message: "Find Property General Error",
 	shortMessage: "findPropertyGeneralError",
 };
+
+export const FindLandlordPropertiesGeneralError: IError = {
+	code: `${CODE_SUFIX}-006`,
+	message: "Find Landlord Properties General Error",
+	shortMessage: "findLandlordPropertiesGeneralError",
+};
