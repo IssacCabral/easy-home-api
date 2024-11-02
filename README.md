@@ -105,3 +105,8 @@ CREATE TABLE share_requests (
 
 <!-- todo: verificar necessidade do uso do select do prismaORM
 https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
+
+# TODOs
+
+- criar seeds com 300 imóveis e 2 landlords
+- ajustar build do projeto pra rodar com o javascript
