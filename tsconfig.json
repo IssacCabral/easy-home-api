@@ -19,7 +19,8 @@
     /* Type Checking */
     "strict": true /* Ativa todas as opções de verificação estrita do TypeScript. Isso inclui o uso de tipos explícitos, a verificação de nulo e indefinido, o uso de métodos e propriedades somente leitura, entre outros. */,
     "noImplicitAny": true /* Essa opção força o desenvolvedor a informar o tipo de todas as variáveis e parâmetros de função. Se uma variável ou parâmetro não tiver um tipo explicitamente declarado, o compilador irá gerar um erro informando que o tipo implícito é "any". Essa opção ajuda a evitar erros de tipagem. */,
-    "types": ["node", "jest"]
+    "types": ["node", "jest"],
+    "resolveJsonModule": true
   },
   "include": [
     "src/**/*.ts",
