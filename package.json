@@ -14,8 +14,7 @@
     "test:coverage": "jest . --coverage",
     "migration:new": "npx prisma migrate dev --name",
     "migration:run": "npx prisma migrate dev",
-    "migration:gen": "npx prisma generate",
-    "seed": "npx tsx ./src/framework/database/prisma/seeds/seed.ts"
+    "migration:gen": "npx prisma generate"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
@@ -43,7 +42,7 @@
   },
   "prisma": {
     "schema": "./src/framework/database/prisma/schema.prisma",
-    "seed": "npx tsx ./src/4-framework/database/prisma/seeds/seed.ts"
+    "seed": "npx tsx ./src/framework/database/prisma/seeds/seed.ts"
   },
   "jest": {
     "verbose": false,

@@ -1,4 +1,4 @@
-import type { StreetGeoJsonList } from "./seed";
+import type { StreetGeoJsonList } from "./properties/generateAddresses";
 
 export function generateRandomCoordinates(streetGeoJson: StreetGeoJsonList) {
 	const geojsonList = streetGeoJson.geojson;

@@ -1,0 +1,2069 @@
+{
+  "amenities": ["Ar-condicionado", "Garagem", "Wifi", "TV"],
+  "properties": [
+    {
+      "title": "Casa das Rosas V",
+      "description": "Ambientes românticos e perfeitos para noites ao ar livre.",
+      "addressId": "88415f23-6553-4bc4-ba4f-0e1975d77459",
+      "propertyId": "be9c7830-3f24-4bb0-bb44-c459bd264338"
+    },
+    {
+      "title": "Apartamento Aconchegante",
+      "description": "Espaço amplo e iluminado, ideal para famílias.",
+      "addressId": "34184902-7a77-45d6-8bb5-af68c9f6119b",
+      "propertyId": "f4c9079c-16e6-4e2c-9034-5513eaa10055"
+    },
+    {
+      "title": "Chalé do Lago",
+      "description": "Localização central, perto de tudo.",
+      "addressId": "73080c04-b8f7-461f-82a7-8e25bbb9a1a4",
+      "propertyId": "792fb284-a959-4c03-9231-8f8ad6c283be"
+    },
+    {
+      "title": "Estúdio Moderno",
+      "description": "Conforto e tranquilidade em um só lugar.",
+      "addressId": "d603dea5-38b6-41a9-8c63-9432bf91ae23",
+      "propertyId": "9c6499ad-eb5f-427d-9b9d-14b363f4bb4e"
+    },
+    {
+      "title": "Casa na Praia",
+      "description": "Aproveite a natureza com uma vista incrível.",
+      "addressId": "c710bc65-aaab-4425-b414-0b2f9990b062",
+      "propertyId": "f1894a87-d1e8-4506-a6f0-cc0cbb2aeea0"
+    },
+    {
+      "title": "Sítio do Sol",
+      "description": "Design contemporâneo com acabamentos de qualidade.",
+      "addressId": "7f5e8dd0-cfd2-4cbd-b48b-832e1a9ed412",
+      "propertyId": "5c2b8571-6c96-4094-b6af-eca0c7da119d"
+    },
+    {
+      "title": "Apartamento na Cidade",
+      "description": "Perfeito para quem busca praticidade e estilo.",
+      "addressId": "35571beb-f726-43c8-b334-ac870aec9c51",
+      "propertyId": "6e40002e-90e5-4a27-9c2b-78273e999be8"
+    },
+    {
+      "title": "Loft Elegante",
+      "description": "Ideal para férias em família ou escapadas românticas.",
+      "addressId": "db8eb2d7-4f75-4718-853c-3a61d74d0326",
+      "propertyId": "09628bac-4f8e-4a8b-909b-5009dd8e4b67"
+    },
+    {
+      "title": "Cobertura com Vista",
+      "description": "Comodidades modernas e ambientes aconchegantes.",
+      "addressId": "9d6668ce-4ae9-432c-b58c-7ba8fb862508",
+      "propertyId": "b404f8e1-ae94-45f2-8a6d-018beaf9a4af"
+    },
+    {
+      "title": "Casa de Campo",
+      "description": "Desfrute de um lar acolhedor com tudo o que você precisa.",
+      "addressId": "0dff07fd-44a0-47aa-a64e-eeda56b32ffe",
+      "propertyId": "a6e41670-7b0a-4d77-a0f7-49194abcce61"
+    },
+    {
+      "title": "Mansão dos Sonhos",
+      "description": "Experimente a vida urbana com conforto.",
+      "addressId": "f43dab4b-d517-430f-bf09-0e9d2b148c4a",
+      "propertyId": "81dea22a-9537-4a0a-afa5-fb6b48d725ca"
+    },
+    {
+      "title": "Residência Familiar",
+      "description": "Refúgio perfeito para relaxar e recarregar as energias.",
+      "addressId": "59a7de79-fd18-411f-a25b-4d185adb9c73",
+      "propertyId": "3670d716-73b5-4fb9-bffa-7f1d2ca2be18"
+    },
+    {
+      "title": "Duplex Moderno",
+      "description": "Localização privilegiada perto de restaurantes e lojas.",
+      "addressId": "a674e883-ef8e-4a67-89a8-3131e2123d7e",
+      "propertyId": "7da95d1d-6787-4111-9b40-ac826b9ae3cf"
+    },
+    {
+      "title": "Estúdio Compacto",
+      "description": "Espaço perfeito para trabalhar de casa.",
+      "addressId": "7bf61e85-d94a-4bf4-b57c-5f7b7388f4dc",
+      "propertyId": "fb9797d7-7223-45ba-965e-916b1954d714"
+    },
+    {
+      "title": "Casa no Centro Histórico",
+      "description": "Casa com jardim e áreas externas amplas.",
+      "addressId": "904c9f27-ce21-407f-a4c1-4574aaf6e81f",
+      "propertyId": "ef182dd1-d3cf-4dd2-9be6-3dd0214551af"
+    },
+    {
+      "title": "Apart-Hotel Luxuoso",
+      "description": "Desfrute de um estilo de vida descontraído e elegante.",
+      "addressId": "ee55c3e3-b86d-4eed-bc2b-c0e405f14d4a",
+      "propertyId": "90e99ff9-6b9c-4da6-8bd2-d15b68bc1a75"
+    },
+    {
+      "title": "Casa de Veraneio",
+      "description": "Ideal para quem busca aventura e natureza.",
+      "addressId": "71c84bda-979b-44d7-ad36-6f2a4e48ff1a",
+      "propertyId": "a8411054-a116-4739-afa5-d654ffb0fc3b"
+    },
+    {
+      "title": "Apartamento à Beira-Mar",
+      "description": "Perfeito para expatriados ou estudantes.",
+      "addressId": "db4a5398-e550-4ffb-9fed-1aef23314822",
+      "propertyId": "3d816f60-ef92-4952-9d01-16dfbf284577"
+    },
+    {
+      "title": "Casa Jardim Secreto",
+      "description": "Casa com sistema de segurança e tecnologia moderna.",
+      "addressId": "727ee231-eaf0-4bcb-88aa-f7cb11b39dde",
+      "propertyId": "bf9841e4-4f70-4a29-a421-dcc1d24610f2"
+    },
+    {
+      "title": "Apartamento Estilo Minimalista",
+      "description": "Ambiente seguro e amigável para famílias.",
+      "addressId": "476e5757-23a7-465b-8e7d-1cd9a0e71ea4",
+      "propertyId": "c022f15d-6aa1-40c3-a05b-e42c7a550d34"
+    },
+    {
+      "title": "Casa dos Ventos",
+      "description": "Espaço minimalista com charme único.",
+      "addressId": "00a1c637-625d-4b72-a31d-03ccac6e46cb",
+      "propertyId": "9b9156f4-b4c1-4c35-9134-0f85213f54ca"
+    },
+    {
+      "title": "Refúgio das Montanhas",
+      "description": "Aproveite momentos inesquecíveis em um ambiente acolhedor.",
+      "addressId": "d75a4e28-8bb4-477c-ad6b-76d25803bb76",
+      "propertyId": "9e689e89-b9f9-4d39-8474-293a1f8976b4"
+    },
+    {
+      "title": "Aconchego do Mar",
+      "description": "Perfeito para quem valoriza a praticidade e a sofisticação.",
+      "addressId": "2831dde5-b84f-4eb1-8331-a57db0f153c1",
+      "propertyId": "22637cf2-aee1-4f59-a79e-af63852fa50f"
+    },
+    {
+      "title": "Casa do Lago Azul",
+      "description": "Casa aconchegante, com lareira para as noites frias.",
+      "addressId": "5fce83a2-d166-4c77-af9e-07c8847a069b",
+      "propertyId": "ae9e8088-d0ad-4e03-a10c-3bcd477329cf"
+    },
+    {
+      "title": "Casa Verde e Amarela",
+      "description": "Espaços arejados, decorados com bom gosto e modernidade.",
+      "addressId": "02441320-2e67-4123-8ead-fe804503b0bb",
+      "propertyId": "8df31a64-67e9-4793-9146-b6c91cce711b"
+    },
+    {
+      "title": "Flat Charmoso",
+      "description": "Local ideal para encontros de família e amigos.",
+      "addressId": "b46b101d-5d46-4ee3-b8ea-ce42b5f82bde",
+      "propertyId": "5c5d270f-f144-4767-912c-8b801caf3b5a"
+    },
+    {
+      "title": "Apartamento Solar",
+      "description": "Comodidades como piscina e churrasqueira disponíveis.",
+      "addressId": "ad068103-65a9-49b9-b7b4-e1e25aacf4c2",
+      "propertyId": "ca7abf55-b701-4f44-a33e-46092e72d9d0"
+    },
+    {
+      "title": "Casa do Sol Poente",
+      "description": "Uma verdadeira obra de arte em forma de casa.",
+      "addressId": "98f5573c-41cb-4299-9698-8cdd1a1a6fe2",
+      "propertyId": "4cf55214-e4b1-48a0-979c-b370e25bc6b8"
+    },
+    {
+      "title": "Quintal da Alegria",
+      "description": "Ambientes pensados para o conforto e a felicidade.",
+      "addressId": "a224bd9a-588b-4b4a-898f-a19242c64ae8",
+      "propertyId": "68ae92e1-7a0d-41e8-b619-329151fc19c7"
+    },
+    {
+      "title": "Casa da Praia Dourada",
+      "description": "A vida na cidade com o charme do campo.",
+      "addressId": "ce25aee2-e7f2-4a42-a360-1597bc07b823",
+      "propertyId": "4a56c91a-7260-4005-a145-8197ad57cf96"
+    },
+    {
+      "title": "Apartamento Espacial",
+      "description": "Perfeito para quem busca um novo estilo de vida.",
+      "addressId": "9227ec44-b36c-4498-b5e7-0f02f5b85933",
+      "propertyId": "14210bd3-03b4-4866-b14f-dcb51ee7a95a"
+    },
+    {
+      "title": "Morada do Campo",
+      "description": "Espaço amplo e funcional, perfeito para eventos.",
+      "addressId": "61ffc567-2e6c-42e6-b360-0f9a1c11b5b7",
+      "propertyId": "9a4b928e-fbf7-478d-8636-5763d064341d"
+    },
+    {
+      "title": "Casa dos Sonhos",
+      "description": "Acesso fácil a transporte público e serviços essenciais.",
+      "addressId": "9ad77c12-3a13-434b-a5f7-9fa288cd640e",
+      "propertyId": "6b5a72d8-7b01-4303-8309-21601afdb784"
+    },
+    {
+      "title": "Casa do Bosque",
+      "description": "Ambiente tranquilo e cheio de paz.",
+      "addressId": "56c14d99-0d40-4b3e-8756-802b7569b133",
+      "propertyId": "56e49420-0693-4f08-934b-e16b5fca50bf"
+    },
+    {
+      "title": "Aconchego da Serra",
+      "description": "Casa com detalhes arquitetônicos que encantam.",
+      "addressId": "26134da6-77e6-4163-a26f-0407abb264dc",
+      "propertyId": "3acce158-2585-458c-bfbc-72716c53f52b"
+    },
+    {
+      "title": "Apartamento Estilo Vintage",
+      "description": "Espaços criativos para quem ama arte e design.",
+      "addressId": "9149d1c2-72a8-41c2-86c5-d738eacf5263",
+      "propertyId": "c29afc4e-35ed-412f-a726-7f10dc36c999"
+    },
+    {
+      "title": "Casa do Sorriso",
+      "description": "Casa com quintal, ideal para pets e crianças.",
+      "addressId": "1df15e45-63c6-43d8-843f-aa5cba57a930",
+      "propertyId": "35fd224d-42fd-4a67-ab4c-2344a8f661bf"
+    },
+    {
+      "title": "Loft na Cidade",
+      "description": "Um verdadeiro oásis urbano, longe do estresse.",
+      "addressId": "ce1ade47-4de2-4396-bac8-01a24763fc7c",
+      "propertyId": "904bfe2b-3cab-424b-bfce-4a33c3777450"
+    },
+    {
+      "title": "Cobertura Tropical",
+      "description": "Ambientes bem iluminados e arejados, cheios de energia.",
+      "addressId": "a9d490cb-e39f-47db-b5d2-87f63067af6b",
+      "propertyId": "e84ebe53-31ee-4d80-99b0-e7fdf273b83a"
+    },
+    {
+      "title": "Casa dos Pássaros",
+      "description": "Casa charmosa em uma localização tranquila.",
+      "addressId": "f328a83d-3c11-43ff-be2e-6a04ac894a0c",
+      "propertyId": "2246abbd-80c2-4eff-81bc-023bbd6f898e"
+    },
+    {
+      "title": "Estúdio dos Sonhos",
+      "description": "Espaços versáteis que se adaptam às suas necessidades.",
+      "addressId": "24a431aa-c8a4-44c2-bf25-c10cb84823ae",
+      "propertyId": "357aaaf7-51ea-4fc9-90f3-e254670edeac"
+    },
+    {
+      "title": "Morada do Mar",
+      "description": "Sinta-se em casa, em um ambiente acolhedor.",
+      "addressId": "91215690-fc5b-474c-8044-ce9c477cec57",
+      "propertyId": "ef752475-5d07-4a0d-b7c3-088ef56a1a06"
+    },
+    {
+      "title": "Casa da Amizade",
+      "description": "Um lugar para criar memórias inesquecíveis.",
+      "addressId": "5d4e7799-dae1-4515-a9a1-bca82a450917",
+      "propertyId": "2c81f7f8-77be-444d-a6bc-c642f06c3000"
+    },
+    {
+      "title": "Chalé Encantado",
+      "description": "Perfeito para quem ama cozinhar e receber amigos.",
+      "addressId": "076e3a76-c016-4fc2-be74-d07d77be035d",
+      "propertyId": "ca829ccd-d796-4a08-8837-ed784792f616"
+    },
+    {
+      "title": "Estância Verde",
+      "description": "Com uma vista deslumbrante para a cidade.",
+      "addressId": "b925571a-3777-4fbc-a27d-d6eaec001552",
+      "propertyId": "bbc34067-06fd-4035-a584-4f122d538f16"
+    },
+    {
+      "title": "Apartamento das Estrelas",
+      "description": "Espaços que refletem o seu estilo de vida.",
+      "addressId": "4f646e81-1ec3-412c-be1c-4df9c3cebda8",
+      "propertyId": "8e0d403a-fa3f-4951-b002-bd2f4617ecd8"
+    },
+    {
+      "title": "Casa do Luar",
+      "description": "Um lugar ideal para relaxar após um longo dia.",
+      "addressId": "9acd451e-d9e9-405a-a527-a18df84f1da2",
+      "propertyId": "605af422-3f7e-4be5-9feb-0eff05368f4a"
+    },
+    {
+      "title": "Residencial Primavera",
+      "description": "Conforto e elegância em cada detalhe.",
+      "addressId": "a6489e25-c9d7-48d1-aa9d-76d868832a74",
+      "propertyId": "150fef87-9fdd-4535-bf3a-25272e320a9d"
+    },
+    {
+      "title": "Casa das Flores",
+      "description": "Ambiente familiar, onde todos são bem-vindos.",
+      "addressId": "e4b1fe2a-3de1-46c6-aa66-e714be37d879",
+      "propertyId": "7cbca230-9553-4fcf-8d42-f0f851af85af"
+    },
+    {
+      "title": "Aconchego do Bosque",
+      "description": "Comodidades que garantem o seu bem-estar.",
+      "addressId": "4dee94e6-9cad-4918-aef8-e519927acc12",
+      "propertyId": "789b21b2-bf32-4726-a485-8f16fc9caa06"
+    },
+    {
+      "title": "Casa do Coração",
+      "description": "Um espaço para viver suas melhores experiências.",
+      "addressId": "0ada7948-3fd8-4d38-9b8a-f29df3ce5ee5",
+      "propertyId": "d7324cf9-bc12-4b06-b788-66cfec62576f"
+    },
+    {
+      "title": "Apartamento da Tradição",
+      "description": "Perfeito para quem ama a natureza e o ar livre.",
+      "addressId": "e06fbd3c-5204-4667-8402-eefb5e061be8",
+      "propertyId": "fd0cccfa-e123-4d82-b6d3-5fa4cb014792"
+    },
+    {
+      "title": "Chalé da Paz",
+      "description": "Um refúgio pessoal para relaxamento e lazer.",
+      "addressId": "16ad2b55-aef9-4d35-a511-f50c66f65702",
+      "propertyId": "c7653921-7832-4d2d-90e7-34dc1c234264"
+    },
+    {
+      "title": "Cobertura do Paraíso",
+      "description": "Local ideal para artistas e criativos.",
+      "addressId": "5059924d-fbd1-4e0a-ac11-00228015bfba",
+      "propertyId": "fa8e8306-9c98-4e13-ad3a-bf6501327559"
+    },
+    {
+      "title": "Casa da Lagoa",
+      "description": "Espaço único, ideal para meditação e reflexão.",
+      "addressId": "5c98bc39-ab4a-4d1a-b0db-89277e60fb86",
+      "propertyId": "bd80017a-f1c1-4eb0-9ee4-e7034f6571e6"
+    },
+    {
+      "title": "Sítio das Palmeiras",
+      "description": "Um lar que é um verdadeiro santuário.",
+      "addressId": "34b1ba43-b0fd-4290-9d1c-304809cf72f7",
+      "propertyId": "5ce134f3-b999-4a62-82a5-6353db457369"
+    },
+    {
+      "title": "Apartamento em Harmonia",
+      "description": "Ambientes que inspiram e encantam.",
+      "addressId": "e807df62-276b-4890-bbd7-1fa349920e7b",
+      "propertyId": "a6079b0e-8d9c-42f1-a3ef-2b630cee2c0f"
+    },
+    {
+      "title": "Casa da Liberdade",
+      "description": "Perfeito para longas estadias e conforto absoluto.",
+      "addressId": "ec5254fd-e559-4cbf-a1c0-c7f3e9349562",
+      "propertyId": "a79b53bf-5eb4-4671-a419-cffe14c80e13"
+    },
+    {
+      "title": "Morada dos Ventos",
+      "description": "Um lugar que abraça a tradição e a modernidade.",
+      "addressId": "9f36e08a-aa82-4207-a521-dfbeddfea4f9",
+      "propertyId": "4b7d8026-7f9d-499a-908c-2fc0c09467cd"
+    },
+    {
+      "title": "Casa do Encanto",
+      "description": "Casa cheia de história e aconchego.",
+      "addressId": "da1db83e-095b-459f-9776-6a8f639dc2ef",
+      "propertyId": "d8549aa8-bb7b-4b7a-91d7-d826fb958d5a"
+    },
+    {
+      "title": "Flat das Delícias",
+      "description": "Espaço que valoriza cada momento vivido.",
+      "addressId": "1c397e17-5f57-40f7-a9c4-38670e90717a",
+      "propertyId": "f964b358-2cd3-4ccf-a863-318cf555d11f"
+    },
+    {
+      "title": "Estúdio da Criatividade",
+      "description": "Um lar que promove felicidade e união.",
+      "addressId": "7ee189b9-f916-4545-ad2f-7d4dc5025afb",
+      "propertyId": "697484f2-eb8a-447d-865a-c7791326a221"
+    },
+    {
+      "title": "Casa do Sol Nascente",
+      "description": "Ideal para quem busca um estilo de vida equilibrado.",
+      "addressId": "d0ff491d-6922-4565-9b2b-c5f70a8beb7a",
+      "propertyId": "d023315f-c392-403d-a28c-9527b2c006c2"
+    },
+    {
+      "title": "Apart-Hotel do Conforto",
+      "description": "Um lugar para viver com simplicidade e elegância.",
+      "addressId": "61588c3c-f535-4aff-b553-0e7e9accd733",
+      "propertyId": "7512b1cf-1cd8-4004-9bbb-1898d58e5dac"
+    },
+    {
+      "title": "Casa das Águas",
+      "description": "Casa projetada para harmonizar com a natureza.",
+      "addressId": "08ab4e8a-cc00-4bba-8c6a-989f91aaed7e",
+      "propertyId": "81c3a465-ab1c-44fc-80a7-3d50d3ea975f"
+    },
+    {
+      "title": "Apartamento do Olhar",
+      "description": "Espaço perfeito para atividades em família.",
+      "addressId": "67c20a45-3385-4964-b87a-f2a2b5472134",
+      "propertyId": "abc6f8a0-c4c8-4d7b-9a23-4d240b749949"
+    },
+    {
+      "title": "Refúgio do Estudante",
+      "description": "Um convite ao descanso e à contemplação.",
+      "addressId": "8fd063b5-f720-4ec8-b534-f0b2f828e04f",
+      "propertyId": "45490682-f65d-46fc-b0e1-009bde82f19a"
+    },
+    {
+      "title": "Casa da Esperança",
+      "description": "Ambiente que exala tranquilidade e serenidade.",
+      "addressId": "1c0e2e9d-82bd-483e-ac0e-797fc7dc0177",
+      "propertyId": "8e1dfd45-efc0-429b-a655-5a5fb1745a92"
+    },
+    {
+      "title": "Aconchego do Horizonte",
+      "description": "Uma casa para chamar de lar.",
+      "addressId": "55e8e92b-558d-41a3-befb-1b9105e2534f",
+      "propertyId": "339f5474-650a-4578-bbb3-5e6dff77e852"
+    },
+    {
+      "title": "Casa do Sorriso Radiante",
+      "description": "Um espaço alegre e iluminado que traz felicidade a cada canto.",
+      "addressId": "ebab9288-5f95-4c1f-90de-126ca6aad923",
+      "propertyId": "a1302193-8884-4caa-9822-718bceca0d43"
+    },
+    {
+      "title": "Estúdio do Bem-Estar",
+      "description": "Perfeito para relaxar e encontrar a paz em meio à agitação da cidade.",
+      "addressId": "0999571c-0634-49f2-81f8-963e22512cff",
+      "propertyId": "4bde18ad-6c4f-4d91-80fa-7a9176e810d0"
+    },
+    {
+      "title": "Casa dos Ventos Serenos",
+      "description": "Localizada em um lugar tranquilo, ideal para momentos de reflexão.",
+      "addressId": "c8157050-b7fe-4d09-8c05-c177bc172d01",
+      "propertyId": "d04e3be2-72a6-4e3f-a6e6-47ec648dfe1a"
+    },
+    {
+      "title": "Chalé da Harmonia",
+      "description": "Um refúgio de tranquilidade, cercado pela natureza e serenidade.",
+      "addressId": "6fa7dca2-daab-4187-ac5c-f5d1030be1f2",
+      "propertyId": "ee534477-2e6b-4c3c-b004-43208bd1a0d4"
+    },
+    {
+      "title": "Apartamento dos Sonhos",
+      "description": "Um lar que combina conforto e estilo, perfeito para toda a família.",
+      "addressId": "e7f9721e-aba0-4960-b25b-b4a9b1b18ee9",
+      "propertyId": "701070c1-5898-464f-8cc3-7c0b67f12f02"
+    },
+    {
+      "title": "Cobertura do Encanto",
+      "description": "Com vistas deslumbrantes e um design impressionante, é um verdadeiro tesouro.",
+      "addressId": "47030061-b70c-4a36-baca-ba93d9bc008e",
+      "propertyId": "43a76ecf-f226-4056-b234-2599f9dfa333"
+    },
+    {
+      "title": "Casa da Paz Interior",
+      "description": "Um espaço acolhedor que promove o bem-estar e a harmonia.",
+      "addressId": "b70a463c-3e7a-48ae-af9f-4367835d0d29",
+      "propertyId": "e3f447a6-a046-4003-a3b9-041f5b79410b"
+    },
+    {
+      "title": "Loft do Estilo Urbano",
+      "description": "Design moderno com uma vibração contemporânea e cheia de personalidade.",
+      "addressId": "6bf6a3a8-5db5-40a4-a4f5-112cfb8ea902",
+      "propertyId": "7ffd95c9-fc25-48dd-8de2-df87631dfc50"
+    },
+    {
+      "title": "Casa do Sol Radiante",
+      "description": "Aproveite a luz natural em todos os cômodos, criando um ambiente vibrante.",
+      "addressId": "4ce4bee0-3f6b-48d7-a2dc-bc604b095708",
+      "propertyId": "2a92d6c2-3611-4b80-a5c7-19f6ea470dbc"
+    },
+    {
+      "title": "Estúdio do Artista Criativo",
+      "description": "Um espaço inspirador para artistas e criativos, cheio de potencial.",
+      "addressId": "652eeb88-8823-4128-91cc-3cd3ab051c62",
+      "propertyId": "f4c141a3-6b0e-47d4-babf-777689c66ce7"
+    },
+    {
+      "title": "Casa da Brisa Suave",
+      "description": "Um espaço tranquilo onde a brisa suave traz frescor e serenidade, perfeito para momentos de reflexão.",
+      "addressId": "db042489-24df-47a0-b0e3-1bea62fa28ca",
+      "propertyId": "2e3acc71-2f47-4ff5-8afb-4e8c2f519748"
+    },
+    {
+      "title": "Refúgio do Lago Azul",
+      "description": "Uma encantadora casa à beira do lago, ideal para desfrutar da beleza da natureza em cada pôr do sol.",
+      "addressId": "6839f31a-a5b0-485e-bd5a-58ba0496d29e",
+      "propertyId": "28d8c999-2b59-4c58-a421-229b170a6b68"
+    },
+    {
+      "title": "Chalé do Vento Amigo",
+      "description": "Um chalé acolhedor, onde o vento amigo embala noites de descanso e dias de aventuras.",
+      "addressId": "d0998cf0-a3f4-4f86-a985-3f5d49a33623",
+      "propertyId": "ec4c5a0e-6d66-42f2-a4f0-da2ed1cf1f23"
+    },
+    {
+      "title": "Morada do Sol Nascente",
+      "description": "Uma morada iluminada pelo sol nascente, trazendo esperança e novas oportunidades todos os dias.",
+      "addressId": "a20db76c-f310-47fb-b82b-e47e241b8685",
+      "propertyId": "a78fe3e9-d160-4a03-b2e0-78861b5cb7f7"
+    },
+    {
+      "title": "Lar dos Sussurros da Floresta",
+      "description": "Um lar rodeado por sussurros da floresta, oferecendo um refúgio perfeito para os amantes da natureza.",
+      "addressId": "54612506-fe8b-414a-beb1-1d7a24a1dd5a",
+      "propertyId": "cb2481e5-48cb-4068-97a0-8dabb064366e"
+    },
+    {
+      "title": "Casa do Coração Feliz",
+      "description": "Uma casa onde cada canto é preenchido por felicidade, criando memórias inesquecíveis com amigos e familiares.",
+      "addressId": "14c75db7-086f-4526-b4c1-0d4567c9b2f8",
+      "propertyId": "28520924-a845-4afb-a438-df6c6822ac43"
+    },
+    {
+      "title": "Vila dos Girassóis",
+      "description": "Uma vila cheia de girassóis, irradiando alegria e cores vibrantes em cada estação.",
+      "addressId": "385784f6-cd0e-427b-8bfc-293e9f935a4e",
+      "propertyId": "6b336623-b55c-48ef-a0b1-2e2cf1fe932b"
+    },
+    {
+      "title": "Oásis do Descanso",
+      "description": "Um oásis de descanso, com áreas externas relaxantes e confortáveis, perfeitas para relaxar e recarregar energias.",
+      "addressId": "2afb81a8-ec89-4a02-9498-a43f324ae0d2",
+      "propertyId": "2cc324ee-8f49-4b40-91a4-6ace9012ec37"
+    },
+    {
+      "title": "Casa do Encanto Eterno",
+      "description": "Uma casa encantada que abraça todos com seu charme e aconchego, ideal para encontros familiares.",
+      "addressId": "c0fc6fd1-3e05-4d50-b617-33865b095797",
+      "propertyId": "f529f235-a0dc-4a29-98f1-70c5854ec3db"
+    },
+    {
+      "title": "Moradia das Estações",
+      "description": "Uma moradia que reflete as estações do ano, proporcionando um ambiente acolhedor e diverso.",
+      "addressId": "27733eac-20ad-4b28-b622-611319c85823",
+      "propertyId": "27886622-c6b8-4776-9ec8-597f859eaa53"
+    },
+    {
+      "title": "Refúgio do Arco-Íris",
+      "description": "Um refúgio mágico onde o arco-íris é um símbolo de alegria e renovação, ideal para um lar feliz.",
+      "addressId": "a4ffece5-304e-4116-bcc7-675c67204408",
+      "propertyId": "f1d264b9-d78e-4d58-a035-8be31c511e25"
+    },
+    {
+      "title": "Casa da Amizade Verdadeira",
+      "description": "Uma casa onde a amizade é celebrada, tornando cada visita um momento especial e memorável.",
+      "addressId": "cfb8b027-b4b1-4259-a057-5623b16202e0",
+      "propertyId": "688126d0-d62d-451f-ada7-0f8b6816a03d"
+    },
+    {
+      "title": "Chalé dos Sonhos Dourados",
+      "description": "Um chalé que evoca sonhos dourados, ideal para os que buscam um lar cheio de histórias e aventuras.",
+      "addressId": "7358bb41-1ac1-488d-80f9-f54caaf701ef",
+      "propertyId": "28b56f72-ad9d-47a3-9d3b-f904e4867fc9"
+    },
+    {
+      "title": "Casa da Paz Interior",
+      "description": "Uma casa que proporciona paz interior, com espaços relaxantes para meditação e tranquilidade.",
+      "addressId": "9d355820-5cd6-4f9d-a246-3518830d5104",
+      "propertyId": "256a512e-14ce-45ef-a29f-ce56a6c4df38"
+    },
+    {
+      "title": "Morada do Amanhã Radiante",
+      "description": "Uma morada radiante que ilumina os corações, perfeita para momentos de celebração e alegria.",
+      "addressId": "87d61a9f-fa9e-4040-abc0-e0619beaf8be",
+      "propertyId": "70d4ad17-fa48-46d2-a2cf-c1b2f4181430"
+    },
+    {
+      "title": "Refúgio dos Pássaros",
+      "description": "Um refúgio sereno para os amantes dos pássaros, com um ambiente natural que encanta a cada canto.",
+      "addressId": "5db2af1e-649e-4ab7-a8c1-fe05d26dfc5b",
+      "propertyId": "6f944181-832f-43c4-a274-7a2193a2d120"
+    },
+    {
+      "title": "Casa da Luz do Luar",
+      "description": "Uma casa iluminada pela luz do luar, criando um ambiente romântico e mágico para todos os momentos.",
+      "addressId": "752766f5-b60a-4276-89ae-cd793bd03cfa",
+      "propertyId": "eb1adcb3-13d7-4b2c-909b-dca15033ca08"
+    },
+    {
+      "title": "Vila da Alegria",
+      "description": "Uma vila onde a alegria é uma constante, perfeita para famílias que valorizam momentos juntos.",
+      "addressId": "0443006e-cd78-4dce-8d89-fd3c477bdb31",
+      "propertyId": "85285ae4-9217-4800-b886-491b525ab9cc"
+    },
+    {
+      "title": "Oásis da Esperança",
+      "description": "Um oásis repleto de esperança, onde cada dia é uma nova oportunidade para ser feliz.",
+      "addressId": "66bb6468-e02e-4220-b9f4-234d2ce42975",
+      "propertyId": "3a6ddc5c-ee7d-4dcc-852f-f25f279341ee"
+    },
+    {
+      "title": "Casa do Horizonte Abençoado",
+      "description": "Uma casa com um horizonte deslumbrante, oferecendo vistas que inspiram e relaxam.",
+      "addressId": "a6112f42-9af3-40e2-b77d-f91c7b248824",
+      "propertyId": "18fa45ef-7a30-449b-93c0-b7fbe0d76c17"
+    },
+    {
+      "title": "Lar das Borboletas",
+      "description": "Um lar vibrante que atrai borboletas, simbolizando a beleza e a liberdade da natureza.",
+      "addressId": "5fc1c400-13bc-40b8-8485-9fd4b585d46e",
+      "propertyId": "0bbc8a91-bc1e-4e9a-955e-fe6b89543372"
+    },
+    {
+      "title": "Moradia do Sorriso Sincero",
+      "description": "Uma moradia onde sorrisos sinceros são bem-vindos, criando um ambiente caloroso e acolhedor.",
+      "addressId": "06d22fc9-5146-4d50-8a97-764283b4a70c",
+      "propertyId": "0b5a834f-239f-46c1-8d7b-2ecbb36befe6"
+    },
+    {
+      "title": "Casa da Natureza Viva",
+      "description": "Uma casa que vive em harmonia com a natureza, perfeita para quem aprecia a vida ao ar livre.",
+      "addressId": "4a1cc4d7-ad1c-41f5-8622-f6b511fe73ef",
+      "propertyId": "5d22260e-65d6-4d8d-93ee-b41007d0cec2"
+    },
+    {
+      "title": "Refúgio da Calma",
+      "description": "Um refúgio que oferece calma e tranquilidade, ideal para desconectar e renovar as energias.",
+      "addressId": "d7a3ad32-ea08-4402-bd67-266db72984b3",
+      "propertyId": "0b5112e9-b797-41c7-a4fb-eeb794890880"
+    },
+    {
+      "title": "Casa do Lago Serene",
+      "description": "Uma casa à beira de um lago sereno, perfeita para momentos de introspecção e relaxamento.",
+      "addressId": "f64be874-b1ec-426e-875e-e64da22b9d32",
+      "propertyId": "e09c298b-249b-4b01-a128-acc786284301"
+    },
+    {
+      "title": "Chalé das Flores",
+      "description": "Um chalé florido, que exala frescor e alegria, ideal para famílias que buscam um lar encantador.",
+      "addressId": "f6490b04-cc5a-4d76-81f4-651221b38740",
+      "propertyId": "1da46c7c-f182-4b6f-ad29-016c3e26f7ab"
+    },
+    {
+      "title": "Casa da Simplicidade",
+      "description": "Uma casa que valoriza a simplicidade, oferecendo um lar acolhedor e funcional para todos.",
+      "addressId": "ec390217-733a-4586-a89a-cbdae4b789e7",
+      "propertyId": "a31ac213-b577-4e44-8513-141b4277c011"
+    },
+    {
+      "title": "Vila dos Ventos Favoráveis",
+      "description": "Uma vila que atrai ventos favoráveis, simbolizando oportunidades e novos começos.",
+      "addressId": "37ac941e-b93b-49b7-ba65-a3fd1202206d",
+      "propertyId": "aab31c7f-542d-4f27-8c2c-62d10fd43ca1"
+    },
+    {
+      "title": "Oásis do Conforto",
+      "description": "Um oásis de conforto e tranquilidade, ideal para relaxar e desfrutar de momentos especiais.",
+      "addressId": "c83770f3-06cb-4c07-8f47-6238f52a1c5e",
+      "propertyId": "328fbc73-22e9-4b68-a7ca-65fd49b3e5ab"
+    },
+    {
+      "title": "Casa do Brilho Estelar",
+      "description": "Uma casa que brilha sob o céu estrelado, perfeita para noites mágicas de contemplação.",
+      "addressId": "9c34f174-2aa1-4b3e-b64e-4a2278c8444b",
+      "propertyId": "fd579420-85ae-4e8b-9c76-3a780bfb20df"
+    },
+    {
+      "title": "Casa do Sol Brilhante",
+      "description": "Uma casa que brilha sob a luz do dia, criando um ambiente acolhedor e vibrante para todos.",
+      "addressId": "9f5e7504-c02b-41a3-b4fc-458dc7f74a58",
+      "propertyId": "319502b0-12f6-4bcd-a2a8-ac53e6077a9b"
+    },
+    {
+      "title": "Lar dos Amores Infinito",
+      "description": "Um lar que abriga amores infinitos, celebrando a família e a união em cada detalhe.",
+      "addressId": "7265f23c-e421-4bc8-8064-de4b83b47381",
+      "propertyId": "618a3e72-8a86-4685-b516-dd55cbc7aea5"
+    },
+    {
+      "title": "Oásis da Felicidade",
+      "description": "Um oásis que é sinônimo de felicidade, perfeito para compartilhar risos e momentos alegres.",
+      "addressId": "5bb7c64c-51e8-4004-a3a6-0281ed7a2ba3",
+      "propertyId": "bdbc86e2-9e62-4769-ba3d-91116f5c271b"
+    },
+    {
+      "title": "Moradia do Canto dos Pássaros",
+      "description": "Uma moradia que encanta com o canto dos pássaros, criando um ambiente harmonioso e relaxante.",
+      "addressId": "c3667848-35db-41ec-914f-9d5c92066891",
+      "propertyId": "f7545bd4-5c57-43bf-ad39-29e59234f48f"
+    },
+    {
+      "title": "Casa da Luz do Dia",
+      "description": "Uma casa que recebe a luz do dia com braços abertos, tornando cada manhã especial.",
+      "addressId": "6788d342-a5ea-48d3-ada2-e4245ee5245c",
+      "propertyId": "14df3926-0f64-4710-940d-1d2cdc8009c5"
+    },
+    {
+      "title": "Refúgio do Silêncio Aconchegante",
+      "description": "Um refúgio que oferece a tranquilidade de um tempo parado, perfeito para meditar e relaxar.",
+      "addressId": "d2304812-2ea9-4ed3-9de6-a4b000ed700b",
+      "propertyId": "8e87a83a-488c-4552-b716-7b3cc3784394"
+    },
+    {
+      "title": "Casa dos Encantos da Natureza",
+      "description": "Uma casa que captura a essência da natureza, ideal para quem busca uma conexão profunda com o ambiente.",
+      "addressId": "5169aa84-bf52-4aaf-9aba-c80187d856cd",
+      "propertyId": "0a1f88a4-0592-41bf-83a4-625d8e44f266"
+    },
+    {
+      "title": "Vila do Sorriso Radiante",
+      "description": "Uma vila que brilha com sorrisos radiantes, criando um lar cheio de amor e felicidade.",
+      "addressId": "a72f1019-41c6-4e1a-84fc-f6b54c85f831",
+      "propertyId": "dcc19f72-7ede-41e2-9f27-e9b47447b3eb"
+    },
+    {
+      "title": "Chalé da Serenidade",
+      "description": "Um chalé que proporciona serenidade, ideal para aqueles que buscam paz e quietude.",
+      "addressId": "57833703-62dc-41cf-acb8-40e93f527e13",
+      "propertyId": "73063ca8-cbec-4e25-912e-2dd480628b16"
+    },
+    {
+      "title": "Casa da Harmonia Perfeita",
+      "description": "Uma casa que é um exemplo de harmonia perfeita, onde cada detalhe é pensado para o bem-estar de seus moradores.",
+      "addressId": "1455942d-1c64-4325-a361-bd737715df73",
+      "propertyId": "bb868094-14fd-445e-b058-de4be7dff1f8"
+    },
+    {
+      "title": "Casa do Maribomdo",
+      "description": "Uma casa, não muito legal para crianças",
+      "addressId": "9dc3b26b-065a-4884-8d1f-aa888898e931",
+      "propertyId": "6435ccb9-e392-4304-8d48-90a25c25757d"
+    }
+  ],
+  "streetGeoJsonList": [
+    {
+      "street": "Avenida Plácido Castelo, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0160739,
+              -4.9758969
+            ],
+            [
+              -39.0160762,
+              -4.9759939
+            ],
+            [
+              -39.0160876,
+              -4.9761034
+            ],
+            [
+              -39.0161057,
+              -4.976205
+            ],
+            [
+              -39.0161285,
+              -4.9762998
+            ],
+            [
+              -39.0161754,
+              -4.9764147
+            ],
+            [
+              -39.0162545,
+              -4.976559
+            ],
+            [
+              -39.0163464,
+              -4.9766926
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0162183,
+              -4.9700417
+            ],
+            [
+              -39.0161982,
+              -4.9707004
+            ],
+            [
+              -39.0161942,
+              -4.9710197
+            ],
+            [
+              -39.016194,
+              -4.9713203
+            ],
+            [
+              -39.0161781,
+              -4.9718334
+            ],
+            [
+              -39.0161687,
+              -4.9721594
+            ],
+            [
+              -39.0161607,
+              -4.9724366
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.016274,
+              -4.9674835
+            ],
+            [
+              -39.0162586,
+              -4.9680483
+            ],
+            [
+              -39.0162477,
+              -4.9685109
+            ],
+            [
+              -39.0162304,
+              -4.9692334
+            ],
+            [
+              -39.0162237,
+              -4.9697398
+            ],
+            [
+              -39.0162183,
+              -4.9700417
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0153972,
+              -4.9632428
+            ],
+            [
+              -39.0154218,
+              -4.9632775
+            ],
+            [
+              -39.015431,
+              -4.9633076
+            ],
+            [
+              -39.0154416,
+              -4.9633466
+            ],
+            [
+              -39.0155806,
+              -4.9639312
+            ],
+            [
+              -39.0156363,
+              -4.964143
+            ],
+            [
+              -39.0157422,
+              -4.9645331
+            ],
+            [
+              -39.0158609,
+              -4.9650195
+            ],
+            [
+              -39.016038,
+              -4.9657924
+            ],
+            [
+              -39.0160842,
+              -4.9659868
+            ],
+            [
+              -39.0161084,
+              -4.9660896
+            ],
+            [
+              -39.0161305,
+              -4.9661752
+            ],
+            [
+              -39.0161506,
+              -4.966266
+            ],
+            [
+              -39.0161875,
+              -4.966419
+            ],
+            [
+              -39.0162398,
+              -4.9666682
+            ],
+            [
+              -39.016278,
+              -4.9668432
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0154177,
+              -4.9625544
+            ],
+            [
+              -39.0153815,
+              -4.9629004
+            ],
+            [
+              -39.0153791,
+              -4.9630975
+            ],
+            [
+              -39.0153972,
+              -4.9632428
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0165415,
+              -4.9769852
+            ],
+            [
+              -39.0166797,
+              -4.977187
+            ],
+            [
+              -39.0169291,
+              -4.9775423
+            ],
+            [
+              -39.0170994,
+              -4.9777401
+            ],
+            [
+              -39.0172657,
+              -4.9778937
+            ],
+            [
+              -39.017597,
+              -4.9781249
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Rua Rodrigues Júnior, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -38.9967651,
+              -4.9741226
+            ],
+            [
+              -38.9968755,
+              -4.9740505
+            ],
+            [
+              -38.9970054,
+              -4.9739503
+            ],
+            [
+              -38.9972771,
+              -4.9737082
+            ],
+            [
+              -38.997657,
+              -4.9734064
+            ],
+            [
+              -38.9978592,
+              -4.9732367
+            ],
+            [
+              -38.9983081,
+              -4.9728596
+            ],
+            [
+              -38.998665,
+              -4.9725676
+            ],
+            [
+              -38.9989503,
+              -4.9722997
+            ],
+            [
+              -38.9991734,
+              -4.9720482
+            ],
+            [
+              -38.9992487,
+              -4.9719576
+            ],
+            [
+              -38.9992711,
+              -4.9719359
+            ],
+            [
+              -38.9992976,
+              -4.9719176
+            ],
+            [
+              -38.9993955,
+              -4.9718628
+            ],
+            [
+              -38.9999011,
+              -4.9715221
+            ],
+            [
+              -39.0000379,
+              -4.9714339
+            ],
+            [
+              -39.0003222,
+              -4.9712789
+            ],
+            [
+              -39.0007782,
+              -4.9710892
+            ],
+            [
+              -39.0010867,
+              -4.9710304
+            ],
+            [
+              -39.0014997,
+              -4.9709609
+            ],
+            [
+              -39.0024224,
+              -4.9707846
+            ],
+            [
+              -39.0031332,
+              -4.9706724
+            ],
+            [
+              -39.0035641,
+              -4.9705991
+            ],
+            [
+              -39.0039492,
+              -4.970539
+            ],
+            [
+              -39.0048128,
+              -4.9703801
+            ],
+            [
+              -39.005336,
+              -4.970313
+            ],
+            [
+              -39.0059414,
+              -4.970239
+            ],
+            [
+              -39.0070139,
+              -4.9702302
+            ],
+            [
+              -39.0077556,
+              -4.9702082
+            ],
+            [
+              -39.0080604,
+              -4.9702047
+            ],
+            [
+              -39.0084107,
+              -4.9701883
+            ],
+            [
+              -39.0085432,
+              -4.9701673
+            ],
+            [
+              -39.0087256,
+              -4.9701112
+            ],
+            [
+              -39.0091963,
+              -4.9699642
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0091963,
+              -4.9699642
+            ],
+            [
+              -39.0101244,
+              -4.9696863
+            ],
+            [
+              -39.0102223,
+              -4.969665
+            ],
+            [
+              -39.0102933,
+              -4.9696636
+            ],
+            [
+              -39.0103684,
+              -4.9696623
+            ],
+            [
+              -39.0106206,
+              -4.9696516
+            ],
+            [
+              -39.0111221,
+              -4.9696423
+            ],
+            [
+              -39.0114748,
+              -4.9696436
+            ],
+            [
+              -39.0116304,
+              -4.9696516
+            ],
+            [
+              -39.0117686,
+              -4.9696529
+            ],
+            [
+              -39.0119858,
+              -4.9696843
+            ],
+            [
+              -39.0122675,
+              -4.969689
+            ],
+            [
+              -39.0126711,
+              -4.9696957
+            ],
+            [
+              -39.0133725,
+              -4.9697091
+            ],
+            [
+              -39.0146627,
+              -4.9697184
+            ],
+            [
+              -39.0154794,
+              -4.9697278
+            ],
+            [
+              -39.0156095,
+              -4.9697264
+            ],
+            [
+              -39.0159655,
+              -4.9697358
+            ],
+            [
+              -39.0161687,
+              -4.9697391
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Rua José de Alencar, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0119455,
+              -4.9703359
+            ],
+            [
+              -39.0118745,
+              -4.9703345
+            ],
+            [
+              -39.0116921,
+              -4.970317
+            ],
+            [
+              -39.0105683,
+              -4.9702876
+            ],
+            [
+              -39.0104046,
+              -4.9702902
+            ],
+            [
+              -39.0103048,
+              -4.9703045
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0103048,
+              -4.9703045
+            ],
+            [
+              -39.0102115,
+              -4.970349
+            ],
+            [
+              -39.0101002,
+              -4.9704011
+            ],
+            [
+              -39.0099111,
+              -4.9704853
+            ],
+            [
+              -39.0093936,
+              -4.9707184
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Rua Rui Maia, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0185573,
+              -4.9660485
+            ],
+            [
+              -39.0186359,
+              -4.965532
+            ],
+            [
+              -39.0189619,
+              -4.964956
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0183158,
+              -4.9742823
+            ],
+            [
+              -39.0183212,
+              -4.9738322
+            ],
+            [
+              -39.0183332,
+              -4.973406
+            ],
+            [
+              -39.0183386,
+              -4.9729811
+            ],
+            [
+              -39.018352,
+              -4.9725521
+            ],
+            [
+              -39.0183547,
+              -4.9724319
+            ],
+            [
+              -39.0183802,
+              -4.9718588
+            ],
+            [
+              -39.0183949,
+              -4.971335
+            ],
+            [
+              -39.0184298,
+              -4.9700711
+            ],
+            [
+              -39.0184446,
+              -4.9692188
+            ],
+            [
+              -39.0184768,
+              -4.968528
+            ],
+            [
+              -39.0184982,
+              -4.9677557
+            ],
+            [
+              -39.0185076,
+              -4.9669247
+            ],
+            [
+              -39.0185103,
+              -4.9667283
+            ],
+            [
+              -39.0185237,
+              -4.9665733
+            ],
+            [
+              -39.0185907,
+              -4.9660597
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Rua Tabelião Enéas, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0167382,
+              -4.9749364
+            ],
+            [
+              -39.0167413,
+              -4.9742569
+            ],
+            [
+              -39.0167643,
+              -4.9733443
+            ],
+            [
+              -39.0167858,
+              -4.9725197
+            ],
+            [
+              -39.0167868,
+              -4.9724485
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0167868,
+              -4.9724485
+            ],
+            [
+              -39.0168048,
+              -4.971832
+            ],
+            [
+              -39.0168056,
+              -4.9713253
+            ],
+            [
+              -39.0168379,
+              -4.9700363
+            ],
+            [
+              -39.0168475,
+              -4.9693016
+            ],
+            [
+              -39.0168282,
+              -4.9692555
+            ],
+            [
+              -39.0168328,
+              -4.9688928
+            ],
+            [
+              -39.0168262,
+              -4.9685891
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Avenida Estados Unidos, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0279236,
+              -4.9547085
+            ],
+            [
+              -39.0275869,
+              -4.9554544
+            ],
+            [
+              -39.0272127,
+              -4.9563302
+            ],
+            [
+              -39.0271745,
+              -4.9564064
+            ],
+            [
+              -39.0271389,
+              -4.9564645
+            ],
+            [
+              -39.0265958,
+              -4.9572508
+            ],
+            [
+              -39.0264874,
+              -4.9574658
+            ],
+            [
+              -39.0264156,
+              -4.9576687
+            ],
+            [
+              -39.0263565,
+              -4.9579207
+            ],
+            [
+              -39.026322,
+              -4.9581605
+            ],
+            [
+              -39.0263424,
+              -4.9585695
+            ],
+            [
+              -39.0263537,
+              -4.9586076
+            ],
+            [
+              -39.0265186,
+              -4.9596285
+            ],
+            [
+              -39.0265353,
+              -4.9597077
+            ],
+            [
+              -39.0265326,
+              -4.95982
+            ],
+            [
+              -39.0265205,
+              -4.9599269
+            ],
+            [
+              -39.0265001,
+              -4.9600543
+            ],
+            [
+              -39.0263425,
+              -4.9602297
+            ],
+            [
+              -39.0259331,
+              -4.9606256
+            ],
+            [
+              -39.0257482,
+              -4.9608255
+            ],
+            [
+              -39.0256289,
+              -4.9609578
+            ],
+            [
+              -39.0255187,
+              -4.961108
+            ],
+            [
+              -39.0252653,
+              -4.9614874
+            ],
+            [
+              -39.0250897,
+              -4.961718
+            ],
+            [
+              -39.024965,
+              -4.9618663
+            ],
+            [
+              -39.0249194,
+              -4.9619171
+            ],
+            [
+              -39.0247798,
+              -4.9620459
+            ],
+            [
+              -39.0246899,
+              -4.9620992
+            ],
+            [
+              -39.0245358,
+              -4.9621931
+            ],
+            [
+              -39.0244472,
+              -4.9622403
+            ],
+            [
+              -39.0240446,
+              -4.962447
+            ],
+            [
+              -39.0231427,
+              -4.9628915
+            ],
+            [
+              -39.0228822,
+              -4.9630199
+            ],
+            [
+              -39.0220394,
+              -4.9634786
+            ],
+            [
+              -39.0217837,
+              -4.9636451
+            ],
+            [
+              -39.0216029,
+              -4.9637809
+            ],
+            [
+              -39.0214122,
+              -4.9639404
+            ],
+            [
+              -39.0212044,
+              -4.9641262
+            ],
+            [
+              -39.0205338,
+              -4.9647915
+            ],
+            [
+              -39.0202683,
+              -4.9650533
+            ],
+            [
+              -39.0201189,
+              -4.9652266
+            ],
+            [
+              -39.0199686,
+              -4.9654228
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Avenida Juscelino Kubitschek, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -38.9980644,
+              -4.9645989
+            ],
+            [
+              -38.9979444,
+              -4.9646013
+            ],
+            [
+              -38.9978458,
+              -4.9646049
+            ],
+            [
+              -38.9977755,
+              -4.9646127
+            ],
+            [
+              -38.9977199,
+              -4.9646165
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -38.9980644,
+              -4.9645989
+            ],
+            [
+              -38.999165,
+              -4.9648186
+            ],
+            [
+              -38.999877,
+              -4.9649728
+            ],
+            [
+              -39.0005931,
+              -4.9650876
+            ],
+            [
+              -39.0011913,
+              -4.9652265
+            ],
+            [
+              -39.0012704,
+              -4.9652466
+            ],
+            [
+              -39.0019999,
+              -4.9654016
+            ],
+            [
+              -39.0025229,
+              -4.9655302
+            ],
+            [
+              -39.002641,
+              -4.9655592
+            ],
+            [
+              -39.0032418,
+              -4.9656809
+            ],
+            [
+              -39.0033531,
+              -4.9657035
+            ],
+            [
+              -39.0040237,
+              -4.9658371
+            ],
+            [
+              -39.0047975,
+              -4.9659935
+            ],
+            [
+              -39.005637,
+              -4.9661738
+            ],
+            [
+              -39.0059294,
+              -4.9662286
+            ],
+            [
+              -39.00673,
+              -4.9663916
+            ],
+            [
+              -39.0076983,
+              -4.9665893
+            ],
+            [
+              -39.0078297,
+              -4.9666107
+            ],
+            [
+              -39.0080886,
+              -4.9666535
+            ],
+            [
+              -39.0083098,
+              -4.9667056
+            ],
+            [
+              -39.0085566,
+              -4.966771
+            ],
+            [
+              -39.008747,
+              -4.9668378
+            ],
+            [
+              -39.0088986,
+              -4.9669006
+            ],
+            [
+              -39.0090112,
+              -4.9669554
+            ],
+            [
+              -39.009122,
+              -4.9670184
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Rua Francisco Enéas de Lima, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0171383,
+              -4.9742744
+            ],
+            [
+              -39.0171397,
+              -4.9745843
+            ],
+            [
+              -39.0171405,
+              -4.9749337
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0173362,
+              -4.9686139
+            ],
+            [
+              -39.0173348,
+              -4.9688982
+            ],
+            [
+              -39.0173322,
+              -4.9692099
+            ],
+            [
+              -39.0173321,
+              -4.9692441
+            ],
+            [
+              -39.0173113,
+              -4.9700377
+            ],
+            [
+              -39.0172537,
+              -4.9713257
+            ],
+            [
+              -39.0172336,
+              -4.9718427
+            ],
+            [
+              -39.0172161,
+              -4.972449
+            ],
+            [
+              -39.0172096,
+              -4.9725235
+            ],
+            [
+              -39.0171383,
+              -4.9742744
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Rua Benjamin Barroso, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0145513,
+              -4.972607
+            ],
+            [
+              -39.013567,
+              -4.9725896
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0161117,
+              -4.9724346
+            ],
+            [
+              -39.0154392,
+              -4.9724146
+            ],
+            [
+              -39.015348,
+              -4.9724186
+            ],
+            [
+              -39.0152594,
+              -4.9724266
+            ],
+            [
+              -39.0150341,
+              -4.9724667
+            ],
+            [
+              -39.0149322,
+              -4.9724987
+            ],
+            [
+              -39.0145513,
+              -4.972607
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Rua Epitácio Pessoa, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0022481,
+              -4.9683449
+            ],
+            [
+              -39.0028489,
+              -4.9683596
+            ],
+            [
+              -39.0035556,
+              -4.968377
+            ],
+            [
+              -39.004371,
+              -4.968397
+            ],
+            [
+              -39.0051502,
+              -4.9684091
+            ],
+            [
+              -39.006274,
+              -4.9684064
+            ],
+            [
+              -39.0073335,
+              -4.9684438
+            ],
+            [
+              -39.0078029,
+              -4.9684518
+            ],
+            [
+              -39.0092205,
+              -4.9684518
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Rua Tenente Cravo, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0111392,
+              -4.9684753
+            ],
+            [
+              -39.0111221,
+              -4.9696423
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0111925,
+              -4.9612297
+            ],
+            [
+              -39.0112353,
+              -4.9614222
+            ],
+            [
+              -39.0112472,
+              -4.9616236
+            ],
+            [
+              -39.0112413,
+              -4.9617721
+            ],
+            [
+              -39.0112386,
+              -4.9618432
+            ],
+            [
+              -39.0112129,
+              -4.9625111
+            ],
+            [
+              -39.011208,
+              -4.963002
+            ],
+            [
+              -39.0111905,
+              -4.9636794
+            ],
+            [
+              -39.0112026,
+              -4.9642579
+            ],
+            [
+              -39.0111778,
+              -4.9647726
+            ],
+            [
+              -39.0111778,
+              -4.9649138
+            ],
+            [
+              -39.0111787,
+              -4.9652329
+            ],
+            [
+              -39.0111734,
+              -4.965431
+            ],
+            [
+              -39.0111691,
+              -4.9656608
+            ],
+            [
+              -39.0111798,
+              -4.9662687
+            ],
+            [
+              -39.0111698,
+              -4.9669925
+            ],
+            [
+              -39.0111744,
+              -4.9673188
+            ],
+            [
+              -39.0111392,
+              -4.9684753
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "street": "Rua José Caetano, Quixadá",
+      "geojson": [
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.0161607,
+              -4.9724366
+            ],
+            [
+              -39.0167868,
+              -4.9724485
+            ],
+            [
+              -39.0172161,
+              -4.972449
+            ],
+            [
+              -39.0175333,
+              -4.9724442
+            ],
+            [
+              -39.0183547,
+              -4.9724319
+            ],
+            [
+              -39.0195052,
+              -4.9724608
+            ],
+            [
+              -39.0206292,
+              -4.972477
+            ],
+            [
+              -39.0217374,
+              -4.9724875
+            ],
+            [
+              -39.0228172,
+              -4.9725008
+            ],
+            [
+              -39.0239297,
+              -4.9724941
+            ],
+            [
+              -39.0245754,
+              -4.972496
+            ]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -39.023931,
+              -4.9725772
+            ],
+            [
+              -39.0228168,
+              -4.9725754
+            ],
+            [
+              -39.0217375,
+              -4.9725653
+            ],
+            [
+              -39.0212776,
+              -4.9725666
+            ],
+            [
+              -39.0206299,
+              -4.9725567
+            ],
+            [
+              -39.0195025,
+              -4.9725483
+            ],
+            [
+              -39.018352,
+              -4.9725521
+            ],
+            [
+              -39.017533,
+              -4.9725287
+            ],
+            [
+              -39.0172096,
+              -4.9725235
+            ],
+            [
+              -39.0167858,
+              -4.9725197
+            ],
+            [
+              -39.01616,
+              -4.9725141
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

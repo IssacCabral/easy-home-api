@@ -1,16 +1,8 @@
 import { PropertyTypes } from "@entities/components/property/property";
-import data from "./data.json";
+import { amenities } from "./data/data.json";
 
 function getRandomElement<T>(array: T[]): T {
 	return array[Math.floor(Math.random() * array.length)];
-}
-
-export function generateRandomTitle(): string {
-	return getRandomElement(data.titles);
-}
-
-export function generateRandomDescription(): string {
-	return getRandomElement(data.descriptions);
 }
 
 export function generateRandomPrice(): number {
@@ -34,4 +26,14 @@ export function generateRandomDimensions(): { depth: number; width: number } {
 export function generateRandomPropertyType(): PropertyTypes {
 	const propertyTypes = Object.values(PropertyTypes);
 	return getRandomElement(propertyTypes);
+}
+
+export function generateRandomAmenities(): string[] {
+	// Decide quantas amenities serão selecionadas (pelo menos 1, no máximo todas)
+	const numberOfAmenities = Math.floor(Math.random() * amenities.length) + 1;
+
+	// Embaralha as amenities disponíveis e pega apenas o número desejado
+	const shuffledAmenities = amenities.sort(() => 0.5 - Math.random());
+
+	return shuffledAmenities.slice(0, numberOfAmenities);
 }
