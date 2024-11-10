@@ -6,7 +6,8 @@ import type { ITenantRepository } from "@business/repositories/iTenantRepository
 import type { ICryptService } from "@business/services/iCryptService";
 import type { IUniqueIdentifierService } from "@business/services/iUniqueIdentifierService";
 import type { IUseCase } from "@business/shared/iUseCase";
-import { type ITenantEntity, TenantEntity } from "@entities/components/tenant/tenant";
+import { omitPassword } from "@business/shared/omitPassword";
+import { TenantEntity } from "@entities/components/tenant/tenant";
 import { left, right } from "@shared/either";
 
 export class CreateTenantUseCase implements IUseCase<InputCreateTenantDto, OutputCreateTenantDto> {
@@ -41,14 +42,9 @@ export class CreateTenantUseCase implements IUseCase<InputCreateTenantDto, Outpu
 
 			const createdTenant = await this.tenantRepository.create(tenantEntity.value.export());
 
-			return right(this.omitPassword(createdTenant));
+			return right(omitPassword(createdTenant));
 		} catch (err) {
 			return left(CreateTenantGeneralError);
 		}
-	}
-
-	private omitPassword(obj: ITenantEntity): Omit<ITenantEntity, "password"> {
-		const { password, ...rest } = obj;
-		return rest;
 	}
 }
