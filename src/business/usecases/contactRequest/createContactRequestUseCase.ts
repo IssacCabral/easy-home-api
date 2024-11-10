@@ -5,6 +5,7 @@ import type {
 import { ContactRequestAlreadyExists, CreateContactRequestGeneralError } from "@business/errors/contactRequest";
 import type { IContactRequestRepository } from "@business/repositories/iContactRequestRepository";
 import type { IUseCase } from "@business/shared/iUseCase";
+import { omitPassword } from "@business/shared/omitPassword";
 import { ContactRequestStatus } from "@entities/components/contactRequest/contactRequest";
 import { left, right } from "@shared/either";
 
@@ -27,7 +28,10 @@ export class CreateContactRequestUseCase
 				propertyId: propertyId,
 			});
 
-			return right(createdContactRequest);
+			return right({
+				...createdContactRequest,
+				tenant: omitPassword(createdContactRequest.tenant),
+			});
 		} catch (err) {
 			return left(CreateContactRequestGeneralError);
 		}

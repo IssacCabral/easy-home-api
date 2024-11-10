@@ -7,4 +7,8 @@ export type InputCreateContactRequestDto = {
 	propertyId: string;
 };
 
-export type OutputCreateContactRequestDto = Either<IError, IContactRequestEntity>;
+type ContactRequestWithoutPasswordInTenant = Pick<IContactRequestEntity, "property" | "requestDate" | "status"> & {
+	tenant: Omit<IContactRequestEntity["tenant"], "password">;
+};
+
+export type OutputCreateContactRequestDto = Either<IError, ContactRequestWithoutPasswordInTenant>;
