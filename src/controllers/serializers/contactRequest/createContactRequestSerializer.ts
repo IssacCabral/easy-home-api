@@ -1,4 +1,4 @@
-import type { OutputCreateContactRequestDto } from "@business/dtos/tenant/createContactRequestDto";
+import type { OutputCreateContactRequestDto } from "@business/contactRequest/createContactRequestDto";
 import { AbstractSerializer } from "../abstractSerializer";
 import { IsNotEmpty, IsUUID } from "class-validator";
 

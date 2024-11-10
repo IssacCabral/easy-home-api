@@ -1,7 +1,7 @@
 import type {
 	InputCreateContactRequestDto,
 	OutputCreateContactRequestDto,
-} from "@business/dtos/tenant/createContactRequestDto";
+} from "@business/contactRequest/createContactRequestDto";
 import { ContactRequestAlreadyExists, CreateContactRequestGeneralError } from "@business/errors/contactRequest";
 import type { IContactRequestRepository } from "@business/repositories/iContactRequestRepository";
 import type { IUseCase } from "@business/shared/iUseCase";

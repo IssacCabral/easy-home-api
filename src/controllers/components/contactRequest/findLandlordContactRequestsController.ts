@@ -1,34 +1,34 @@
+import { FindLandlordContactRequestsGeneralError } from "@business/errors/contactRequest";
 import { LandlordNotFound } from "@business/errors/landlord";
-import { FindLandlordPropertiesGeneralError } from "@business/errors/property";
-import type { FindLandlordPropertiesOperator } from "@controllers/operators/property/findLandlordPropertiesOperator";
+import type { FindLandlordContactRequestsOperator } from "@controllers/operators/contactRequest/findLandlordContactRequestsOperator";
 import type { HttpRequest, HttpResponse } from "@controllers/protocols/http";
 import { badRequest, notFound, ok, serverError } from "@controllers/protocols/httpStatus";
 import type { IController } from "@controllers/protocols/iController";
-import { InputFindLandlordPropertiesSerializer } from "@controllers/serializers/property/findLandlordPropertiesSerializer";
-import type { PropertyStatus } from "@entities/components/property/property";
+import { InputFindLandlordContactRequestsSerializer } from "@controllers/serializers/contactRequest/findLandlordContactRequestsSerializer";
+import type { ContactRequestStatus } from "@entities/components/contactRequest/contactRequest";
 import type { IError } from "@shared/iError";
 
-export class FindLandlordPropertiesController implements IController {
-	constructor(private readonly operator: FindLandlordPropertiesOperator) {}
+export class FindLandlordContactRequestsController implements IController {
+	constructor(private readonly operator: FindLandlordContactRequestsOperator) {}
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
 			const { query } = httpRequest;
-			const { landlordId } = httpRequest.params; // todo: provavelmente alterar o parametro landlordId
+			const { landlordId } = httpRequest.params; // todo: provavelmente alterar de onde vem o parametro landlordId
 
-			const input = new InputFindLandlordPropertiesSerializer({
+			const input = new InputFindLandlordContactRequestsSerializer({
 				landlordId,
 				page: Number(query.page),
 				limit: Number(query.limit),
 				tenantName: query.tenantName as string,
 				title: query.title as string,
-				status: query.status as PropertyStatus,
+				status: query.status as ContactRequestStatus,
 			});
 
 			const result = await this.operator.exec(input);
 
 			if (result.isLeft()) {
-				if (result.value === FindLandlordPropertiesGeneralError) {
+				if (result.value === FindLandlordContactRequestsGeneralError) {
 					throw new Error(result.value.message);
 				}
 

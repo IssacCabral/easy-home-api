@@ -13,3 +13,9 @@ export const ContactRequestAlreadyExists: IError = {
 	message: "Contact Request Already Exists",
 	shortMessage: "contactRequestAlreadyExists",
 };
+
+export const FindLandlordContactRequestsGeneralError: IError = {
+	code: `${CODE_SUFIX}-003`,
+	message: "Find Landlord Contact Requests General Error",
+	shortMessage: "findLandlordContactRequestsGeneralError",
+};
