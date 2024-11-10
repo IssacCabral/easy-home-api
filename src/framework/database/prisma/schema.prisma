@@ -46,7 +46,8 @@ model Tenants {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  property TenantsOnProperties?
+  property       TenantsOnProperties?
+  ContactRequest ContactRequests[]
 }
 
 enum PropertyTypes {
@@ -59,6 +60,12 @@ enum PropertyStatus {
   FREE
   BUSY
   SPLIT
+}
+
+enum ContactRequestStatus {
+  IN_CONTACT
+  RENTED
+  FINISHED
 }
 
 model Properties {
@@ -74,8 +81,9 @@ model Properties {
   photosUrl   String         @db.VarChar(200)
   description String         @db.VarChar(200)
 
-  amenities Amenities[]
-  tenants   TenantsOnProperties[]
+  amenities      Amenities[]
+  tenants        TenantsOnProperties[]
+  ContactRequest ContactRequests[]
 
   Landlord   Landlords @relation(fields: [landlordId], references: [id])
   landlordId String
@@ -86,15 +94,6 @@ model Properties {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
-// model AmenitiesOnProperties {
-//   property   Properties @relation(fields: [propertyId], references: [id])
-//   propertyId String
-//   amenity    Amenities  @relation(fields: [amenityId], references: [id])
-//   amenityId  String
-
-//   @@id([propertyId, amenityId])
-// }
 
 model TenantsOnProperties {
   property   Properties @relation(fields: [propertyId], references: [id])
@@ -120,4 +119,15 @@ model Addresses {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
+}
+
+model ContactRequests {
+  id                 String               @id
+  tenantId           String
+  propertyId         String
+  tenant             Tenants              @relation(fields: [tenantId], references: [id])
+  property           Properties           @relation(fields: [propertyId], references: [id])
+  status             ContactRequestStatus
+  finalizationReason String?
+  requestDate        DateTime             @default(now())
 }
