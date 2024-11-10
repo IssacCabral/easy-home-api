@@ -11,7 +11,6 @@ export enum ContactRequestStatus {
 }
 
 export interface IContactRequestEntity {
-	id: string;
 	tenant: ITenantEntity;
 	property: IPropertyEntity;
 	status: ContactRequestStatus;
@@ -22,10 +21,6 @@ export class ContactRequestEntity extends AbstractEntity<IContactRequestEntity> 
 	static create(props: IContactRequestEntity): Either<IError, ContactRequestEntity> {
 		const contactRequest = new ContactRequestEntity(props);
 		return right(contactRequest);
-	}
-
-	get id(): string {
-		return this.props.id;
 	}
 
 	get tenant(): ITenantEntity {
