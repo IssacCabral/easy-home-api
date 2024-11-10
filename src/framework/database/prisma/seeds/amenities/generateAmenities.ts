@@ -1,6 +1,6 @@
+import { randomUUID } from "node:crypto";
 import type { PrismaClient } from "@prisma/client";
 import { amenities } from "../data/data.json";
-import { randomUUID } from "node:crypto";
 
 export async function generateAmenities(prismaClient: PrismaClient) {
 	for (const amenity of amenities) {

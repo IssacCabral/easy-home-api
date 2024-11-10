@@ -1,7 +1,8 @@
 import type { IAddressEntity } from "@entities/components/address/address";
-import { generateRandomCoordinates } from "../generateRandomCoordinates";
-import { streetGeoJsonList, properties } from "../data/data.json";
 import { PropertyStatus } from "@entities/components/property/property";
+import type { PrismaClient } from "@prisma/client";
+import { properties, streetGeoJsonList } from "../data/data.json";
+import { generateRandomCoordinates } from "../generateRandomCoordinates";
 import {
 	generateRandomAmenities,
 	generateRandomBathrooms,
@@ -10,7 +11,6 @@ import {
 	generateRandomPrice,
 	generateRandomPropertyType,
 } from "../utils";
-import type { PrismaClient } from "@prisma/client";
 
 export interface StreetGeoJsonList {
 	street: string;

@@ -1,7 +1,7 @@
+import type { OutputFindLandlordPropertiesDto } from "@business/dtos/property/findLandlordPropertiesDto";
+import { PropertyStatus } from "@entities/components/property/property";
 import { IsEnum, IsInt, IsNotEmpty, IsOptional, IsPositive, IsString, IsUUID } from "class-validator";
 import { AbstractSerializer } from "../abstractSerializer";
-import { PropertyStatus } from "@entities/components/property/property";
-import type { OutputFindLandlordPropertiesDto } from "@business/dtos/property/findLandlordPropertiesDto";
 
 export class InputFindLandlordPropertiesSerializer extends AbstractSerializer<InputFindLandlordPropertiesSerializer> {
 	@IsNotEmpty()

@@ -1,6 +1,6 @@
 import type { OutputFindPropertyDto } from "@business/dtos/property/findPropertyDto";
-import { AbstractSerializer } from "../abstractSerializer";
 import { IsNotEmpty, IsUUID } from "class-validator";
+import { AbstractSerializer } from "../abstractSerializer";
 
 export class InputFindPropertySerializer extends AbstractSerializer<InputFindPropertySerializer> {
 	@IsUUID()

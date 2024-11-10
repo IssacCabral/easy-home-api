@@ -1,8 +1,8 @@
 import { Router } from "express";
+import { amenityRoutes } from "./amenity/amenityRoutes";
 import { landlordRoutes } from "./landlord/landlordRoutes";
 import { propertyRoutes } from "./property/propertyRoutes";
 import { tenantRoutes } from "./tenant/tenantRoutes";
-import { amenityRoutes } from "./amenity/amenityRoutes";
 
 const routes = Router();
 
