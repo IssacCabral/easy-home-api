@@ -37,3 +37,9 @@ export const FindLandlordPropertiesGeneralError: IError = {
 	message: "Find Landlord Properties General Error",
 	shortMessage: "findLandlordPropertiesGeneralError",
 };
+
+export const PropertyNotAvailableToContactRequest: IError = {
+	code: `${CODE_SUFIX}-007`,
+	message: "PropertyNotAvailableToContactRequest",
+	shortMessage: "propertyNotAvailableToContactRequest",
+};
