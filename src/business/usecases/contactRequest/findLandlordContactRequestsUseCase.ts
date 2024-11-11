@@ -2,7 +2,7 @@ import type {
 	ContactRequestWithoutPasswordInTenant,
 	InputFindLandlordContactRequestsDto,
 	OutputFindLandlordContactRequestsDto,
-} from "@business/contactRequest/findLandlordContactRequestDto";
+} from "@business/dtos/contactRequest/findLandlordContactRequestDto";
 import { FindLandlordContactRequestsGeneralError } from "@business/errors/contactRequest";
 import { LandlordNotFound } from "@business/errors/landlord";
 import type { IContactRequestRepository } from "@business/repositories/iContactRequestRepository";

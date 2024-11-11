@@ -1,4 +1,4 @@
-import type { OutputFindLandlordContactRequestsDto } from "@business/contactRequest/findLandlordContactRequestDto";
+import type { OutputFindLandlordContactRequestsDto } from "@business/dtos/contactRequest/findLandlordContactRequestDto";
 import { AbstractSerializer } from "../abstractSerializer";
 import { IsEnum, IsInt, IsNotEmpty, IsOptional, IsPositive, IsString, IsUUID } from "class-validator";
 import { ContactRequestStatus } from "@entities/components/contactRequest/contactRequest";

@@ -1,7 +1,7 @@
 import type {
 	InputCreateContactRequestDto,
 	OutputCreateContactRequestDto,
-} from "@business/contactRequest/createContactRequestDto";
+} from "@business/dtos/contactRequest/createContactRequestDto";
 import { ContactRequestAlreadyExists, CreateContactRequestGeneralError } from "@business/errors/contactRequest";
 import { PropertyNotAvailableToContactRequest, PropertyNotFound } from "@business/errors/property";
 import type { IContactRequestRepository } from "@business/repositories/iContactRequestRepository";
