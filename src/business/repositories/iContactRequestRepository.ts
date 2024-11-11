@@ -20,4 +20,6 @@ export interface IContactRequestRepository {
 	create(input: InputCreateContactRequest): Promise<IContactRequestEntity>;
 	findUnique(tenantId: string, propertyId: string): Promise<IContactRequestEntity | null>;
 	findLandlordContactRequests(input: InputFindLandlordContactRequests): Promise<OutputFindLandlordContactRequests>;
+	rentProperty(tenantId: string, propertyId: string): Promise<IContactRequestEntity>;
+	finalizePendingContactRequests(tenantId: string, propertyId: string): Promise<void>;
 }

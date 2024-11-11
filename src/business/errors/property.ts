@@ -40,6 +40,12 @@ export const FindLandlordPropertiesGeneralError: IError = {
 
 export const PropertyNotAvailableToContactRequest: IError = {
 	code: `${CODE_SUFIX}-007`,
-	message: "PropertyNotAvailableToContactRequest",
+	message: "Property Not Available To Contact Request",
 	shortMessage: "propertyNotAvailableToContactRequest",
+};
+
+export const PropertyNotAvailableToRent: IError = {
+	code: `${CODE_SUFIX}-008`,
+	message: "Property Not Available To Rent",
+	shortMessage: "propertyNotAvailableToRent",
 };

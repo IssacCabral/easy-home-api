@@ -4,6 +4,7 @@ import type {
 	InputFindAddress,
 	InputFindLandlordProperties,
 	InputFindManyProperties,
+	InputSaveTenantOnProperty,
 	OutputFindLandlordProperties,
 	OutputFindManyProperties,
 } from "@business/repositories/iPropertyRepository";
@@ -282,6 +283,16 @@ export class PropertyRepository implements IPropertyRepository {
 					RETURNING id, "addressNumber", street, lat, lon;
         `;
 		return newAddressResult[0];
+	}
+
+	async saveTenantOnProperty(input: InputSaveTenantOnProperty): Promise<void> {
+		await this.prismaClient.tenantsOnProperties.create({
+			data: {
+				propertyId: input.propertyId,
+				tenantId: input.tenantId,
+				isMainTenant: input.isMainTenant,
+			},
+		});
 	}
 
 	private mapper(property: IPropertyEntity): IPropertyEntity {

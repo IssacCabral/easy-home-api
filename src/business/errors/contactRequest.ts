@@ -19,3 +19,21 @@ export const FindLandlordContactRequestsGeneralError: IError = {
 	message: "Find Landlord Contact Requests General Error",
 	shortMessage: "findLandlordContactRequestsGeneralError",
 };
+
+export const RentPropertyGeneralError: IError = {
+	code: `${CODE_SUFIX}-004`,
+	message: "Rent Property General Error",
+	shortMessage: "rentPropertyGeneralError",
+};
+
+export const ContactRequestNotFound: IError = {
+	code: `${CODE_SUFIX}-005`,
+	message: "Contact Request Not Found",
+	shortMessage: "contactRequestNotFound",
+};
+
+export const InvalidToRent: IError = {
+	code: `${CODE_SUFIX}-006`,
+	message: "Contact Request Invalid To Rent",
+	shortMessage: "contactRequestInvalidToRent",
+};

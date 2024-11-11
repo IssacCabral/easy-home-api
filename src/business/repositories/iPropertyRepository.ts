@@ -50,10 +50,17 @@ export type InputFindLandlordProperties = {
 
 export type OutputFindLandlordProperties = PaginationData<IPropertyEntity>;
 
+export type InputSaveTenantOnProperty = {
+	tenantId: string;
+	propertyId: string;
+	isMainTenant: boolean;
+};
+
 export interface IPropertyRepository {
 	create(input: InputCreateProperty): Promise<IPropertyEntity>;
 	findAddress(input: InputFindAddress): Promise<IAddressEntity | null>;
 	findMany(input: InputFindManyProperties): Promise<OutputFindManyProperties>;
 	findById(id: string): Promise<IPropertyEntity | null>;
 	findLandlordProperties(input: InputFindLandlordProperties): Promise<OutputFindLandlordProperties>;
+	saveTenantOnProperty(input: InputSaveTenantOnProperty): Promise<void>;
 }

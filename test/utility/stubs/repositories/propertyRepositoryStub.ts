@@ -3,6 +3,7 @@ import type {
 	InputFindAddress,
 	InputFindLandlordProperties,
 	InputFindManyProperties,
+	InputSaveTenantOnProperty,
 	IPropertyRepository,
 	OutputFindLandlordProperties,
 	OutputFindManyProperties,
@@ -46,6 +47,10 @@ class PropertyRepositoryStub implements IPropertyRepository {
 			},
 			data: [fakePropertyEntity, fakePropertyEntity, fakePropertyEntity],
 		};
+	}
+
+	async saveTenantOnProperty(input: InputSaveTenantOnProperty): Promise<void> {
+		return Promise.resolve();
 	}
 }
 

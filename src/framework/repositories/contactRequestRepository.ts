@@ -4,7 +4,7 @@ import type {
 	InputFindLandlordContactRequests,
 	OutputFindLandlordContactRequests,
 } from "@business/repositories/iContactRequestRepository";
-import type { IContactRequestEntity } from "@entities/components/contactRequest/contactRequest";
+import { ContactRequestStatus, type IContactRequestEntity } from "@entities/components/contactRequest/contactRequest";
 import type { PrismaClient } from "@prisma/client";
 
 export class ContactRequestRepository implements IContactRequestRepository {
@@ -76,6 +76,34 @@ export class ContactRequestRepository implements IContactRequestRepository {
 			},
 			data: landlordContactRequests.map((contactRequest) => this.mapper(contactRequest as IContactRequestEntity)),
 		};
+	}
+
+	async rentProperty(tenantId: string, propertyId: string): Promise<IContactRequestEntity> {
+		const contactRequestRented = await this.prismaClient.contactRequests.update({
+			where: {
+				tenantId_propertyId: { tenantId, propertyId },
+			},
+			data: {
+				status: ContactRequestStatus.RENTED,
+			},
+			include: { tenant: true, property: { include: { address: true } } },
+		});
+
+		return this.mapper(contactRequestRented as IContactRequestEntity);
+	}
+
+	async finalizePendingContactRequests(tenantId: string, propertyId: string): Promise<void> {
+		await this.prismaClient.contactRequests.updateMany({
+			where: {
+				propertyId: propertyId,
+				tenantId: { not: tenantId },
+				status: ContactRequestStatus.IN_CONTACT,
+			},
+			data: {
+				status: ContactRequestStatus.FINISHED,
+				finalizationReason: "Contact Request Closed By Landlord",
+			},
+		});
 	}
 
 	private mapper(contactRequest: IContactRequestEntity): IContactRequestEntity {
