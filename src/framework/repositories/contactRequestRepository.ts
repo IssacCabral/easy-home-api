@@ -104,6 +104,18 @@ export class ContactRequestRepository implements IContactRequestRepository {
 				finalizationReason: "Contact Request Closed By Landlord",
 			},
 		});
+
+		await this.prismaClient.contactRequests.updateMany({
+			where: {
+				propertyId: { not: propertyId },
+				tenantId: tenantId,
+				status: ContactRequestStatus.IN_CONTACT,
+			},
+			data: {
+				status: ContactRequestStatus.FINISHED,
+				finalizationReason: "You signed a contract on another property",
+			},
+		});
 	}
 
 	private mapper(contactRequest: IContactRequestEntity): IContactRequestEntity {

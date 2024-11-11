@@ -293,6 +293,11 @@ export class PropertyRepository implements IPropertyRepository {
 				isMainTenant: input.isMainTenant,
 			},
 		});
+
+		await this.prismaClient.properties.update({
+			where: { id: input.propertyId },
+			data: { status: PropertyStatus.BUSY },
+		});
 	}
 
 	private mapper(property: IPropertyEntity): IPropertyEntity {
