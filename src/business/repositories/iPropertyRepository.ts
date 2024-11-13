@@ -1,5 +1,6 @@
 import type { IAddressEntity } from "@entities/components/address/address";
 import type { IPropertyEntity, PropertyStatus, PropertyTypes } from "@entities/components/property/property";
+import type { ITenantEntity } from "@entities/components/tenant/tenant";
 import type { PaginationData, PaginationParams } from "@entities/shared/pagination";
 
 export type InputCreateProperty = {
@@ -63,4 +64,5 @@ export interface IPropertyRepository {
 	findById(id: string): Promise<IPropertyEntity | null>;
 	findLandlordProperties(input: InputFindLandlordProperties): Promise<OutputFindLandlordProperties>;
 	saveTenantOnProperty(input: InputSaveTenantOnProperty): Promise<void>;
+	findTenantOnProperty(tenantId: string): Promise<ITenantEntity | null>;
 }

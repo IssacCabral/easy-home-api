@@ -1,5 +1,6 @@
 import type {
 	IContactRequestRepository,
+	InputCloseContactRequest,
 	InputCreateContactRequest,
 	InputFindLandlordContactRequests,
 	OutputFindLandlordContactRequests,
@@ -116,6 +117,24 @@ export class ContactRequestRepository implements IContactRequestRepository {
 				finalizationReason: "You signed a contract on another property",
 			},
 		});
+	}
+
+	async close(input: InputCloseContactRequest): Promise<IContactRequestEntity> {
+		const contactRequest = await this.prismaClient.contactRequests.update({
+			where: {
+				tenantId_propertyId: {
+					propertyId: input.propertyId,
+					tenantId: input.tenantId,
+				},
+			},
+			data: {
+				status: ContactRequestStatus.FINISHED,
+				finalizationReason: input.reason,
+			},
+			include: { tenant: true, property: { include: { address: true } } },
+		});
+
+		return this.mapper(contactRequest as IContactRequestEntity);
 	}
 
 	private mapper(contactRequest: IContactRequestEntity): IContactRequestEntity {

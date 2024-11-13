@@ -10,6 +10,7 @@ import type {
 } from "@business/repositories/iPropertyRepository";
 import type { IAddressEntity } from "@entities/components/address/address";
 import { type IPropertyEntity, PropertyStatus, PropertyTypes } from "@entities/components/property/property";
+import type { ITenantEntity } from "@entities/components/tenant/tenant";
 import type { PrismaClient } from "@prisma/client";
 
 export class PropertyRepository implements IPropertyRepository {
@@ -300,6 +301,15 @@ export class PropertyRepository implements IPropertyRepository {
 		});
 	}
 
+	async findTenantOnProperty(tenantId: string): Promise<ITenantEntity | null> {
+		const tenantOnProperty = await this.prismaClient.tenantsOnProperties.findUnique({
+			where: { tenantId },
+			include: { tenant: true },
+		});
+
+		return tenantOnProperty ? this.mapperTenant(tenantOnProperty.tenant) : null;
+	}
+
 	private mapper(property: IPropertyEntity): IPropertyEntity {
 		return {
 			id: property.id,
@@ -319,6 +329,16 @@ export class PropertyRepository implements IPropertyRepository {
 			tenants: property.tenants,
 			createdAt: property.createdAt,
 			updatedAt: property.updatedAt,
+		};
+	}
+
+	private mapperTenant(tenant: ITenantEntity): ITenantEntity {
+		return {
+			id: tenant.id,
+			email: tenant.email,
+			name: tenant.name,
+			password: tenant.password,
+			phone: tenant.phone,
 		};
 	}
 }

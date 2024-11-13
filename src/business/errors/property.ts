@@ -49,3 +49,9 @@ export const PropertyNotAvailableToRent: IError = {
 	message: "Property Not Available To Rent",
 	shortMessage: "propertyNotAvailableToRent",
 };
+
+export const TenantIsAlreadyInAProperty: IError = {
+	code: `${CODE_SUFIX}-009`,
+	message: "Tenant Is Already In A Property",
+	shortMessage: "tenantIsAlreadyInAProperty",
+};

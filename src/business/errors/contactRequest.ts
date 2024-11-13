@@ -37,3 +37,15 @@ export const InvalidToRent: IError = {
 	message: "Contact Request Invalid To Rent",
 	shortMessage: "contactRequestInvalidToRent",
 };
+
+export const CloseContactRequestGeneralError: IError = {
+	code: `${CODE_SUFIX}-007`,
+	message: "Close Contact Request General Error",
+	shortMessage: "closeContactRequestGeneralError",
+};
+
+export const InvalidToCloseContactRequest: IError = {
+	code: `${CODE_SUFIX}-008`,
+	message: "Invalid To Close Contact Request",
+	shortMessage: "invalidToCloseContactRequest",
+};

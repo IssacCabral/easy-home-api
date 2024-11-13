@@ -1,3 +1,4 @@
+import { makeCloseContactRequestController } from "@framework/factories/controllers/components/contactRequest/closeContactRequestControllerFactory";
 import { makeCreateContactRequestController } from "@framework/factories/controllers/components/contactRequest/createContactRequestControllerFactory";
 import { makeFindLandlordContactRequestsController } from "@framework/factories/controllers/components/contactRequest/findLandlordContactRequestsControllerFactory";
 import { makeRentPropertyController } from "@framework/factories/controllers/components/contactRequest/rentPropertyControllerFactory";
@@ -12,3 +13,4 @@ contactRequestRoutes.get(
 	ExpressRoutesAdapter.adapt(makeFindLandlordContactRequestsController()),
 );
 contactRequestRoutes.post("/contact-requests/rent", ExpressRoutesAdapter.adapt(makeRentPropertyController()));
+contactRequestRoutes.post("/contact-requests/close", ExpressRoutesAdapter.adapt(makeCloseContactRequestController()));
