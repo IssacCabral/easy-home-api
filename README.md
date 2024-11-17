@@ -109,8 +109,30 @@ https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
 # TODOs
 
 - ajustar build do projeto pra rodar com o javascript
-- criar pedido de contato - OK
-- listagem de pedidos de contato
-- Ação de alugar ou encerrar pedido de contato
-- editar imóvel
-- excluir imóvel
+
+## PropertyReviews
+
+- findPropertyReviewsUseCase
+- findPropertyRatingUseCase
+
+## Properties
+
+- updatePropertyUseCase
+- deletePropertyUseCase
+
+## Tenant
+
+- findPropertiesOfInterest - mostrar imóveis que ele deseja dividir aluguel
+- closeTenantContactRequest
+- updateTenantUseCase
+- openRentDivisionUseCase
+- cancelRentDivisionUseCase
+- completeRentDivisionUseCase
+- createShareRequestUseCase
+- closeShareRequestUseCase
+- selectShareRequestUseCase
+- stopTenantRentDivisionUseCase
+
+## Landlord
+
+- updateLandlordUseCase
