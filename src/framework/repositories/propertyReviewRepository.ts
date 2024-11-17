@@ -1,0 +1,36 @@
+import type {
+	InputCreatePropertyReview,
+	IPropertyReviewRepository,
+} from "@business/repositories/iPropertyReviewRepository";
+import type { IPropertyReviewEntity } from "@entities/components/propertyReview/propertyReview";
+import type { PrismaClient } from "@prisma/client";
+
+export class PropertyReviewRepository implements IPropertyReviewRepository {
+	constructor(private readonly prismaClient: PrismaClient) {}
+
+	async create(input: InputCreatePropertyReview): Promise<IPropertyReviewEntity> {
+		const propertyReview = await this.prismaClient.propertyReviews.create({
+			data: {
+				id: input.id,
+				rating: input.rating,
+				comment: input.comment,
+				propertyId: input.propertyId,
+				tenantId: input.tenantId,
+			},
+			include: { property: { include: { address: true } }, tenant: true },
+		});
+
+		return this.mapper(propertyReview as IPropertyReviewEntity);
+	}
+
+	private mapper(propertyReview: IPropertyReviewEntity): IPropertyReviewEntity {
+		return {
+			id: propertyReview.id,
+			rating: propertyReview.rating,
+			comment: propertyReview.comment,
+			property: propertyReview.property,
+			tenant: propertyReview.tenant,
+			createdAt: propertyReview.createdAt,
+		};
+	}
+}

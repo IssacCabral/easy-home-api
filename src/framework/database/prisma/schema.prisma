@@ -46,8 +46,9 @@ model Tenants {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  property       TenantsOnProperties?
-  ContactRequest ContactRequests[]
+  property        TenantsOnProperties?
+  ContactRequest  ContactRequests[]
+  PropertyReviews PropertyReviews[]
 }
 
 enum PropertyTypes {
@@ -81,9 +82,10 @@ model Properties {
   photosUrl   String         @db.VarChar(200)
   description String         @db.VarChar(200)
 
-  amenities      Amenities[]
-  tenants        TenantsOnProperties[]
-  ContactRequest ContactRequests[]
+  amenities       Amenities[]
+  tenants         TenantsOnProperties[]
+  ContactRequest  ContactRequests[]
+  PropertyReviews PropertyReviews[]
 
   Landlord   Landlords @relation(fields: [landlordId], references: [id])
   landlordId String
@@ -130,4 +132,14 @@ model ContactRequests {
   status             ContactRequestStatus
   finalizationReason String?
   requestDate        DateTime             @default(now())
+}
+
+model PropertyReviews {
+  id         String     @id
+  tenantId   String
+  propertyId String
+  tenant     Tenants    @relation(fields: [tenantId], references: [id])
+  property   Properties @relation(fields: [propertyId], references: [id])
+  rating     Int
+  comment    String
 }
