@@ -1,4 +1,5 @@
 import { CreateContactRequestGeneralError } from "@business/errors/contactRequest";
+import { PropertyNotFound } from "@business/errors/property";
 import { TenantNotFound } from "@business/errors/tenant";
 import type { CreateContactRequestOperator } from "@controllers/operators/contactRequest/createContactRequestOperator";
 import type { HttpRequest, HttpResponse } from "@controllers/protocols/http";
@@ -21,7 +22,7 @@ export class CreateContactRequestController implements IController {
 					throw new Error(result.value.message);
 				}
 
-				if (result.value === TenantNotFound) {
+				if (result.value === TenantNotFound || result.value === PropertyNotFound) {
 					return notFound(result.value);
 				}
 
