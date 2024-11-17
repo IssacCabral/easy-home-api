@@ -10,4 +10,5 @@ export type InputCreatePropertyReview = {
 
 export interface IPropertyReviewRepository {
 	create(input: InputCreatePropertyReview): Promise<IPropertyReviewEntity>;
+	findRating(propertyId: string): Promise<number>;
 }

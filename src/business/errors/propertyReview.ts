@@ -7,3 +7,9 @@ export const CreatePropertyReviewGeneralError: IError = {
 	message: "Create Property Review General Error",
 	shortMessage: "createPropertyReviewGeneralError",
 };
+
+export const FindPropertyRatingGeneralError: IError = {
+	code: `${CODE_SUFIX}-002`,
+	message: "FindPropertyRatingGeneralError",
+	shortMessage: "findPropertyRatingGeneralError",
+};

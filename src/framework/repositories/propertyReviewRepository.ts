@@ -23,6 +23,17 @@ export class PropertyReviewRepository implements IPropertyReviewRepository {
 		return this.mapper(propertyReview as IPropertyReviewEntity);
 	}
 
+	async findRating(propertyId: string): Promise<number> {
+		const rating = await this.prismaClient.propertyReviews.aggregate({
+			where: { propertyId },
+			_avg: {
+				rating: true,
+			},
+		});
+
+		return Math.round(rating._avg.rating ?? 0);
+	}
+
 	private mapper(propertyReview: IPropertyReviewEntity): IPropertyReviewEntity {
 		return {
 			id: propertyReview.id,
