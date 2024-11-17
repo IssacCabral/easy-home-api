@@ -18,9 +18,11 @@ type Property = Omit<IPropertyEntity, "address" | "amenities"> & {
 };
 
 export interface IContactRequestEntity {
+	id: string;
 	tenant: ITenantEntity;
 	property: Property;
 	status: ContactRequestStatus;
+	finalizationReason?: string;
 	requestDate: Date;
 }
 

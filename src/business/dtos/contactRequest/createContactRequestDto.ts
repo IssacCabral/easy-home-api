@@ -7,7 +7,10 @@ export type InputCreateContactRequestDto = {
 	propertyId: string;
 };
 
-type ContactRequestWithoutPasswordInTenant = Pick<IContactRequestEntity, "property" | "requestDate" | "status"> & {
+type ContactRequestWithoutPasswordInTenant = Pick<
+	IContactRequestEntity,
+	"id" | "property" | "requestDate" | "status"
+> & {
 	tenant: Omit<IContactRequestEntity["tenant"], "password">;
 };
 

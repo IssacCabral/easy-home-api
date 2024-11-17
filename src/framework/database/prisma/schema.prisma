@@ -122,6 +122,7 @@ model Addresses {
 }
 
 model ContactRequests {
+  id                 String               @id
   tenantId           String
   propertyId         String
   tenant             Tenants              @relation(fields: [tenantId], references: [id])
@@ -129,6 +130,4 @@ model ContactRequests {
   status             ContactRequestStatus
   finalizationReason String?
   requestDate        DateTime             @default(now())
-
-  @@id([tenantId, propertyId])
 }

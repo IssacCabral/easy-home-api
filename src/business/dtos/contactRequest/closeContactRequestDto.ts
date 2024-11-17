@@ -3,8 +3,7 @@ import type { Either } from "@shared/either";
 import type { IError } from "@shared/iError";
 
 export type InputCloseContactRequestDto = {
-	propertyId: string;
-	tenantId: string;
+	id: string;
 	reason: string;
 };
 

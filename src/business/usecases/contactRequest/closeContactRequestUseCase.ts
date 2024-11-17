@@ -17,9 +17,9 @@ export class CloseContactRequestUseCase implements IUseCase<InputCloseContactReq
 
 	async exec(input: InputCloseContactRequestDto): Promise<OutputCloseContactRequestDto> {
 		try {
-			const { tenantId, propertyId, reason } = input;
+			const { id, reason } = input;
 
-			const contactRequest = await this.contactRequestRepository.findUnique(tenantId, propertyId);
+			const contactRequest = await this.contactRequestRepository.findById(id);
 
 			if (!contactRequest) {
 				return left(ContactRequestNotFound);
@@ -30,8 +30,7 @@ export class CloseContactRequestUseCase implements IUseCase<InputCloseContactReq
 			}
 
 			const closedContactRequest = await this.contactRequestRepository.close({
-				tenantId,
-				propertyId,
+				id,
 				reason,
 			});
 

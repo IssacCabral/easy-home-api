@@ -5,11 +5,7 @@ import { IsNotEmpty, IsString, IsUUID } from "class-validator";
 export class InputCloseContactRequestSerializer extends AbstractSerializer<InputCloseContactRequestSerializer> {
 	@IsNotEmpty()
 	@IsUUID()
-	tenantId!: string;
-
-	@IsNotEmpty()
-	@IsUUID()
-	propertyId!: string;
+	id!: string;
 
 	@IsNotEmpty()
 	@IsString()

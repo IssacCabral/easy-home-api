@@ -14,6 +14,7 @@ export class ContactRequestRepository implements IContactRequestRepository {
 	async create(input: InputCreateContactRequest): Promise<IContactRequestEntity> {
 		const newContactRequest = await this.prismaClient.contactRequests.create({
 			data: {
+				id: input.id,
 				propertyId: input.propertyId,
 				tenantId: input.tenantId,
 				status: input.status,
@@ -24,9 +25,15 @@ export class ContactRequestRepository implements IContactRequestRepository {
 		return this.mapper(newContactRequest as IContactRequestEntity);
 	}
 
-	async findUnique(tenantId: string, propertyId: string): Promise<IContactRequestEntity | null> {
-		const contactRequest = await this.prismaClient.contactRequests.findUnique({
-			where: { tenantId_propertyId: { tenantId, propertyId } },
+	async findInContact(tenantId: string, propertyId: string): Promise<IContactRequestEntity | null> {
+		const contactRequest = await this.prismaClient.contactRequests.findFirst({
+			where: {
+				tenantId,
+				propertyId,
+				AND: {
+					status: ContactRequestStatus.IN_CONTACT,
+				},
+			},
 			include: { property: { include: { address: true, amenities: true } }, tenant: true },
 		});
 
@@ -79,10 +86,19 @@ export class ContactRequestRepository implements IContactRequestRepository {
 		};
 	}
 
-	async rentProperty(tenantId: string, propertyId: string): Promise<IContactRequestEntity> {
+	async findById(id: string): Promise<IContactRequestEntity | null> {
+		const contactRequest = await this.prismaClient.contactRequests.findUnique({
+			where: { id },
+			include: { property: { include: { address: true, amenities: true } }, tenant: true },
+		});
+
+		return contactRequest ? this.mapper(contactRequest as IContactRequestEntity) : null;
+	}
+
+	async rentProperty(contactRequestId: string): Promise<IContactRequestEntity> {
 		const contactRequestRented = await this.prismaClient.contactRequests.update({
 			where: {
-				tenantId_propertyId: { tenantId, propertyId },
+				id: contactRequestId,
 			},
 			data: {
 				status: ContactRequestStatus.RENTED,
@@ -122,10 +138,7 @@ export class ContactRequestRepository implements IContactRequestRepository {
 	async close(input: InputCloseContactRequest): Promise<IContactRequestEntity> {
 		const contactRequest = await this.prismaClient.contactRequests.update({
 			where: {
-				tenantId_propertyId: {
-					propertyId: input.propertyId,
-					tenantId: input.tenantId,
-				},
+				id: input.id,
 			},
 			data: {
 				status: ContactRequestStatus.FINISHED,
@@ -139,9 +152,11 @@ export class ContactRequestRepository implements IContactRequestRepository {
 
 	private mapper(contactRequest: IContactRequestEntity): IContactRequestEntity {
 		return {
+			id: contactRequest.id,
 			tenant: contactRequest.tenant,
 			property: contactRequest.property,
 			status: contactRequest.status,
+			finalizationReason: contactRequest.finalizationReason,
 			requestDate: contactRequest.requestDate,
 		};
 	}

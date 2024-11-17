@@ -1,11 +1,10 @@
 import type { InputRentPropertyDto, OutputRentPropertyDto } from "@business/dtos/contactRequest/rentPropertyDto";
 import { ContactRequestNotFound, InvalidToRent, RentPropertyGeneralError } from "@business/errors/contactRequest";
-import { PropertyNotAvailableToRent, PropertyNotFound } from "@business/errors/property";
+import {} from "@business/errors/property";
 import type { IContactRequestRepository } from "@business/repositories/iContactRequestRepository";
 import type { IPropertyRepository } from "@business/repositories/iPropertyRepository";
 import type { IUseCase } from "@business/shared/iUseCase";
 import { ContactRequestStatus } from "@entities/components/contactRequest/contactRequest";
-import { PropertyStatus } from "@entities/components/property/property";
 import { left, right } from "@shared/either";
 
 export class RentPropertyUseCase implements IUseCase<InputRentPropertyDto, OutputRentPropertyDto> {
@@ -16,19 +15,7 @@ export class RentPropertyUseCase implements IUseCase<InputRentPropertyDto, Outpu
 
 	async exec(input: InputRentPropertyDto): Promise<OutputRentPropertyDto> {
 		try {
-			const { tenantId, propertyId } = input;
-
-			const property = await this.propertyRepository.findById(propertyId);
-
-			if (!property) {
-				return left(PropertyNotFound);
-			}
-
-			if (property.status !== PropertyStatus.FREE) {
-				return left(PropertyNotAvailableToRent);
-			}
-
-			const contactRequest = await this.contactRequestRepository.findUnique(tenantId, propertyId);
+			const contactRequest = await this.contactRequestRepository.findById(input.contactRequestId);
 
 			if (!contactRequest) {
 				return left(ContactRequestNotFound);
@@ -38,6 +25,9 @@ export class RentPropertyUseCase implements IUseCase<InputRentPropertyDto, Outpu
 				return left(InvalidToRent);
 			}
 
+			const tenantId = contactRequest.tenant.id;
+			const propertyId = contactRequest.property.id;
+
 			await this.contactRequestRepository.finalizePendingContactRequests(tenantId, propertyId);
 			await this.propertyRepository.saveTenantOnProperty({
 				tenantId,
@@ -45,7 +35,7 @@ export class RentPropertyUseCase implements IUseCase<InputRentPropertyDto, Outpu
 				isMainTenant: true,
 			});
 
-			const contactRequestRented = await this.contactRequestRepository.rentProperty(tenantId, propertyId);
+			const contactRequestRented = await this.contactRequestRepository.rentProperty(input.contactRequestId);
 
 			return right(contactRequestRented);
 		} catch (err) {

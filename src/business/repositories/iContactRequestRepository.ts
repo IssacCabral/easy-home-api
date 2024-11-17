@@ -2,6 +2,7 @@ import type { ContactRequestStatus, IContactRequestEntity } from "@entities/comp
 import type { PaginationData, PaginationParams } from "@entities/shared/pagination";
 
 export type InputCreateContactRequest = {
+	id: string;
 	tenantId: string;
 	propertyId: string;
 	status: ContactRequestStatus;
@@ -17,16 +18,16 @@ export type InputFindLandlordContactRequests = {
 export type OutputFindLandlordContactRequests = PaginationData<IContactRequestEntity>;
 
 export type InputCloseContactRequest = {
-	tenantId: string;
-	propertyId: string;
+	id: string;
 	reason: string;
 };
 
 export interface IContactRequestRepository {
 	create(input: InputCreateContactRequest): Promise<IContactRequestEntity>;
-	findUnique(tenantId: string, propertyId: string): Promise<IContactRequestEntity | null>;
+	findById(id: string): Promise<IContactRequestEntity | null>;
+	findInContact(tenantId: string, propertyId: string): Promise<IContactRequestEntity | null>;
 	findLandlordContactRequests(input: InputFindLandlordContactRequests): Promise<OutputFindLandlordContactRequests>;
-	rentProperty(tenantId: string, propertyId: string): Promise<IContactRequestEntity>;
+	rentProperty(contactRequestId: string): Promise<IContactRequestEntity>;
 	finalizePendingContactRequests(tenantId: string, propertyId: string): Promise<void>;
 	close(input: InputCloseContactRequest): Promise<IContactRequestEntity>;
 }

@@ -1,5 +1,4 @@
 import { ContactRequestNotFound, RentPropertyGeneralError } from "@business/errors/contactRequest";
-import { PropertyNotFound } from "@business/errors/property";
 import type { RentPropertyOperator } from "@controllers/operators/contactRequest/rentPropertyOperator";
 import type { HttpRequest, HttpResponse } from "@controllers/protocols/http";
 import { badRequest, notFound, ok, serverError } from "@controllers/protocols/httpStatus";
@@ -21,7 +20,7 @@ export class RentPropertyController implements IController {
 					throw new Error(result.value.message);
 				}
 
-				if (result.value === PropertyNotFound || result.value === ContactRequestNotFound) {
+				if (result.value === ContactRequestNotFound) {
 					return notFound(result.value);
 				}
 

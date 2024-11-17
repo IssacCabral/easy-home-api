@@ -5,11 +5,7 @@ import { IsNotEmpty, IsUUID } from "class-validator";
 export class InputRentPropertySerializer extends AbstractSerializer<InputRentPropertySerializer> {
 	@IsNotEmpty()
 	@IsUUID()
-	propertyId!: string;
-
-	@IsNotEmpty()
-	@IsUUID()
-	tenantId!: string;
+	contactRequestId!: string;
 }
 
 export type OutputRentPropertySerializer = OutputRentPropertyDto;
