@@ -34,6 +34,15 @@ export class PropertyReviewRepository implements IPropertyReviewRepository {
 		return Math.round(rating._avg.rating ?? 0);
 	}
 
+	async findMany(propertyId: string): Promise<IPropertyReviewEntity[]> {
+		const result = await this.prismaClient.propertyReviews.findMany({
+			where: { propertyId },
+			include: { property: { include: { address: true } }, tenant: true },
+		});
+
+		return result.map((review) => this.mapper(review as IPropertyReviewEntity));
+	}
+
 	private mapper(propertyReview: IPropertyReviewEntity): IPropertyReviewEntity {
 		return {
 			id: propertyReview.id,
