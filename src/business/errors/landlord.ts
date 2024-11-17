@@ -13,3 +13,9 @@ export const LandlordNotFound: IError = {
 	message: "Landlord Not Found",
 	shortMessage: "landlordNotFound",
 };
+
+export const GetDashboardSummaryGeneralError: IError = {
+	code: `${CODE_SUFIX}-003`,
+	message: "Get Dashboard Summary General Error",
+	shortMessage: "getDashboardSummaryGeneralError",
+};

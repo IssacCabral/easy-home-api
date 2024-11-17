@@ -1,6 +1,11 @@
-import type { ILandlordRepository, InputCreateLandlord } from "@business/repositories/iLandlordRepository";
+import type {
+	ILandlordRepository,
+	InputCreateLandlord,
+	OutputGetDashboardSummary,
+} from "@business/repositories/iLandlordRepository";
 import type { ILandlordEntity } from "@entities/components/landlord/landlord";
-import type { PrismaClient } from "@prisma/client";
+import { PropertyStatus } from "@entities/components/property/property";
+import { ContactRequestStatus, type PrismaClient } from "@prisma/client";
 
 export class LandlordRepository implements ILandlordRepository {
 	constructor(private readonly prismaClient: PrismaClient) {}
@@ -29,5 +34,41 @@ export class LandlordRepository implements ILandlordRepository {
 		return await this.prismaClient.landlords.findUnique({
 			where: { id },
 		});
+	}
+
+	async getDashboardSummary(landlordId: string): Promise<OutputGetDashboardSummary> {
+		const busyProperties = await this.prismaClient.properties.count({
+			where: {
+				landlordId,
+				status: PropertyStatus.BUSY,
+			},
+		});
+
+		const contactRequests = await this.prismaClient.contactRequests.count({
+			where: {
+				property: {
+					landlordId,
+				},
+				status: ContactRequestStatus.IN_CONTACT,
+			},
+		});
+
+		const monthlyIncomeResult = await this.prismaClient.properties.aggregate({
+			where: {
+				landlordId,
+				status: PropertyStatus.BUSY,
+			},
+			_sum: {
+				price: true,
+			},
+		});
+
+		const monthlyIncome = monthlyIncomeResult._sum.price ?? 0;
+
+		return {
+			busyProperties,
+			contactRequests,
+			monthlyIncome,
+		};
 	}
 }
