@@ -132,7 +132,36 @@ https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
 - closeShareRequestUseCase
 - selectShareRequestUseCase
 - stopTenantRentDivisionUseCase
+- findSharedRentalTenantsUseCase
 
 ## Landlord
 
 - updateLandlordUseCase
+
+### Fluxo De Divisão de Aluguel
+
+O imóvel deve estar ocupado para poder Iniciar a abertura de divisão de aluguel (OpenRentDivisionUseCase).
+Quando iniciar a abertura de divisão de aluguel, o imóvel ficará com o status de dividir, e poderá receber 
+requisições de compartilhamento de aluguel (CreateShareRequestUseCase), por outros inquilinos que não sejam
+o mainTenant daquele imóvel. Essas requisições serão salvas na tabela `shareRequests`, com o status `IN_CONTACT`.
+
+Agora o mainTenant daquele imóvel poderá selecionar (SelectShareRequestUseCase) os usuários com quem ele irá dividir o aluguel.
+Ele poderá também encerrar (CloseShareRequestUseCase) contato com aquele usuário.
+
+O mainTenant poderá simplesmente decidir cancelar a divisão de aluguel (CancelRentDivisionUseCase) e excluir todos os registros da tabela de `shareRequest`,
+referente aquela divisão em questão. Essa ação altera novamente o status do imóvel para BUSY.
+
+Após decidir quem vai dividir aluguel e quem não vai, o mainTenant poderá concluir a divisão de aluguel (CompleteRentDivisionUseCase).
+Essa ação, pega todos os usuários que estão com status de selecionado na tabela `shareRequests` e os salva na 
+tabela `TenantsOnProperties` com a flag isMainTenant como false. 
+Essa ação também altera o status do imóvel para BUSY novamente.
+Essa ação exclui todos os registros da tabela de `shareRequest` referente aquela divisão em questão,
+já que o imóvel agora está alugado e dividindo entre outros usuários.
+
+O mainTenant após dividir aluguel com alguns usuários, poderá listar com quem ele está dividindo (FindSharedRentalTenantsUseCase).
+Essa ação lista os usuários da tabela `TenantsOnProperties`, que não são o mainTenant, mas que estão naquele
+mesmo imóvel que o mainTenant.
+
+Ele também poderá parar de dividir aluguel com esses usuários (StopTenantRentDivisionUseCase) 
+Essa ação deve excluir os registros da tabela `TenantsOnProperties` que não são mainTenant e que estão
+naquele mesmo imóvel do mainTenant.
