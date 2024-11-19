@@ -5,6 +5,7 @@ import type {
 	InputFindLandlordProperties,
 	InputFindManyProperties,
 	InputSaveTenantOnProperty,
+	InputUpdateProperty,
 	OutputFindLandlordProperties,
 	OutputFindManyProperties,
 } from "@business/repositories/iPropertyRepository";
@@ -224,6 +225,75 @@ export class PropertyRepository implements IPropertyRepository {
 		};
 	}
 
+	async saveTenantOnProperty(input: InputSaveTenantOnProperty): Promise<void> {
+		await this.prismaClient.tenantsOnProperties.create({
+			data: {
+				propertyId: input.propertyId,
+				tenantId: input.tenantId,
+				isMainTenant: input.isMainTenant,
+			},
+		});
+
+		await this.prismaClient.properties.update({
+			where: { id: input.propertyId },
+			data: { status: PropertyStatus.BUSY },
+		});
+	}
+
+	async findTenantOnProperty(tenantId: string): Promise<ITenantEntity | null> {
+		const tenantOnProperty = await this.prismaClient.tenantsOnProperties.findUnique({
+			where: { tenantId },
+			include: { tenant: true },
+		});
+
+		return tenantOnProperty ? this.mapperTenant(tenantOnProperty.tenant) : null;
+	}
+
+	async update(input: InputUpdateProperty): Promise<IPropertyEntity> {
+		throw new Error("Method not implemented.");
+	}
+
+	async updateStatus(propertyId: string, status: PropertyStatus): Promise<IPropertyEntity> {
+		const property = await this.prismaClient.properties.update({
+			where: { id: propertyId },
+			data: { status },
+			include: { address: true, amenities: true },
+		});
+		return this.mapper(property as IPropertyEntity);
+	}
+
+	private mapper(property: IPropertyEntity): IPropertyEntity {
+		return {
+			id: property.id,
+			landlordId: property.landlordId,
+			title: property.title,
+			type: PropertyTypes[property.type],
+			status: PropertyStatus[property.status],
+			price: property.price,
+			bedrooms: property.bedrooms,
+			bathrooms: property.bathrooms,
+			description: property.description,
+			depth: property.depth,
+			width: property.width,
+			photosUrl: property.photosUrl,
+			address: property.address,
+			amenities: property.amenities,
+			tenants: property.tenants,
+			createdAt: property.createdAt,
+			updatedAt: property.updatedAt,
+		};
+	}
+
+	private mapperTenant(tenant: ITenantEntity): ITenantEntity {
+		return {
+			id: tenant.id,
+			email: tenant.email,
+			name: tenant.name,
+			password: tenant.password,
+			phone: tenant.phone,
+		};
+	}
+
 	private buildFilters(input: InputFindManyProperties): string[] {
 		const filters: string[] = [];
 
@@ -284,61 +354,5 @@ export class PropertyRepository implements IPropertyRepository {
 					RETURNING id, "addressNumber", street, lat, lon;
         `;
 		return newAddressResult[0];
-	}
-
-	async saveTenantOnProperty(input: InputSaveTenantOnProperty): Promise<void> {
-		await this.prismaClient.tenantsOnProperties.create({
-			data: {
-				propertyId: input.propertyId,
-				tenantId: input.tenantId,
-				isMainTenant: input.isMainTenant,
-			},
-		});
-
-		await this.prismaClient.properties.update({
-			where: { id: input.propertyId },
-			data: { status: PropertyStatus.BUSY },
-		});
-	}
-
-	async findTenantOnProperty(tenantId: string): Promise<ITenantEntity | null> {
-		const tenantOnProperty = await this.prismaClient.tenantsOnProperties.findUnique({
-			where: { tenantId },
-			include: { tenant: true },
-		});
-
-		return tenantOnProperty ? this.mapperTenant(tenantOnProperty.tenant) : null;
-	}
-
-	private mapper(property: IPropertyEntity): IPropertyEntity {
-		return {
-			id: property.id,
-			landlordId: property.landlordId,
-			title: property.title,
-			type: PropertyTypes[property.type],
-			status: PropertyStatus[property.status],
-			price: property.price,
-			bedrooms: property.bedrooms,
-			bathrooms: property.bathrooms,
-			description: property.description,
-			depth: property.depth,
-			width: property.width,
-			photosUrl: property.photosUrl,
-			address: property.address,
-			amenities: property.amenities,
-			tenants: property.tenants,
-			createdAt: property.createdAt,
-			updatedAt: property.updatedAt,
-		};
-	}
-
-	private mapperTenant(tenant: ITenantEntity): ITenantEntity {
-		return {
-			id: tenant.id,
-			email: tenant.email,
-			name: tenant.name,
-			password: tenant.password,
-			phone: tenant.phone,
-		};
 	}
 }

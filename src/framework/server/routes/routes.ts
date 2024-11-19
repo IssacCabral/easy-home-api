@@ -5,6 +5,7 @@ import { propertyRoutes } from "./property/propertyRoutes";
 import { tenantRoutes } from "./tenant/tenantRoutes";
 import { contactRequestRoutes } from "./contactRequest/contactRequestRoutes";
 import { propertyReviewRoutes } from "./propertyReview/propertyReviewRoutes";
+import { rentDivisionRoutes } from "./tenant/rentDivision/rentDivisionRoutes";
 
 const routes = Router();
 
@@ -14,6 +15,7 @@ routes
 	.use(propertyRoutes)
 	.use(amenityRoutes)
 	.use(contactRequestRoutes)
-	.use(propertyReviewRoutes);
+	.use(propertyReviewRoutes)
+	.use(rentDivisionRoutes);
 
 export { routes };

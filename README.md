@@ -103,7 +103,6 @@ CREATE TABLE share_requests (
 );
 ```
 
-<!-- todo: verificar necessidade do uso do select do prismaORM
 https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
 
 # TODOs
@@ -112,8 +111,8 @@ https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
 
 ## PropertyReviews
 
-- findPropertyReviewsUseCase
-- findPropertyRatingUseCase
+- findPropertyReviewsUseCase - ok
+- findPropertyRatingUseCase - ok
 
 ## Properties
 
@@ -125,7 +124,7 @@ https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
 - findPropertiesOfInterest - mostrar imóveis que ele deseja dividir aluguel
 - closeTenantContactRequest
 - updateTenantUseCase
-- openRentDivisionUseCase
+- openRentDivisionUseCase - ok
 - cancelRentDivisionUseCase
 - completeRentDivisionUseCase
 - createShareRequestUseCase
