@@ -1,7 +1,7 @@
 import type {
 	InputCreateShareRequestDto,
 	OutputCreateShareRequestDto,
-} from "@business/dtos/tenant/rentDivision/createShareRequestDto";
+} from "@business/dtos/tenant/shareRequest/createShareRequestDto";
 import { PropertyNotFound, TenantIsAlreadyInAProperty } from "@business/errors/property";
 import {
 	CreateShareRequestGeneralError,

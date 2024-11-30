@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsUUID } from "class-validator";
-import type { OutputCreateShareRequestDto } from "@business/dtos/tenant/rentDivision/createShareRequestDto";
+import type { OutputCreateShareRequestDto } from "@business/dtos/tenant/shareRequest/createShareRequestDto";
 import { AbstractSerializer } from "@controllers/serializers/abstractSerializer";
 
 export class InputCreateShareRequestSerializer extends AbstractSerializer<InputCreateShareRequestSerializer> {
