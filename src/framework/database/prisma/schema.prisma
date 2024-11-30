@@ -49,6 +49,7 @@ model Tenants {
   property        TenantsOnProperties?
   ContactRequest  ContactRequests[]
   PropertyReviews PropertyReviews[]
+  ShareRequests   ShareRequests[]
 }
 
 enum PropertyTypes {
@@ -69,6 +70,12 @@ enum ContactRequestStatus {
   FINISHED
 }
 
+enum ShareRequestStatus {
+  IN_CONTACT
+  SELECTED
+  FINISHED
+}
+
 model Properties {
   id          String         @id
   title       String         @db.VarChar(100)
@@ -85,6 +92,7 @@ model Properties {
   amenities       Amenities[]
   tenants         TenantsOnProperties[]
   ContactRequest  ContactRequests[]
+  ShareRequests   ShareRequests[]
   PropertyReviews PropertyReviews[]
 
   Landlord   Landlords @relation(fields: [landlordId], references: [id])
@@ -142,4 +150,15 @@ model PropertyReviews {
   property   Properties @relation(fields: [propertyId], references: [id])
   rating     Int
   comment    String
+}
+
+model ShareRequests {
+  id                 String             @id
+  tenantId           String
+  propertyId         String
+  tenant             Tenants            @relation(fields: [tenantId], references: [id])
+  property           Properties         @relation(fields: [propertyId], references: [id])
+  status             ShareRequestStatus
+  finalizationReason String?
+  requestDate        DateTime           @default(now())
 }
