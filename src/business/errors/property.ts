@@ -61,3 +61,9 @@ export const PropertyIsNotRentDivision: IError = {
 	message: "Property Is Not Rent Division",
 	shortMessage: "propertyIsNotRentDivision",
 };
+
+export const NoTenantsSelectedToRentDivision: IError = {
+	code: `${CODE_SUFIX}-011`,
+	message: "No Tenants Selected To Rent Division",
+	shortMessage: "noTenantsSelectedToRentDivision",
+};

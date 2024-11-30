@@ -19,3 +19,9 @@ export const CancelRentDivisionGeneralError: IError = {
 	message: "Cancel Rent Division General Error",
 	shortMessage: "cancelRentDivisionGeneralError",
 };
+
+export const CompleteRentDivisionGeneralError: IError = {
+	code: `${CODE_SUFIX}-004`,
+	message: "Complete Rent Division General Error",
+	shortMessage: "completeRentDivisionGeneralError",
+};

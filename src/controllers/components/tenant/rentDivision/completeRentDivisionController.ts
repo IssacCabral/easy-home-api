@@ -1,25 +1,25 @@
 import { PropertyNotFound } from "@business/errors/property";
-import { CancelRentDivisionGeneralError } from "@business/errors/rentDivision";
-import type { CancelRentDivisionOperator } from "@controllers/operators/tenant/rentDivision/cancelRentDivisionOperator";
+import { CompleteRentDivisionGeneralError } from "@business/errors/rentDivision";
+import type { CompleteRentDivisionOperator } from "@controllers/operators/tenant/rentDivision/completeRentDivisionOperator";
 import type { HttpRequest, HttpResponse } from "@controllers/protocols/http";
 import { badRequest, noContent, notFound, serverError } from "@controllers/protocols/httpStatus";
 import type { IController } from "@controllers/protocols/iController";
-import { InputCancelRentDivisionSerializer } from "@controllers/serializers/tenant/rentDivision/cancelRentDivisionSerializer";
+import { InputCompleteRentDivisionSerializer } from "@controllers/serializers/tenant/rentDivision/completeRentDivisionSerializer";
 import type { IError } from "@shared/iError";
 
-export class CancelRentDivisionController implements IController {
-	constructor(private readonly operator: CancelRentDivisionOperator) {}
+export class CompleteRentDivisionController implements IController {
+	constructor(private readonly operator: CompleteRentDivisionOperator) {}
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
 			const { propertyId } = httpRequest.params;
-			const input = new InputCancelRentDivisionSerializer({
+			const input = new InputCompleteRentDivisionSerializer({
 				propertyId,
 			});
 			const result = await this.operator.exec(input);
 
 			if (result.isLeft()) {
-				if (result.value === CancelRentDivisionGeneralError) {
+				if (result.value === CompleteRentDivisionGeneralError) {
 					throw new Error(result.value.message);
 				}
 
