@@ -6,6 +6,7 @@ import { tenantRoutes } from "./tenant/tenantRoutes";
 import { contactRequestRoutes } from "./contactRequest/contactRequestRoutes";
 import { propertyReviewRoutes } from "./propertyReview/propertyReviewRoutes";
 import { rentDivisionRoutes } from "./tenant/rentDivision/rentDivisionRoutes";
+import { shareRequestRoutes } from "./tenant/shareRequest/shareRequestRoutes";
 
 const routes = Router();
 
@@ -16,6 +17,7 @@ routes
 	.use(amenityRoutes)
 	.use(contactRequestRoutes)
 	.use(propertyReviewRoutes)
-	.use(rentDivisionRoutes);
+	.use(rentDivisionRoutes)
+	.use(shareRequestRoutes);
 
 export { routes };

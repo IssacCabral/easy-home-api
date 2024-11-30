@@ -3,11 +3,7 @@ import type {
 	OutputOpenRentDivisionDto,
 } from "@business/dtos/tenant/rentDivision/openRentDivisionDto";
 import { PropertyNotFound } from "@business/errors/property";
-import {
-	OpenRentDivisionGeneralError,
-	PropertyIsAlreadySplitted,
-	PropertyNotAvailableToRentDivision,
-} from "@business/errors/rentDivision";
+import { OpenRentDivisionGeneralError, PropertyNotAvailableToRentDivision } from "@business/errors/rentDivision";
 import type { IPropertyRepository } from "@business/repositories/iPropertyRepository";
 import type { IUseCase } from "@business/shared/iUseCase";
 import { PropertyStatus } from "@entities/components/property/property";
@@ -21,10 +17,6 @@ export class OpenRentDivisionUseCase implements IUseCase<InputOpenRentDivisionDt
 			const property = await this.propertyRepository.findById(input.propertyId);
 			if (!property) {
 				return left(PropertyNotFound);
-			}
-
-			if (property.status === PropertyStatus.SPLIT) {
-				return left(PropertyIsAlreadySplitted);
 			}
 
 			if (property.status !== PropertyStatus.BUSY) {

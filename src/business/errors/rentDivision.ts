@@ -13,9 +13,3 @@ export const PropertyNotAvailableToRentDivision: IError = {
 	message: "Property Not Available To Rent Division",
 	shortMessage: "propertyNotAvailableToRentDivision",
 };
-
-export const PropertyIsAlreadySplitted: IError = {
-	code: `${CODE_SUFIX}-002`,
-	message: "Property Is Already Splitted",
-	shortMessage: "propertyIsAlreadySplitted",
-};
