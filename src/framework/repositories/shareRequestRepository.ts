@@ -1,6 +1,6 @@
 import type { InputCreateShareRequest, IShareRequestRepository } from "@business/repositories/iShareRequestRepository";
-import type { IShareRequestEntity } from "@entities/components/tenant/shareRequest/shareRequest";
-import { ShareRequestStatus, type PrismaClient } from "@prisma/client";
+import { ShareRequestStatus, type IShareRequestEntity } from "@entities/components/tenant/shareRequest/shareRequest";
+import type { PrismaClient } from "@prisma/client";
 
 export class ShareRequestRepository implements IShareRequestRepository {
 	constructor(private readonly prismaClient: PrismaClient) {}
@@ -19,15 +19,35 @@ export class ShareRequestRepository implements IShareRequestRepository {
 		return this.mapper(newShareRequest as IShareRequestEntity);
 	}
 
-	async findInContact(tenantId: string, propertyId: string): Promise<IShareRequestEntity | null> {
+	async findFirst(tenantId: string, propertyId: string): Promise<IShareRequestEntity | null> {
 		const shareRequest = await this.prismaClient.shareRequests.findFirst({
 			where: {
 				tenantId,
 				propertyId,
-				AND: {
-					status: ShareRequestStatus.IN_CONTACT,
-				},
 			},
+			include: { property: { include: { address: true, amenities: true } }, tenant: true },
+		});
+
+		return shareRequest ? this.mapper(shareRequest as IShareRequestEntity) : null;
+	}
+
+	async selectTenant(shareRequestId: string): Promise<IShareRequestEntity> {
+		const shareRequest = await this.prismaClient.shareRequests.update({
+			where: {
+				id: shareRequestId,
+			},
+			data: {
+				status: ShareRequestStatus.SELECTED,
+			},
+			include: { property: { include: { address: true, amenities: true } }, tenant: true },
+		});
+
+		return this.mapper(shareRequest as IShareRequestEntity);
+	}
+
+	async findById(id: string): Promise<IShareRequestEntity | null> {
+		const shareRequest = await this.prismaClient.shareRequests.findUnique({
+			where: { id },
 			include: { property: { include: { address: true, amenities: true } }, tenant: true },
 		});
 

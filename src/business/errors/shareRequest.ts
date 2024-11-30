@@ -19,3 +19,27 @@ export const ShareRequestAlreadyExists: IError = {
 	message: "Share Request Already Exists",
 	shortMessage: "shareRequestAlreadyExists",
 };
+
+export const SelectShareRequestGeneralError: IError = {
+	code: `${CODE_SUFIX}-004`,
+	message: "Select Share Request General Error",
+	shortMessage: "selectShareRequestGeneralError",
+};
+
+export const ShareRequestNotFound: IError = {
+	code: `${CODE_SUFIX}-005`,
+	message: "Share Request Not Found",
+	shortMessage: "shareRequestNotFound",
+};
+
+export const ShareRequestAlreadySelected: IError = {
+	code: `${CODE_SUFIX}-006`,
+	message: "Share Request Already Selected",
+	shortMessage: "ShareRequestAlreadySelected",
+};
+
+export const ShareRequestAlreadyFinished: IError = {
+	code: `${CODE_SUFIX}-007`,
+	message: "Share Request Already Finished",
+	shortMessage: "ShareRequestAlreadyFinished",
+};

@@ -47,7 +47,7 @@ export class CreateShareRequestUseCase implements IUseCase<InputCreateShareReque
 				return left(PropertyNotAvailableToShareRequest);
 			}
 
-			const shareRequest = await this.shareRequestRepository.findInContact(input.tenantId, input.propertyId);
+			const shareRequest = await this.shareRequestRepository.findFirst(input.tenantId, input.propertyId);
 			if (shareRequest) {
 				return left(ShareRequestAlreadyExists);
 			}

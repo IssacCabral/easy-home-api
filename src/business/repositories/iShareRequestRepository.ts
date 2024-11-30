@@ -9,5 +9,7 @@ export type InputCreateShareRequest = {
 
 export type IShareRequestRepository = {
 	create(input: InputCreateShareRequest): Promise<IShareRequestEntity>;
-	findInContact(tenantId: string, propertyId: string): Promise<IShareRequestEntity | null>;
+	findFirst(tenantId: string, propertyId: string): Promise<IShareRequestEntity | null>;
+	findById(id: string): Promise<IShareRequestEntity | null>;
+	selectTenant(shareRequestId: string): Promise<IShareRequestEntity>;
 };
