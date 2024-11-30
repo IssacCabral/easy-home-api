@@ -68,6 +68,10 @@ export class ShareRequestRepository implements IShareRequestRepository {
 		return shareRequest ? this.mapper(shareRequest as IShareRequestEntity) : null;
 	}
 
+	async cancelAll(propertyId: string): Promise<void> {
+		await this.prismaClient.shareRequests.deleteMany({ where: { propertyId } });
+	}
+
 	private mapper(shareRequest: IShareRequestEntity): IShareRequestEntity {
 		return {
 			id: shareRequest.id,

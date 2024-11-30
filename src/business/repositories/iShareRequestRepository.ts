@@ -13,4 +13,5 @@ export type IShareRequestRepository = {
 	findById(id: string): Promise<IShareRequestEntity | null>;
 	select(shareRequestId: string): Promise<IShareRequestEntity>;
 	finish(shareRequestId: string): Promise<IShareRequestEntity>;
+	cancelAll(propertyId: string): Promise<void>;
 };

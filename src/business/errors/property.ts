@@ -55,3 +55,9 @@ export const TenantIsAlreadyInAProperty: IError = {
 	message: "Tenant Is Already In A Property",
 	shortMessage: "tenantIsAlreadyInAProperty",
 };
+
+export const PropertyIsNotRentDivision: IError = {
+	code: `${CODE_SUFIX}-010`,
+	message: "Property Is Not Rent Division",
+	shortMessage: "propertyIsNotRentDivision",
+};
