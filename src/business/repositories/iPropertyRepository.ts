@@ -69,6 +69,7 @@ export interface IPropertyRepository {
 	findLandlordProperties(input: InputFindLandlordProperties): Promise<OutputFindLandlordProperties>;
 	saveTenantOnProperty(input: InputSaveTenantOnProperty): Promise<void>;
 	findTenantOnProperty(tenantId: string): Promise<ITenantEntity | null>;
+	findTenantsOnProperty(propertyId: string): Promise<ITenantEntity[]>;
 	update(input: InputUpdateProperty): Promise<IPropertyEntity>;
 	updateStatus(propertyId: string, status: PropertyStatus): Promise<IPropertyEntity>;
 }

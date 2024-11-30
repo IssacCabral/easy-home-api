@@ -126,7 +126,7 @@ https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
 - updateTenantUseCase
 - openRentDivisionUseCase - ok
 - cancelRentDivisionUseCase - ok
-- completeRentDivisionUseCase
+- completeRentDivisionUseCase - ok
 - createShareRequestUseCase - ok
 - finishShareRequestUseCase - ok
 - selectShareRequestUseCase - ok

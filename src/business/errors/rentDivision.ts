@@ -25,3 +25,9 @@ export const CompleteRentDivisionGeneralError: IError = {
 	message: "Complete Rent Division General Error",
 	shortMessage: "completeRentDivisionGeneralError",
 };
+
+export const FindSharedRentalTenantsGeneralError: IError = {
+	code: `${CODE_SUFIX}-005`,
+	message: "Find Shared Rental Tenants General Error",
+	shortMessage: "findSharedRentalTenantsGeneralError",
+};

@@ -262,6 +262,15 @@ export class PropertyRepository implements IPropertyRepository {
 		return this.mapper(property as IPropertyEntity);
 	}
 
+	async findTenantsOnProperty(propertyId: string): Promise<ITenantEntity[]> {
+		const result = await this.prismaClient.tenantsOnProperties.findMany({
+			where: { propertyId },
+			include: { tenant: true },
+		});
+
+		return result.map((tenantOnProperty) => this.mapperTenant(tenantOnProperty.tenant as ITenantEntity));
+	}
+
 	private mapper(property: IPropertyEntity): IPropertyEntity {
 		return {
 			id: property.id,

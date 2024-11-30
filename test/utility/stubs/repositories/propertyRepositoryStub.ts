@@ -67,6 +67,10 @@ class PropertyRepositoryStub implements IPropertyRepository {
 	async updateStatus(propertyId: string, status: PropertyStatus): Promise<IPropertyEntity> {
 		return fakePropertyEntity;
 	}
+
+	async findTenantsOnProperty(propertyId: string): Promise<ITenantEntity[]> {
+		return [fakeTenantEntity];
+	}
 }
 
 export const makePropertyRepositoryStub = (): IPropertyRepository => {
