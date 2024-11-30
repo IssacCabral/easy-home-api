@@ -43,3 +43,9 @@ export const ShareRequestAlreadyFinished: IError = {
 	message: "Share Request Already Finished",
 	shortMessage: "ShareRequestAlreadyFinished",
 };
+
+export const FinishShareRequestGeneralError: IError = {
+	code: `${CODE_SUFIX}-008`,
+	message: "Finish Share Request General Error",
+	shortMessage: "finishShareRequestGeneralError",
+};

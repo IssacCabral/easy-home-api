@@ -11,5 +11,6 @@ export type IShareRequestRepository = {
 	create(input: InputCreateShareRequest): Promise<IShareRequestEntity>;
 	findFirst(tenantId: string, propertyId: string): Promise<IShareRequestEntity | null>;
 	findById(id: string): Promise<IShareRequestEntity | null>;
-	selectTenant(shareRequestId: string): Promise<IShareRequestEntity>;
+	select(shareRequestId: string): Promise<IShareRequestEntity>;
+	finish(shareRequestId: string): Promise<IShareRequestEntity>;
 };

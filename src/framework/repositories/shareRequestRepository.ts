@@ -31,13 +31,27 @@ export class ShareRequestRepository implements IShareRequestRepository {
 		return shareRequest ? this.mapper(shareRequest as IShareRequestEntity) : null;
 	}
 
-	async selectTenant(shareRequestId: string): Promise<IShareRequestEntity> {
+	async select(shareRequestId: string): Promise<IShareRequestEntity> {
 		const shareRequest = await this.prismaClient.shareRequests.update({
 			where: {
 				id: shareRequestId,
 			},
 			data: {
 				status: ShareRequestStatus.SELECTED,
+			},
+			include: { property: { include: { address: true, amenities: true } }, tenant: true },
+		});
+
+		return this.mapper(shareRequest as IShareRequestEntity);
+	}
+
+	async finish(shareRequestId: string): Promise<IShareRequestEntity> {
+		const shareRequest = await this.prismaClient.shareRequests.update({
+			where: {
+				id: shareRequestId,
+			},
+			data: {
+				status: ShareRequestStatus.FINISHED,
 			},
 			include: { property: { include: { address: true, amenities: true } }, tenant: true },
 		});

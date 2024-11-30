@@ -1,9 +1,9 @@
 import type {
-	InputSelectShareRequestDto,
-	OutputSelectShareRequestDto,
-} from "@business/dtos/tenant/shareRequest/selectShareRequestDto";
+	InputFinishShareRequestDto,
+	OutputFinishShareRequestDto,
+} from "@business/dtos/tenant/shareRequest/finishShareRequestDto";
 import {
-	SelectShareRequestGeneralError,
+	FinishShareRequestGeneralError,
 	ShareRequestAlreadyFinished,
 	ShareRequestAlreadySelected,
 	ShareRequestNotFound,
@@ -13,30 +13,30 @@ import type { IUseCase } from "@business/shared/iUseCase";
 import { ShareRequestStatus } from "@entities/components/tenant/shareRequest/shareRequest";
 import { left, right } from "@shared/either";
 
-export class SelectShareRequestUseCase implements IUseCase<InputSelectShareRequestDto, OutputSelectShareRequestDto> {
+export class FinishShareRequestUseCase implements IUseCase<InputFinishShareRequestDto, OutputFinishShareRequestDto> {
 	constructor(private readonly shareRequestRepository: IShareRequestRepository) {}
 
-	async exec(input: InputSelectShareRequestDto): Promise<OutputSelectShareRequestDto> {
+	async exec(input: InputFinishShareRequestDto): Promise<OutputFinishShareRequestDto> {
 		try {
 			const shareRequest = await this.shareRequestRepository.findById(input.shareRequestId);
 			if (!shareRequest) {
 				return left(ShareRequestNotFound);
 			}
 
-			if (shareRequest.status === ShareRequestStatus.SELECTED) {
-				return left(ShareRequestAlreadySelected);
-			}
-
 			if (shareRequest.status === ShareRequestStatus.FINISHED) {
 				return left(ShareRequestAlreadyFinished);
 			}
 
-			const selectedShareRequest = await this.shareRequestRepository.select(shareRequest.id);
+			if (shareRequest.status === ShareRequestStatus.SELECTED) {
+				return left(ShareRequestAlreadySelected);
+			}
 
-			return right(selectedShareRequest);
+			const finishedShareRequest = await this.shareRequestRepository.finish(shareRequest.id);
+
+			return right(finishedShareRequest);
 		} catch (err) {
 			console.error(err);
-			return left(SelectShareRequestGeneralError);
+			return left(FinishShareRequestGeneralError);
 		}
 	}
 }

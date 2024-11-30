@@ -127,9 +127,9 @@ https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
 - openRentDivisionUseCase - ok
 - cancelRentDivisionUseCase
 - completeRentDivisionUseCase
-- createShareRequestUseCase
-- closeShareRequestUseCase
-- selectShareRequestUseCase
+- createShareRequestUseCase - ok
+- finishShareRequestUseCase - ok
+- selectShareRequestUseCase - ok
 - stopTenantRentDivisionUseCase
 - findSharedRentalTenantsUseCase
 
@@ -145,7 +145,7 @@ requisições de compartilhamento de aluguel (CreateShareRequestUseCase), por ou
 o mainTenant daquele imóvel. Essas requisições serão salvas na tabela `shareRequests`, com o status `IN_CONTACT`.
 
 Agora o mainTenant daquele imóvel poderá selecionar (SelectShareRequestUseCase) os usuários com quem ele irá dividir o aluguel.
-Ele poderá também encerrar (CloseShareRequestUseCase) contato com aquele usuário.
+Ele poderá também encerrar (FinishShareRequestUseCase) contato com aquele usuário.
 
 O mainTenant poderá simplesmente decidir cancelar a divisão de aluguel (CancelRentDivisionUseCase) e excluir todos os registros da tabela de `shareRequest`,
 referente aquela divisão em questão. Essa ação altera novamente o status do imóvel para BUSY.
