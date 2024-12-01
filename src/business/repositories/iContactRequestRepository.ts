@@ -30,4 +30,5 @@ export interface IContactRequestRepository {
 	rentProperty(contactRequestId: string): Promise<IContactRequestEntity>;
 	finalizePendingContactRequests(tenantId: string, propertyId: string): Promise<void>;
 	close(input: InputCloseContactRequest): Promise<IContactRequestEntity>;
+	closePendingsByTenantId(tenantId: string): Promise<void>;
 }

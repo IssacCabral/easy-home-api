@@ -150,6 +150,19 @@ export class ContactRequestRepository implements IContactRequestRepository {
 		return this.mapper(contactRequest as IContactRequestEntity);
 	}
 
+	async closePendingsByTenantId(tenantId: string): Promise<void> {
+		await this.prismaClient.contactRequests.updateMany({
+			where: {
+				tenantId,
+				status: ContactRequestStatus.IN_CONTACT,
+			},
+			data: {
+				status: ContactRequestStatus.FINISHED,
+				finalizationReason: "You have been selected to share another property",
+			},
+		});
+	}
+
 	private mapper(contactRequest: IContactRequestEntity): IContactRequestEntity {
 		return {
 			id: contactRequest.id,

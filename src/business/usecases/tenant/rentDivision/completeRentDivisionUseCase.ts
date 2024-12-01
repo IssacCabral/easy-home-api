@@ -8,6 +8,7 @@ import {
 	PropertyNotFound,
 } from "@business/errors/property";
 import { CompleteRentDivisionGeneralError } from "@business/errors/rentDivision";
+import type { IContactRequestRepository } from "@business/repositories/iContactRequestRepository";
 import type { IPropertyRepository } from "@business/repositories/iPropertyRepository";
 import type { IShareRequestRepository } from "@business/repositories/iShareRequestRepository";
 import type { IUseCase } from "@business/shared/iUseCase";
@@ -15,13 +16,13 @@ import { PropertyStatus } from "@entities/components/property/property";
 import { ShareRequestStatus } from "@entities/components/tenant/shareRequest/shareRequest";
 import { left, right } from "@shared/either";
 
-// todo: remover o inquilino(s) de contactRequests
 export class CompleteRentDivisionUseCase
 	implements IUseCase<InputCompleteRentDivisionDto, OutputCompleteRentDivisionDto>
 {
 	constructor(
 		private readonly propertyRepository: IPropertyRepository,
 		private readonly shareRequestRepository: IShareRequestRepository,
+		private readonly contactRequestRepository: IContactRequestRepository,
 	) {}
 
 	async exec(input: InputCompleteRentDivisionDto): Promise<OutputCompleteRentDivisionDto> {
@@ -51,6 +52,12 @@ export class CompleteRentDivisionUseCase
 						propertyId: input.propertyId,
 						tenantId: shareRequest.tenant.id,
 					});
+				}),
+			);
+
+			await Promise.all(
+				shareRequests.map((shareRequest) => {
+					this.contactRequestRepository.closePendingsByTenantId(shareRequest.tenant.id);
 				}),
 			);
 
