@@ -3,16 +3,16 @@ import { ContactRequestNotFound, InvalidToRent, RentPropertyGeneralError } from 
 import {} from "@business/errors/property";
 import type { IContactRequestRepository } from "@business/repositories/iContactRequestRepository";
 import type { IPropertyRepository } from "@business/repositories/iPropertyRepository";
+import type { IShareRequestRepository } from "@business/repositories/iShareRequestRepository";
 import type { IUseCase } from "@business/shared/iUseCase";
 import { ContactRequestStatus } from "@entities/components/contactRequest/contactRequest";
 import { left, right } from "@shared/either";
 
-// todo: quando alugar o imóvel, deve-se também remover as solicitações do
-// todo: inquilino, em requisições de compartilhamento de aluguel
 export class RentPropertyUseCase implements IUseCase<InputRentPropertyDto, OutputRentPropertyDto> {
 	constructor(
 		private readonly contactRequestRepository: IContactRequestRepository,
 		private readonly propertyRepository: IPropertyRepository,
+		private readonly shareRequestRepository: IShareRequestRepository,
 	) {}
 
 	async exec(input: InputRentPropertyDto): Promise<OutputRentPropertyDto> {
@@ -31,6 +31,7 @@ export class RentPropertyUseCase implements IUseCase<InputRentPropertyDto, Outpu
 			const propertyId = contactRequest.property.id;
 
 			await this.contactRequestRepository.finalizePendingContactRequests(tenantId, propertyId);
+			await this.shareRequestRepository.cancelTenantOnShareRequests(tenantId);
 			await this.propertyRepository.saveTenantOnProperty({
 				tenantId,
 				propertyId,

@@ -15,6 +15,7 @@ import { PropertyStatus } from "@entities/components/property/property";
 import { ShareRequestStatus } from "@entities/components/tenant/shareRequest/shareRequest";
 import { left, right } from "@shared/either";
 
+// todo: remover o inquilino(s) de contactRequests
 export class CompleteRentDivisionUseCase
 	implements IUseCase<InputCompleteRentDivisionDto, OutputCompleteRentDivisionDto>
 {

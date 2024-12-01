@@ -72,6 +72,10 @@ export class ShareRequestRepository implements IShareRequestRepository {
 		await this.prismaClient.shareRequests.deleteMany({ where: { propertyId } });
 	}
 
+	async cancelTenantOnShareRequests(tenantId: string): Promise<void> {
+		await this.prismaClient.shareRequests.deleteMany({ where: { tenantId } });
+	}
+
 	async findByStatus(propertyId: string, status: ShareRequestStatus): Promise<IShareRequestEntity[]> {
 		const result = await this.prismaClient.shareRequests.findMany({
 			where: { propertyId, status },
