@@ -2,6 +2,7 @@ import { makeCancelRentDivisionController } from "@framework/factories/controlle
 import { makeCompleteRentDivisionController } from "@framework/factories/controllers/components/tenant/rentDivision/completeRentDivisionControllerFactory";
 import { makeFindSharedRentalTenantsController } from "@framework/factories/controllers/components/tenant/rentDivision/findSharedRentalTenantsControllerFactory";
 import { makeOpenRentDivisionController } from "@framework/factories/controllers/components/tenant/rentDivision/openRentDivisionControllerFactory";
+import { makeStopTenantRentDivisionController } from "@framework/factories/controllers/components/tenant/rentDivision/stopTenantRentDivisionControllerFactory";
 import { ExpressRoutesAdapter } from "@framework/server/adapters/expressRoutesAdapter";
 import { Router } from "express";
 
@@ -23,3 +24,4 @@ rentDivisionRoutes.get(
 	"/rent-divisions/:propertyId",
 	ExpressRoutesAdapter.adapt(makeFindSharedRentalTenantsController()),
 );
+rentDivisionRoutes.post("/rent-divisions/stop", ExpressRoutesAdapter.adapt(makeStopTenantRentDivisionController()));

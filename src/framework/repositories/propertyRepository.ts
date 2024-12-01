@@ -8,6 +8,7 @@ import type {
 	InputUpdateProperty,
 	OutputFindLandlordProperties,
 	OutputFindManyProperties,
+	OutputFindTenantOnProperty,
 } from "@business/repositories/iPropertyRepository";
 import type { IAddressEntity } from "@entities/components/address/address";
 import { type IPropertyEntity, PropertyStatus, PropertyTypes } from "@entities/components/property/property";
@@ -140,10 +141,10 @@ export class PropertyRepository implements IPropertyRepository {
 	async findById(id: string): Promise<IPropertyEntity | null> {
 		const property = await this.prismaClient.properties.findUnique({
 			where: { id },
-			include: { amenities: true, address: true },
+			include: { amenities: true, address: true, tenants: true },
 		});
 
-		return property ? this.mapper(property as IPropertyEntity) : null;
+		return property ? this.mapper(property as unknown as IPropertyEntity) : null;
 	}
 
 	async findLandlordProperties(input: InputFindLandlordProperties): Promise<OutputFindLandlordProperties> {
@@ -240,13 +241,24 @@ export class PropertyRepository implements IPropertyRepository {
 		});
 	}
 
-	async findTenantOnProperty(tenantId: string): Promise<ITenantEntity | null> {
+	async findTenantOnProperty(tenantId: string): Promise<OutputFindTenantOnProperty | null> {
 		const tenantOnProperty = await this.prismaClient.tenantsOnProperties.findUnique({
 			where: { tenantId },
-			include: { tenant: true },
+			include: {
+				tenant: true,
+				property: { include: { amenities: true, address: true } },
+			},
 		});
 
-		return tenantOnProperty ? this.mapperTenant(tenantOnProperty.tenant) : null;
+		const result = tenantOnProperty
+			? {
+					tenant: this.mapperTenant(tenantOnProperty.tenant),
+					property: this.mapper(tenantOnProperty.property as IPropertyEntity),
+					isMainTenant: tenantOnProperty.isMainTenant,
+				}
+			: null;
+
+		return result;
 	}
 
 	async update(input: InputUpdateProperty): Promise<IPropertyEntity> {
@@ -269,6 +281,10 @@ export class PropertyRepository implements IPropertyRepository {
 		});
 
 		return result.map((tenantOnProperty) => this.mapperTenant(tenantOnProperty.tenant as ITenantEntity));
+	}
+
+	async removeTenantOnProperty(tenantId: string): Promise<void> {
+		await this.prismaClient.tenantsOnProperties.delete({ where: { tenantId } });
 	}
 
 	private mapper(property: IPropertyEntity): IPropertyEntity {

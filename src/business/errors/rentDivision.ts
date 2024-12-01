@@ -31,3 +31,9 @@ export const FindSharedRentalTenantsGeneralError: IError = {
 	message: "Find Shared Rental Tenants General Error",
 	shortMessage: "findSharedRentalTenantsGeneralError",
 };
+
+export const StopTenantRentDivisionGeneralError: IError = {
+	code: `${CODE_SUFIX}-006`,
+	message: "Stop Tenant Rent Division General Error",
+	shortMessage: "stopTenantRentDivisionGeneralError",
+};

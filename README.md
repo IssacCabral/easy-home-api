@@ -130,8 +130,8 @@ https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
 - createShareRequestUseCase - ok
 - finishShareRequestUseCase - ok
 - selectShareRequestUseCase - ok
-- stopTenantRentDivisionUseCase
-- findSharedRentalTenantsUseCase
+- stopTenantRentDivisionUseCase - ok
+- findSharedRentalTenantsUseCase - ok
 
 ## Landlord
 

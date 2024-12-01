@@ -8,6 +8,7 @@ import type {
 	IPropertyRepository,
 	OutputFindLandlordProperties,
 	OutputFindManyProperties,
+	OutputFindTenantOnProperty,
 } from "@business/repositories/iPropertyRepository";
 import type { IAddressEntity } from "@entities/components/address/address";
 import type { IPropertyEntity, PropertyStatus } from "@entities/components/property/property";
@@ -56,8 +57,8 @@ class PropertyRepositoryStub implements IPropertyRepository {
 		return Promise.resolve();
 	}
 
-	async findTenantOnProperty(tenantId: string): Promise<ITenantEntity | null> {
-		return fakeTenantEntity;
+	async findTenantOnProperty(tenantId: string): Promise<OutputFindTenantOnProperty | null> {
+		return { isMainTenant: true, property: fakePropertyEntity, tenant: fakeTenantEntity };
 	}
 
 	async update(input: InputUpdateProperty): Promise<IPropertyEntity> {
@@ -70,6 +71,10 @@ class PropertyRepositoryStub implements IPropertyRepository {
 
 	async findTenantsOnProperty(propertyId: string): Promise<ITenantEntity[]> {
 		return [fakeTenantEntity];
+	}
+
+	async removeTenantOnProperty(tenantId: string): Promise<void> {
+		return Promise.resolve();
 	}
 }
 

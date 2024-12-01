@@ -67,3 +67,9 @@ export const NoTenantsSelectedToRentDivision: IError = {
 	message: "No Tenants Selected To Rent Division",
 	shortMessage: "noTenantsSelectedToRentDivision",
 };
+
+export const PropertyIsNotBusy: IError = {
+	code: `${CODE_SUFIX}-012`,
+	message: "Property Is Not Busy",
+	shortMessage: "propertyIsNotBusy",
+};

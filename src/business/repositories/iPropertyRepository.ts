@@ -61,6 +61,12 @@ export type InputUpdateProperty = Partial<
 	Pick<IPropertyEntity, "bathrooms" | "bedrooms" | "depth" | "price" | "description" | "title" | "width" | "type">
 >;
 
+export type OutputFindTenantOnProperty = {
+	tenant: ITenantEntity;
+	property: IPropertyEntity;
+	isMainTenant: boolean;
+};
+
 export interface IPropertyRepository {
 	create(input: InputCreateProperty): Promise<IPropertyEntity>;
 	findAddress(input: InputFindAddress): Promise<IAddressEntity | null>;
@@ -68,8 +74,9 @@ export interface IPropertyRepository {
 	findById(id: string): Promise<IPropertyEntity | null>;
 	findLandlordProperties(input: InputFindLandlordProperties): Promise<OutputFindLandlordProperties>;
 	saveTenantOnProperty(input: InputSaveTenantOnProperty): Promise<void>;
-	findTenantOnProperty(tenantId: string): Promise<ITenantEntity | null>;
+	findTenantOnProperty(tenantId: string): Promise<OutputFindTenantOnProperty | null>;
 	findTenantsOnProperty(propertyId: string): Promise<ITenantEntity[]>;
+	removeTenantOnProperty(tenantId: string): Promise<void>;
 	update(input: InputUpdateProperty): Promise<IPropertyEntity>;
 	updateStatus(propertyId: string, status: PropertyStatus): Promise<IPropertyEntity>;
 }
