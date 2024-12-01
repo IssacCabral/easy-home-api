@@ -164,3 +164,13 @@ mesmo imóvel que o mainTenant.
 Ele também poderá parar de dividir aluguel com esses usuários (StopTenantRentDivisionUseCase) 
 Essa ação deve excluir os registros da tabela `TenantsOnProperties` que não são mainTenant e que estão
 naquele mesmo imóvel do mainTenant.
+
+### O que falta
+
+- UpdateTenantUseCase
+- UpdateLandlordUseCase
+- FindPropertiesOfInterestUseCase
+- CloseTenantContactRequestUseCase
+- DeletePropertyUseCase?
+- UpdatePropertyUseCase
+- Login e Autenticação
