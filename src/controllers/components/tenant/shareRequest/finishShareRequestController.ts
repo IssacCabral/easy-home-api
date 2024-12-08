@@ -11,7 +11,7 @@ export class FinishShareRequestController implements IController {
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
-			const { id } = httpRequest.params;
+			const { id } = httpRequest.params!;
 			const requestBody = httpRequest.body;
 			const input = new InputFinishShareRequestSerializer({ ...requestBody, shareRequestId: id });
 

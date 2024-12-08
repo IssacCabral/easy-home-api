@@ -11,7 +11,7 @@ export class CreateTenantController implements IController {
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
-			const requestBody = httpRequest.body;
+			const requestBody = httpRequest.body!;
 			const input = new InputCreateTenantSerializer(requestBody);
 			const result = await this.operator.exec(input);
 

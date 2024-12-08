@@ -13,7 +13,7 @@ export class CreateContactRequestController implements IController {
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
-			const requestBody = httpRequest.body;
+			const requestBody = httpRequest.body!;
 			const input = new InputCreateContactRequestSerializer(requestBody);
 			const result = await this.operator.exec(input);
 

@@ -12,7 +12,7 @@ export class FindPropertiesController implements IController {
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
-			const { query } = httpRequest;
+			const query = httpRequest.query!;
 
 			const input = new InputFindPropertiesSerializer({
 				page: Number(query.page),

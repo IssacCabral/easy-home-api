@@ -13,7 +13,7 @@ export class CreatePropertyReviewController implements IController {
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
-			const requestBody = httpRequest.body;
+			const requestBody = httpRequest.body!;
 			const input = new InputCreatePropertyReviewSerializer(requestBody);
 			const result = await this.operator.exec(input);
 

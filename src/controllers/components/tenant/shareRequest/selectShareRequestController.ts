@@ -11,7 +11,7 @@ export class SelectShareRequestController implements IController {
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
-			const { id } = httpRequest.params;
+			const { id } = httpRequest.params!;
 			const input = new InputSelectShareRequestSerializer({
 				shareRequestId: id,
 			});

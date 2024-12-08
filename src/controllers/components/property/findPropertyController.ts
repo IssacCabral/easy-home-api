@@ -14,7 +14,7 @@ export class FindPropertyController implements IController {
 			const { params } = httpRequest;
 
 			const input = new InputFindPropertySerializer({
-				id: params.id,
+				id: params!.id,
 			});
 
 			const result = await this.operator.exec(input);

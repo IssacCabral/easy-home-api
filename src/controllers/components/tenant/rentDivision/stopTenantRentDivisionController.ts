@@ -13,7 +13,7 @@ export class StopTenantRentDivisionController implements IController {
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
-			const body = httpRequest.body;
+			const body = httpRequest.body!;
 			const input = new InputStopTenantRentDivisionSerializer(body);
 			const result = await this.operator.exec(input);
 

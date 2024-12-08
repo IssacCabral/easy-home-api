@@ -12,7 +12,7 @@ export class CompleteRentDivisionController implements IController {
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
-			const { propertyId } = httpRequest.params;
+			const { propertyId } = httpRequest.params!;
 			const input = new InputCompleteRentDivisionSerializer({
 				propertyId,
 			});

@@ -11,7 +11,7 @@ export class GetDashboardSummaryController implements IController {
 
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
-			const { landlordId } = httpRequest.params;
+			const { landlordId } = httpRequest.params!;
 			const input = new InputGetDashboardSummarySerializer({
 				landlordId,
 			});
