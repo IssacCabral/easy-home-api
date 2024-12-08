@@ -14,7 +14,7 @@ export class FindLandlordContactRequestsController implements IController {
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
 			const query = httpRequest.query!;
-			const { landlordId } = httpRequest.params!; // todo: provavelmente alterar de onde vem o parametro landlordId
+			const { landlordId } = httpRequest.params!;
 
 			const input = new InputFindLandlordContactRequestsSerializer({
 				landlordId,

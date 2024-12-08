@@ -13,4 +13,4 @@ propertyRoutes.get("/properties/:id", ExpressRoutesAdapter.adapt(makeFindPropert
 propertyRoutes.get(
 	"/properties/landlord/:landlordId",
 	ExpressRoutesAdapter.adapt(makeFindLandlordPropertiesController()),
-); // todo: provavelmente alterar o parametro landlordId
+);
