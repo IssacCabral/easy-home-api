@@ -6,4 +6,11 @@ export type InputLoginDto = {
 	password: string;
 };
 
-export type OutputLoginDto = Either<IError, { accessToken: string }>;
+export type OutputLogin = {
+	accessToken: string;
+	email: string;
+	name: string;
+	isLandlord: boolean;
+};
+
+export type OutputLoginDto = Either<IError, OutputLogin>;

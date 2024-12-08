@@ -4,6 +4,7 @@ import type { IError } from "@shared/iError";
 export interface TokenPayload {
 	userName: string;
 	email: string;
+	isLandlord: boolean;
 }
 
 export interface PayloadResult {

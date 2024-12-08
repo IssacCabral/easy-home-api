@@ -167,8 +167,8 @@ naquele mesmo imóvel do mainTenant.
 
 ### O que falta
 
-- UpdateTenantUseCase
-- UpdateLandlordUseCase
+- UpdateTenantUseCase?
+- UpdateLandlordUseCase?
 - FindPropertiesOfInterestUseCase
 - CloseTenantContactRequestUseCase
 - DeletePropertyUseCase?

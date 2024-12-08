@@ -18,6 +18,7 @@ export class JwtService implements IJwtService {
 				payload: {
 					email: tokenPayload.payload.email,
 					userName: tokenPayload.payload.userName,
+					isLandlord: tokenPayload.payload.isLandlord,
 				},
 				exp: tokenPayload.exp,
 				iat: tokenPayload.iat,

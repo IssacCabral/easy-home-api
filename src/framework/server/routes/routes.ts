@@ -7,6 +7,7 @@ import { contactRequestRoutes } from "./contactRequest/contactRequestRoutes";
 import { propertyReviewRoutes } from "./propertyReview/propertyReviewRoutes";
 import { rentDivisionRoutes } from "./tenant/rentDivision/rentDivisionRoutes";
 import { shareRequestRoutes } from "./tenant/shareRequest/shareRequestRoutes";
+import { authRoutes } from "./auth/authRoutes";
 
 const routes = Router();
 
@@ -18,6 +19,7 @@ routes
 	.use(contactRequestRoutes)
 	.use(propertyReviewRoutes)
 	.use(rentDivisionRoutes)
-	.use(shareRequestRoutes);
+	.use(shareRequestRoutes)
+	.use(authRoutes);
 
 export { routes };
