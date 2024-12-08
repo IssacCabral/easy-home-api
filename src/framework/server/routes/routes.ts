@@ -8,18 +8,24 @@ import { propertyReviewRoutes } from "./propertyReview/propertyReviewRoutes";
 import { rentDivisionRoutes } from "./tenant/rentDivision/rentDivisionRoutes";
 import { shareRequestRoutes } from "./tenant/shareRequest/shareRequestRoutes";
 import { authRoutes } from "./auth/authRoutes";
+import { ExpressMiddlewareAdapter } from "../adapters/expressMiddlewareAdapter";
+import { makeAuthMiddleware } from "@framework/factories/middlewares/authMiddlewareFactory";
 
 const routes = Router();
 
-routes
-	.use(landlordRoutes)
-	.use(tenantRoutes)
-	.use(propertyRoutes)
-	.use(amenityRoutes)
-	.use(contactRequestRoutes)
-	.use(propertyReviewRoutes)
-	.use(rentDivisionRoutes)
-	.use(shareRequestRoutes)
-	.use(authRoutes);
+const authMiddleware = ExpressMiddlewareAdapter.adapt(makeAuthMiddleware());
+
+routes.use(authRoutes);
+routes.use(
+	authMiddleware,
+	landlordRoutes,
+	tenantRoutes,
+	propertyRoutes,
+	amenityRoutes,
+	contactRequestRoutes,
+	propertyReviewRoutes,
+	rentDivisionRoutes,
+	shareRequestRoutes,
+);
 
 export { routes };
