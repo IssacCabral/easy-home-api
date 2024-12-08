@@ -7,6 +7,7 @@ export type InputLoginDto = {
 };
 
 export type OutputLogin = {
+	userId: string;
 	accessToken: string;
 	email: string;
 	name: string;

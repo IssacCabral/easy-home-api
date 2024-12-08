@@ -39,12 +39,14 @@ export class LoginUseCase implements IUseCase<InputLoginDto, OutputLoginDto> {
 
 			const isLandlord = !!landlord;
 			const token = this.jwtService.generateToken({
+				userId: user.id,
 				email: user.email,
 				userName: user.name,
 				isLandlord,
 			});
 
 			return right({
+				userId: user.id,
 				email: user.email,
 				name: user.name,
 				isLandlord,

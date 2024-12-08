@@ -2,6 +2,7 @@ import type { Either } from "@shared/either";
 import type { IError } from "@shared/iError";
 
 export interface TokenPayload {
+	userId: string;
 	userName: string;
 	email: string;
 	isLandlord: boolean;

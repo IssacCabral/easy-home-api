@@ -14,8 +14,11 @@ export class JwtService implements IJwtService {
 		try {
 			const tokenPayload = JWT.verify(token, process.env.JWT_SECRET_KEY ?? "my-secret") as JWT.JwtPayload;
 
+			console.log({ tokenPayload });
+
 			return right({
 				payload: {
+					userId: tokenPayload.payload.userId,
 					email: tokenPayload.payload.email,
 					userName: tokenPayload.payload.userName,
 					isLandlord: tokenPayload.payload.isLandlord,
