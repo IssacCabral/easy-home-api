@@ -15,6 +15,6 @@ export interface PayloadResult {
 export type VerifyTokenOutput = Either<IError, PayloadResult>;
 
 export interface IJwtService {
-	generateToken(payload: TokenPayload): Promise<string>;
-	verifyToken(token: string): Promise<VerifyTokenOutput>;
+	generateToken(payload: TokenPayload): string;
+	verifyToken(token: string): VerifyTokenOutput;
 }
