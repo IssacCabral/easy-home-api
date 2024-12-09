@@ -3,13 +3,15 @@ import { makeCreateContactRequestController } from "@framework/factories/control
 import { makeFindLandlordContactRequestsController } from "@framework/factories/controllers/components/contactRequest/findLandlordContactRequestsControllerFactory";
 import { makeRentPropertyController } from "@framework/factories/controllers/components/contactRequest/rentPropertyControllerFactory";
 import { ExpressRoutesAdapter } from "@framework/server/adapters/expressRoutesAdapter";
+import { landlordGuard } from "@framework/server/middlewares/guards";
 import { Router } from "express";
 
 export const contactRequestRoutes = Router();
 
 contactRequestRoutes.post("/contact-requests", ExpressRoutesAdapter.adapt(makeCreateContactRequestController()));
 contactRequestRoutes.get(
-	"/contact-requests/:landlordId",
+	"/contact-requests",
+	landlordGuard,
 	ExpressRoutesAdapter.adapt(makeFindLandlordContactRequestsController()),
 );
 contactRequestRoutes.post("/contact-requests/rent", ExpressRoutesAdapter.adapt(makeRentPropertyController()));

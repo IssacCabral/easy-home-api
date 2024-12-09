@@ -14,7 +14,7 @@ export class FindLandlordPropertiesController implements IController {
 	async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
 		try {
 			const query = httpRequest.query!;
-			const { landlordId } = httpRequest.params!;
+			const landlordId = httpRequest.user?.id;
 
 			const input = new InputFindLandlordPropertiesSerializer({
 				landlordId,
