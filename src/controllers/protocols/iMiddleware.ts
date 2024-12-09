@@ -1,5 +1,6 @@
+import type { Roles } from "@framework/server/middlewares/role";
 import type { HttpRequest, HttpResponse } from "./http";
 
-export interface IMiddleware<T = undefined> {
-	handle(httpRequest: HttpRequest, ...options: T extends undefined ? [undefined] : [T]): Promise<HttpResponse>;
+export interface IMiddleware {
+	handle(httpRequest: HttpRequest, role?: Roles): Promise<HttpResponse>;
 }

@@ -18,8 +18,8 @@ export const AuthorizationGeneralError: IError = {
 	shortMessage: "authorizationGeneralError",
 };
 
-// export const ForbiddenError: IError = {
-// 	code: "AUTH-004",
-// 	message: "Without Permission To Access The Resource",
-// 	shortMessage: "forbiddenError",
-// };
+export const ForbiddenError: IError = {
+	code: "AUTH-004",
+	message: "Without Permission To Access The Resource",
+	shortMessage: "forbiddenError",
+};
