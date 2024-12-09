@@ -109,11 +109,6 @@ https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
 
 - ajustar build do projeto pra rodar com o javascript
 
-## PropertyReviews
-
-- findPropertyReviewsUseCase - ok
-- findPropertyRatingUseCase - ok
-
 ## Properties
 
 - updatePropertyUseCase
@@ -124,14 +119,6 @@ https://www.prisma.io/docs/orm/prisma-client/queries/select-fields -->
 - findPropertiesOfInterest - mostrar imóveis que ele deseja dividir aluguel
 - closeTenantContactRequest
 - updateTenantUseCase
-- openRentDivisionUseCase - ok
-- cancelRentDivisionUseCase - ok
-- completeRentDivisionUseCase - ok
-- createShareRequestUseCase - ok
-- finishShareRequestUseCase - ok
-- selectShareRequestUseCase - ok
-- stopTenantRentDivisionUseCase - ok
-- findSharedRentalTenantsUseCase - ok
 
 ## Landlord
 
@@ -173,4 +160,3 @@ naquele mesmo imóvel do mainTenant.
 - CloseTenantContactRequestUseCase
 - DeletePropertyUseCase?
 - UpdatePropertyUseCase
-- Login e Autenticação
