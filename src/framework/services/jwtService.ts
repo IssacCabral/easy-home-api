@@ -4,7 +4,7 @@ import { left, right } from "@shared/either";
 import JWT from "jsonwebtoken";
 
 export class JwtService implements IJwtService {
-	private readonly SECRET = process.env.JWT_SECRET ?? "secret";
+	private readonly SECRET = process.env.JWT_SECRET_KEY ?? "secret";
 
 	generateToken(payload: TokenPayload): string {
 		return JWT.sign(payload, this.SECRET, { expiresIn: "1d" });
