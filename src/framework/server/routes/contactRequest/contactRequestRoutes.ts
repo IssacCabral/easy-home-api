@@ -3,16 +3,28 @@ import { makeCreateContactRequestController } from "@framework/factories/control
 import { makeFindLandlordContactRequestsController } from "@framework/factories/controllers/components/contactRequest/findLandlordContactRequestsControllerFactory";
 import { makeRentPropertyController } from "@framework/factories/controllers/components/contactRequest/rentPropertyControllerFactory";
 import { ExpressRoutesAdapter } from "@framework/server/adapters/expressRoutesAdapter";
-import { landlordGuard } from "@framework/server/middlewares/guards";
+import { landlordGuard, tenantGuard } from "@framework/server/middlewares/guards";
 import { Router } from "express";
 
 export const contactRequestRoutes = Router();
 
-contactRequestRoutes.post("/contact-requests", ExpressRoutesAdapter.adapt(makeCreateContactRequestController()));
+contactRequestRoutes.post(
+	"/contact-requests",
+	tenantGuard,
+	ExpressRoutesAdapter.adapt(makeCreateContactRequestController()),
+);
 contactRequestRoutes.get(
 	"/contact-requests",
 	landlordGuard,
 	ExpressRoutesAdapter.adapt(makeFindLandlordContactRequestsController()),
 );
-contactRequestRoutes.post("/contact-requests/rent", ExpressRoutesAdapter.adapt(makeRentPropertyController()));
-contactRequestRoutes.post("/contact-requests/close", ExpressRoutesAdapter.adapt(makeCloseContactRequestController()));
+contactRequestRoutes.post(
+	"/contact-requests/rent",
+	landlordGuard,
+	ExpressRoutesAdapter.adapt(makeRentPropertyController()),
+);
+contactRequestRoutes.post(
+	"/contact-requests/close",
+	landlordGuard,
+	ExpressRoutesAdapter.adapt(makeCloseContactRequestController()),
+);
