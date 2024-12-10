@@ -1,7 +1,7 @@
-import { LoginGeneralError } from "@business/errors/auth";
+import { InvalidCredentialsError, LoginGeneralError } from "@business/errors/auth";
 import type { LoginOperator } from "@controllers/operators/auth/loginOperator";
 import type { HttpRequest, HttpResponse } from "@controllers/protocols/http";
-import { badRequest, ok, serverError } from "@controllers/protocols/httpStatus";
+import { badRequest, ok, serverError, unauthorized } from "@controllers/protocols/httpStatus";
 import type { IController } from "@controllers/protocols/iController";
 import { InputLoginSerializer } from "@controllers/serializers/auth/loginSerializer";
 import type { IError } from "@shared/iError";
@@ -18,6 +18,10 @@ export class LoginController implements IController {
 			if (result.isLeft()) {
 				if (result.value === LoginGeneralError) {
 					throw new Error(result.value.message);
+				}
+
+				if (result.value === InvalidCredentialsError) {
+					return unauthorized(result.value)
 				}
 
 				return badRequest(result.value);
