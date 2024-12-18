@@ -9,7 +9,7 @@ export const LoginGeneralError: IError = {
 };
 
 export const InvalidCredentialsError: IError = {
-	code: "AUTH-002",
+	code: `${CODE_SUFIX}-002`,
 	message: "Invalid Credentials Error",
 	shortMessage: "invalidCredentialsError",
 };
