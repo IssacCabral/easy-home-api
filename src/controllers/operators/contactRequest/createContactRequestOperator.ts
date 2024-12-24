@@ -1,9 +1,9 @@
+import type { CreateContactRequestUseCase } from "@business/usecases/contactRequest/createContactRequestUseCase";
 import type {
 	InputCreateContactRequestSerializer,
 	OutputCreateContactRequestSerializer,
 } from "@controllers/serializers/contactRequest/createContactRequestSerializer";
 import { AbstractOperator } from "../abstractOperator";
-import type { CreateContactRequestUseCase } from "@business/usecases/contactRequest/createContactRequestUseCase";
 
 export class CreateContactRequestOperator extends AbstractOperator<
 	InputCreateContactRequestSerializer,

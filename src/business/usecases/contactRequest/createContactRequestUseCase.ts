@@ -16,7 +16,7 @@ import type { IUniqueIdentifierService } from "@business/services/iUniqueIdentif
 import type { IUseCase } from "@business/shared/iUseCase";
 import { omitPassword } from "@business/shared/omitPassword";
 import { ContactRequestStatus, type IContactRequestEntity } from "@entities/components/contactRequest/contactRequest";
-import { PropertyStatus, type IPropertyEntity } from "@entities/components/property/property";
+import { type IPropertyEntity, PropertyStatus } from "@entities/components/property/property";
 import type { ITenantEntity } from "@entities/components/tenant/tenant";
 import { type Either, left, right } from "@shared/either";
 import type { IError } from "@shared/iError";

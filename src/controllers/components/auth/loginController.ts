@@ -21,7 +21,7 @@ export class LoginController implements IController {
 				}
 
 				if (result.value === InvalidCredentialsError) {
-					return unauthorized(result.value)
+					return unauthorized(result.value);
 				}
 
 				return badRequest(result.value);

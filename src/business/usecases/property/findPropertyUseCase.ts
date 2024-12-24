@@ -14,6 +14,8 @@ export class FindPropertyUseCase implements IUseCase<InputFindPropertyDto, Outpu
 				return left(PropertyNotFound);
 			}
 
+			console.log({ property });
+
 			return right(property);
 		} catch (err) {
 			return left(FindPropertyGeneralError);

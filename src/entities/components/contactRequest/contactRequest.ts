@@ -1,10 +1,10 @@
 import { AbstractEntity } from "@entities/shared/abstractEntity";
 import { type Either, right } from "@shared/either";
 import type { IError } from "@shared/iError";
-import type { IPropertyEntity } from "../property/property";
-import type { ITenantEntity } from "../tenant/tenant";
 import type { IAddressEntity } from "../address/address";
 import type { IAmenityEntity } from "../amenity/amenity";
+import type { IPropertyEntity } from "../property/property";
+import type { ITenantEntity } from "../tenant/tenant";
 
 export enum ContactRequestStatus {
 	IN_CONTACT = "IN_CONTACT",

@@ -1,9 +1,9 @@
+import type { CloseContactRequestUseCase } from "@business/usecases/contactRequest/closeContactRequestUseCase";
 import type {
 	InputCloseContactRequestSerializer,
 	OutputCloseContactRequestSerializer,
 } from "@controllers/serializers/contactRequest/closeContactRequestSerializer";
 import { AbstractOperator } from "../abstractOperator";
-import type { CloseContactRequestUseCase } from "@business/usecases/contactRequest/closeContactRequestUseCase";
 
 export class CloseContactRequestOperator extends AbstractOperator<
 	InputCloseContactRequestSerializer,

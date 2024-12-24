@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { publicRoutes } from "./public";
 import { protectedRoutes } from "./protected";
+import { publicRoutes } from "./public";
 
 const routes = Router();
 routes.use(publicRoutes).use(protectedRoutes);

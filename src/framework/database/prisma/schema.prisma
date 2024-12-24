@@ -95,7 +95,7 @@ model Properties {
   ShareRequests   ShareRequests[]
   PropertyReviews PropertyReviews[]
 
-  Landlord   Landlords @relation(fields: [landlordId], references: [id])
+  landlord   Landlords @relation(fields: [landlordId], references: [id])
   landlordId String
 
   address   Addresses @relation(fields: [addressId], references: [id])

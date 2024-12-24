@@ -10,6 +10,7 @@ import { type Either, left, right } from "@shared/either";
 import type { IError } from "@shared/iError";
 import type { IAddressEntity } from "../address/address";
 import type { IAmenityEntity } from "../amenity/amenity";
+import type { ILandlordEntity } from "../landlord/landlord";
 import type { ITenantEntity } from "../tenant/tenant";
 
 export enum PropertyTypes {
@@ -39,6 +40,7 @@ export interface IPropertyEntity extends IBaseModel {
 	photosUrl: string;
 	amenities: IAmenityEntity[];
 	tenants?: Omit<ITenantEntity, "password">[];
+	landlord?: ILandlordEntity;
 }
 
 export class PropertyEntity extends AbstractEntity<IPropertyEntity> {

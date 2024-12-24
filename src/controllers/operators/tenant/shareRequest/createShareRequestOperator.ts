@@ -1,9 +1,9 @@
+import type { CreateShareRequestUseCase } from "@business/usecases/tenant/shareRequest/createShareRequestUseCase";
+import { AbstractOperator } from "@controllers/operators/abstractOperator";
 import type {
 	InputCreateShareRequestSerializer,
 	OutputCreateShareRequestSerializer,
 } from "@controllers/serializers/tenant/shareRequest/createShareRequestSerializer";
-import type { CreateShareRequestUseCase } from "@business/usecases/tenant/shareRequest/createShareRequestUseCase";
-import { AbstractOperator } from "@controllers/operators/abstractOperator";
 
 export class CreateShareRequestOperator extends AbstractOperator<
 	InputCreateShareRequestSerializer,

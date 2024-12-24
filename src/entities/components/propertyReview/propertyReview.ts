@@ -1,11 +1,11 @@
-import type { IBaseModel } from "@entities/shared/baseModel";
-import type { IPropertyEntity } from "../property/property";
 import { AbstractEntity } from "@entities/shared/abstractEntity";
+import type { IBaseModel } from "@entities/shared/baseModel";
 import { type Either, right } from "@shared/either";
 import type { IError } from "@shared/iError";
-import type { ITenantEntity } from "../tenant/tenant";
 import type { IAddressEntity } from "../address/address";
 import type { IAmenityEntity } from "../amenity/amenity";
+import type { IPropertyEntity } from "../property/property";
+import type { ITenantEntity } from "../tenant/tenant";
 
 export type Rating = 1 | 2 | 3 | 4 | 5;
 

@@ -1,7 +1,7 @@
 import type { OutputCreatePropertyReviewDto } from "@business/dtos/propertyReview/createPropertyReviewDto";
-import { AbstractSerializer } from "../abstractSerializer";
 import type { Rating } from "@entities/components/propertyReview/propertyReview";
 import { IsIn, IsNotEmpty, IsString, IsUUID } from "class-validator";
+import { AbstractSerializer } from "../abstractSerializer";
 
 export class InputCreatePropertyReviewSerializer extends AbstractSerializer<InputCreatePropertyReviewSerializer> {
 	@IsNotEmpty()

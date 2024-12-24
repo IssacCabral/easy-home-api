@@ -1,6 +1,6 @@
-import { IsNotEmpty, IsString, IsUUID } from "class-validator";
-import { AbstractSerializer } from "@controllers/serializers/abstractSerializer";
 import type { OutputFinishShareRequestDto } from "@business/dtos/tenant/shareRequest/finishShareRequestDto";
+import { AbstractSerializer } from "@controllers/serializers/abstractSerializer";
+import { IsNotEmpty, IsString, IsUUID } from "class-validator";
 
 export class InputFinishShareRequestSerializer extends AbstractSerializer<InputFinishShareRequestSerializer> {
 	@IsNotEmpty()

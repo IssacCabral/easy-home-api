@@ -1,6 +1,6 @@
 import type { OutputCreateContactRequestDto } from "@business/dtos/contactRequest/createContactRequestDto";
-import { AbstractSerializer } from "../abstractSerializer";
 import { IsNotEmpty, IsUUID } from "class-validator";
+import { AbstractSerializer } from "../abstractSerializer";
 
 export class InputCreateContactRequestSerializer extends AbstractSerializer<InputCreateContactRequestSerializer> {
 	@IsNotEmpty()

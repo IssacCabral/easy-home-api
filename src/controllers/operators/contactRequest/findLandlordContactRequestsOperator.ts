@@ -1,9 +1,9 @@
+import type { FindLandlordContactRequestsUseCase } from "@business/usecases/contactRequest/findLandlordContactRequestsUseCase";
 import type {
 	InputFindLandlordContactRequestsSerializer,
 	OutputFindLandlordContactRequestsSerializer,
 } from "@controllers/serializers/contactRequest/findLandlordContactRequestsSerializer";
 import { AbstractOperator } from "../abstractOperator";
-import type { FindLandlordContactRequestsUseCase } from "@business/usecases/contactRequest/findLandlordContactRequestsUseCase";
 
 export class FindLandlordContactRequestsOperator extends AbstractOperator<
 	InputFindLandlordContactRequestsSerializer,

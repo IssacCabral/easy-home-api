@@ -1,9 +1,9 @@
+import { TokenExpiredError } from "@business/errors/jwt";
+import type { GetUserByTokenUseCase } from "@business/usecases/users/getUserByTokenUseCase";
 import type { HttpRequest, HttpResponse } from "@controllers/protocols/http";
 import { ok, serverError, unauthorized } from "@controllers/protocols/httpStatus";
 import type { IMiddleware } from "@controllers/protocols/iMiddleware";
 import { AuthorizationGeneralError, AuthorizationHeaderNotProvided, TokenNotProvided } from "./errors";
-import type { GetUserByTokenUseCase } from "@business/usecases/users/getUserByTokenUseCase";
-import { TokenExpiredError } from "@business/errors/jwt";
 
 export class AuthMiddleware implements IMiddleware {
 	constructor(private readonly getUserByTokenUseCase: GetUserByTokenUseCase) {}

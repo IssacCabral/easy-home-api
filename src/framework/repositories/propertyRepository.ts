@@ -141,7 +141,7 @@ export class PropertyRepository implements IPropertyRepository {
 	async findById(id: string): Promise<IPropertyEntity | null> {
 		const property = await this.prismaClient.properties.findUnique({
 			where: { id },
-			include: { amenities: true, address: true, tenants: true },
+			include: { amenities: true, address: true, tenants: true, landlord: true },
 		});
 
 		return property ? this.mapper(property as unknown as IPropertyEntity) : null;
@@ -304,6 +304,7 @@ export class PropertyRepository implements IPropertyRepository {
 			address: property.address,
 			amenities: property.amenities,
 			tenants: property.tenants,
+			landlord: property.landlord,
 			createdAt: property.createdAt,
 			updatedAt: property.updatedAt,
 		};

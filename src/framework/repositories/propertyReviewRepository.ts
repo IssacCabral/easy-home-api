@@ -1,6 +1,6 @@
 import type {
-	InputCreatePropertyReview,
 	IPropertyReviewRepository,
+	InputCreatePropertyReview,
 } from "@business/repositories/iPropertyReviewRepository";
 import type { IPropertyReviewEntity } from "@entities/components/propertyReview/propertyReview";
 import type { PrismaClient } from "@prisma/client";

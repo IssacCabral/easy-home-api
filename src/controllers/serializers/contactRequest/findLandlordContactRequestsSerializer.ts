@@ -1,7 +1,7 @@
 import type { OutputFindLandlordContactRequestsDto } from "@business/dtos/contactRequest/findLandlordContactRequestDto";
-import { AbstractSerializer } from "../abstractSerializer";
-import { IsEnum, IsInt, IsNotEmpty, IsOptional, IsPositive, IsString, IsUUID } from "class-validator";
 import { ContactRequestStatus } from "@entities/components/contactRequest/contactRequest";
+import { IsEnum, IsInt, IsNotEmpty, IsOptional, IsPositive, IsString, IsUUID } from "class-validator";
+import { AbstractSerializer } from "../abstractSerializer";
 
 export class InputFindLandlordContactRequestsSerializer extends AbstractSerializer<InputFindLandlordContactRequestsSerializer> {
 	@IsNotEmpty()

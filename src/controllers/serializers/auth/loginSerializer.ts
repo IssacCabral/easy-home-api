@@ -1,6 +1,6 @@
 import type { OutputLoginDto } from "@business/dtos/auth/loginDto";
-import { AbstractSerializer } from "../abstractSerializer";
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { AbstractSerializer } from "../abstractSerializer";
 
 export class InputLoginSerializer extends AbstractSerializer<InputLoginSerializer> {
 	@IsNotEmpty()

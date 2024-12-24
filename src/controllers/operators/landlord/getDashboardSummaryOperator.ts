@@ -1,9 +1,9 @@
+import type { GetDashboardSummaryUseCase } from "@business/usecases/landlord/getDashboardSummaryUseCase";
 import type {
 	InputGetDashboardSummarySerializer,
 	OutputGetDashboardSummarySerializer,
 } from "@controllers/serializers/landlord/getDashboardSummarySerializer";
 import { AbstractOperator } from "../abstractOperator";
-import type { GetDashboardSummaryUseCase } from "@business/usecases/landlord/getDashboardSummaryUseCase";
 
 export class GetDashboardSummaryOperator extends AbstractOperator<
 	InputGetDashboardSummarySerializer,
