@@ -27,6 +27,7 @@ export interface IContactRequestRepository {
 	findById(id: string): Promise<IContactRequestEntity | null>;
 	findInContact(tenantId: string, propertyId: string): Promise<IContactRequestEntity | null>;
 	findLandlordContactRequests(input: InputFindLandlordContactRequests): Promise<OutputFindLandlordContactRequests>;
+	findTenantContactRequests(tenantId: string): Promise<IContactRequestEntity[]>;
 	rentProperty(contactRequestId: string): Promise<IContactRequestEntity>;
 	finalizePendingContactRequests(tenantId: string, propertyId: string): Promise<void>;
 	close(input: InputCloseContactRequest): Promise<IContactRequestEntity>;

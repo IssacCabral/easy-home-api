@@ -85,6 +85,15 @@ export class ShareRequestRepository implements IShareRequestRepository {
 		return result.map((item) => this.mapper(item as IShareRequestEntity));
 	}
 
+	async findByTenant(tenantId: string): Promise<IShareRequestEntity[]> {
+		const result = await this.prismaClient.shareRequests.findMany({
+			where: { tenantId },
+			include: { property: true, tenant: true },
+		});
+
+		return result.map((item) => this.mapper(item as IShareRequestEntity));
+	}
+
 	private mapper(shareRequest: IShareRequestEntity): IShareRequestEntity {
 		return {
 			id: shareRequest.id,

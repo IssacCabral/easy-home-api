@@ -86,6 +86,17 @@ export class ContactRequestRepository implements IContactRequestRepository {
 		};
 	}
 
+	async findTenantContactRequests(tenantId: string): Promise<IContactRequestEntity[]> {
+		const tenantContactRequests = await this.prismaClient.contactRequests.findMany({
+			where: { tenantId },
+			include: { property: true, tenant: true },
+		});
+
+		return tenantContactRequests.map((tenantContactRequest) =>
+			this.mapper(tenantContactRequest as IContactRequestEntity),
+		);
+	}
+
 	async findById(id: string): Promise<IContactRequestEntity | null> {
 		const contactRequest = await this.prismaClient.contactRequests.findUnique({
 			where: { id },
