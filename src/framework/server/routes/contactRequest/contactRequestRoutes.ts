@@ -23,8 +23,4 @@ contactRequestRoutes.post(
 	landlordGuard,
 	ExpressRoutesAdapter.adapt(makeRentPropertyController()),
 );
-contactRequestRoutes.post(
-	"/contact-requests/close",
-	landlordGuard,
-	ExpressRoutesAdapter.adapt(makeCloseContactRequestController()),
-);
+contactRequestRoutes.post("/contact-requests/close", ExpressRoutesAdapter.adapt(makeCloseContactRequestController()));

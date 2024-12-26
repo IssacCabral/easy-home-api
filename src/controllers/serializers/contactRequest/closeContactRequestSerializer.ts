@@ -1,5 +1,5 @@
 import type { OutputCloseContactRequestDto } from "@business/dtos/contactRequest/closeContactRequestDto";
-import { IsNotEmpty, IsString, IsUUID } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString, IsUUID } from "class-validator";
 import { AbstractSerializer } from "../abstractSerializer";
 
 export class InputCloseContactRequestSerializer extends AbstractSerializer<InputCloseContactRequestSerializer> {
@@ -7,9 +7,9 @@ export class InputCloseContactRequestSerializer extends AbstractSerializer<Input
 	@IsUUID()
 	id!: string;
 
-	@IsNotEmpty()
+	@IsOptional()
 	@IsString()
-	reason!: string;
+	reason?: string;
 }
 
 export type OutputCloseContactRequestSerializer = OutputCloseContactRequestDto;

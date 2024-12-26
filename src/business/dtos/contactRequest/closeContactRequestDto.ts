@@ -4,7 +4,7 @@ import type { IError } from "@shared/iError";
 
 export type InputCloseContactRequestDto = {
 	id: string;
-	reason: string;
+	reason?: string;
 };
 
 export type OutputCloseContactRequestDto = Either<IError, IContactRequestEntity>;

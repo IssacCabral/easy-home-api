@@ -19,7 +19,7 @@ export type OutputFindLandlordContactRequests = PaginationData<IContactRequestEn
 
 export type InputCloseContactRequest = {
 	id: string;
-	reason: string;
+	reason?: string;
 };
 
 export interface IContactRequestRepository {
