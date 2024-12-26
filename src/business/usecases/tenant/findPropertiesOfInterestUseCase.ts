@@ -12,7 +12,7 @@ import type { IContactRequestEntity } from "@entities/components/contactRequest/
 import type { IShareRequestEntity } from "@entities/components/tenant/shareRequest/shareRequest";
 import { left, right } from "@shared/either";
 
-export class findPropertiesOfInterestUseCase
+export class FindPropertiesOfInterestUseCase
 	implements IUseCase<InputFindPropertiesOfInterestDto, OutputFindPropertiesOfInterestDto>
 {
 	constructor(
