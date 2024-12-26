@@ -27,7 +27,13 @@ export const TenantCannotBeMain: IError = {
 };
 
 export const TenantNotFoundOnProperty: IError = {
-	code: `${CODE_SUFIX}-002`,
+	code: `${CODE_SUFIX}-005`,
 	message: "Tenant Not Found On Property",
 	shortMessage: "tenantNotFoundOnProperty",
+};
+
+export const FindPropertiesOfInterestGeneralError: IError = {
+	code: `${CODE_SUFIX}-006`,
+	message: "Find Properties Of Interest General Error",
+	shortMessage: "findPropertiesOfInterestGeneralError",
 };
