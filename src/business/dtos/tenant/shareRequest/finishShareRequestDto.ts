@@ -4,6 +4,7 @@ import type { IError } from "@shared/iError";
 
 export type InputFinishShareRequestDto = {
 	shareRequestId: string;
+	finalizationReason: string;
 };
 
 export type OutputFinishShareRequestDto = Either<IError, IShareRequestEntity>;

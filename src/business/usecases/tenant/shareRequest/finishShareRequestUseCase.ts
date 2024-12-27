@@ -31,7 +31,7 @@ export class FinishShareRequestUseCase implements IUseCase<InputFinishShareReque
 				return left(ShareRequestAlreadySelected);
 			}
 
-			const finishedShareRequest = await this.shareRequestRepository.finish(shareRequest.id);
+			const finishedShareRequest = await this.shareRequestRepository.finish(shareRequest.id, input.finalizationReason);
 
 			return right(finishedShareRequest);
 		} catch (err) {

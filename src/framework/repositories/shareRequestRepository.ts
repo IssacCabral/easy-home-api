@@ -45,13 +45,14 @@ export class ShareRequestRepository implements IShareRequestRepository {
 		return this.mapper(shareRequest as IShareRequestEntity);
 	}
 
-	async finish(shareRequestId: string): Promise<IShareRequestEntity> {
+	async finish(shareRequestId: string, finalizationReason: string): Promise<IShareRequestEntity> {
 		const shareRequest = await this.prismaClient.shareRequests.update({
 			where: {
 				id: shareRequestId,
 			},
 			data: {
 				status: ShareRequestStatus.FINISHED,
+				finalizationReason,
 			},
 			include: { property: { include: { address: true, amenities: true } }, tenant: true },
 		});
