@@ -156,7 +156,5 @@ naquele mesmo imóvel do mainTenant.
 
 - UpdateTenantUseCase?
 - UpdateLandlordUseCase?
-- FindPropertiesOfInterestUseCase
-- CloseTenantContactRequestUseCase
 - DeletePropertyUseCase?
 - UpdatePropertyUseCase
