@@ -12,6 +12,7 @@ export type OutputLogin = {
 	email: string;
 	name: string;
 	isLandlord: boolean;
+	property?: string;
 };
 
 export type OutputLoginDto = Either<IError, OutputLogin>;

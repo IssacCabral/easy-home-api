@@ -1,6 +1,7 @@
 import type { InputLoginDto, OutputLoginDto } from "@business/dtos/auth/loginDto";
 import { InvalidCredentialsError, LoginGeneralError } from "@business/errors/auth";
 import type { ILandlordRepository } from "@business/repositories/iLandlordRepository";
+import type { IPropertyRepository } from "@business/repositories/iPropertyRepository";
 import type { ITenantRepository } from "@business/repositories/iTenantRepository";
 import type { ICryptService } from "@business/services/iCryptService";
 import type { IJwtService } from "@business/services/iJwtService";
@@ -13,6 +14,7 @@ export class LoginUseCase implements IUseCase<InputLoginDto, OutputLoginDto> {
 		private readonly landlordRepository: ILandlordRepository,
 		private readonly cryptService: ICryptService,
 		private readonly jwtService: IJwtService,
+		private readonly propertyRepository: IPropertyRepository,
 	) {}
 
 	async exec(input: InputLoginDto): Promise<OutputLoginDto> {
@@ -45,12 +47,22 @@ export class LoginUseCase implements IUseCase<InputLoginDto, OutputLoginDto> {
 				isLandlord,
 			});
 
+			let property = undefined;
+
+			if (!isLandlord) {
+				const tenantOnProperty = await this.propertyRepository.findTenantOnProperty(user.id);
+				if (tenantOnProperty) {
+					property = tenantOnProperty.property.id;
+				}
+			}
+
 			return right({
 				userId: user.id,
 				email: user.email,
 				name: user.name,
 				isLandlord,
 				accessToken: token,
+				property,
 			});
 		} catch (err) {
 			return left(LoginGeneralError);
