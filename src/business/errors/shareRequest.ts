@@ -49,3 +49,9 @@ export const FinishShareRequestGeneralError: IError = {
 	message: "Finish Share Request General Error",
 	shortMessage: "finishShareRequestGeneralError",
 };
+
+export const FindShareRequestsGeneralError: IError = {
+	code: `${CODE_SUFIX}-009`,
+	message: "Finish Share Requests General Error",
+	shortMessage: "finishShareRequestsGeneralError",
+};

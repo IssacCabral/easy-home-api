@@ -1,4 +1,5 @@
 import { makeCreateShareRequestController } from "@framework/factories/controllers/components/tenant/shareRequest/createShareRequestControllerFactory";
+import { makeFindShareRequestsController } from "@framework/factories/controllers/components/tenant/shareRequest/findShareRequestsControllerFactory";
 import { makeFinishShareRequestController } from "@framework/factories/controllers/components/tenant/shareRequest/finishShareRequestControllerFactory";
 import { makeSelectShareRequestController } from "@framework/factories/controllers/components/tenant/shareRequest/selectShareRequestControllerFactory";
 import { ExpressRoutesAdapter } from "@framework/server/adapters/expressRoutesAdapter";
@@ -17,4 +18,9 @@ shareRequestRoutes.patch(
 	"/share-requests/finish/:id",
 	tenantGuard,
 	ExpressRoutesAdapter.adapt(makeFinishShareRequestController()),
+);
+shareRequestRoutes.get(
+	"/share-requests/:propertyId",
+	tenantGuard,
+	ExpressRoutesAdapter.adapt(makeFindShareRequestsController()),
 );

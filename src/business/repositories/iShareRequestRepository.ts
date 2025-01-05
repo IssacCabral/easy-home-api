@@ -17,4 +17,5 @@ export type IShareRequestRepository = {
 	cancelTenantOnShareRequests(tenantId: string): Promise<void>;
 	findByStatus(propertyId: string, status: ShareRequestStatus): Promise<IShareRequestEntity[]>;
 	findByTenant(tenantId: string): Promise<IShareRequestEntity[]>;
+	findMany(propertyId: string): Promise<IShareRequestEntity[]>;
 };
