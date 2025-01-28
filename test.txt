@@ -1,0 +1,49 @@
+INSERT INTO public."Amenities" (id, label) VALUES ('004', 'Wifi');
+INSERT INTO public."TenantsOnProperties" ("propertyId", "tenantId", "isMainTenant") 
+	VALUES ('901db339-1a10-40f0-9aa7-fecdae3df9e9', '636d204f-22fa-441c-91d9-e2f73026a7f0', true);
+
+DELETE FROM public."Landlords";
+DELETE FROM public."Tenants";
+DELETE FROM public."Amenities";
+
+DELETE FROM public."_AmenitiesToProperties";
+DELETE FROM public."Properties";
+DELETE FROM public."Addresses";
+
+SELECT
+    p.*,
+    jsonb_build_object(
+        'id', a.id,
+        'number', a.number,
+        'street', a.street,
+        'lat', a.lat,
+        'lon', a.lon
+    ) as address,
+    COALESCE(
+        jsonb_agg(
+            jsonb_build_object(
+                'id', am.id,
+                'label', am.label
+            )
+        ) FILTER (WHERE am.id IS NOT NULL),
+        '[]'
+    ) as amenities
+FROM 
+    "Properties" p
+INNER JOIN 
+    "Addresses" a ON p."addressId" = a.id
+LEFT JOIN 
+    "_AmenitiesToProperties" ap ON p.id = ap."B"
+LEFT JOIN 
+    "Amenities" am ON ap."A" = am.id
+WHERE 
+    ST_DWithin(
+        a.location,
+        ST_SetSRID(ST_MakePoint(-39.0251186, -4.9655912), 4326),
+        1000
+    )
+    AND p.status = 'FREE'
+GROUP BY 
+    p.id, a.id
+LIMIT 5
+OFFSET 0;
