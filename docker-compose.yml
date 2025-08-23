@@ -9,8 +9,8 @@ services:
     env_file:
       - .env
     # command: bash -c "npx prisma migrate deploy && npx prisma generate && npx prisma db seed && yarn build && yarn start"
-    # command: bash -c "npx prisma migrate deploy && npx prisma generate && yarn build && yarn start"
-    command: bash -c "yarn start"
+    command: bash -c "npx prisma migrate deploy && npx prisma generate && yarn build && yarn start"
+    # command: bash -c "yarn start"
     networks:
       - easy-home-network
     depends_on:
