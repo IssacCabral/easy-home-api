@@ -9,7 +9,7 @@ export async function generateLandlord(prismaClient: PrismaClient) {
 			id: "d530cb79-8aaa-412e-ae25-18b279e32f96",
 			email: "issac@gmail.com",
 			name: "Issac Cabral",
-			password: await bcrypt.hash("Abc#1234", 12),
+			password: await bcrypt.hash("Abc#1234", 12), // todo: change this password when going into production
 			phone: "(88) 99838-5580",
 		},
 	});
